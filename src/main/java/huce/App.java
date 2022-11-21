@@ -44,6 +44,7 @@ public static void main(String args[]) {
             public void run() {
                 LoginController controller = new LoginController();
             }
+            System.out.println("Hello");
         });
     }
 }
