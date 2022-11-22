@@ -5,6 +5,7 @@
 package huce.Controller;
 
 import huce.Model.ApplyPanel;
+import huce.Model.WareHouse;
 import huce.View.Login;
 import huce.View.Main;
 import huce.View.WarehousePanel;
@@ -14,11 +15,16 @@ import java.sql.Connection;
  *
  * @author Admin
  */
-public class LogoutController {
-    public LogoutController(Main mainApp, Login login, WarehousePanel mainPanel, Connection database) {
-        mainPanel.addLogoutListener( (e) -> {
+public class LogoutController extends Controller {
+
+    public LogoutController(WareHouse wareHouse) {
+        super(wareHouse);
+    }
+    @Override
+    public void controll(Main mainApp, WarehousePanel warehousePanel, Connection database, Login login) {
+        warehousePanel.addLogoutListener((e) -> {
             login.resetText();
             ApplyPanel.apply(mainApp.jMainPanel, login);
-        } );
+        });
     }
 }

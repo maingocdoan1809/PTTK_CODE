@@ -7,8 +7,10 @@ package huce.View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.sql.Connection;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -21,11 +23,7 @@ public class FormOut extends Form {
     private JTextField jTextStore;
     private JTextField jTextStoreID;
     public FormOut() {
-        JLabel type = new JLabel("Xuất Hàng");
-        type.setFont(new Font("Segoe UI", Font.PLAIN, 30) {
-        });
-        type.setForeground(Color.red);
-        this.jPanelType.add(type);
+        this.setTitle("Phiếu xuất hàng");
         jTextStoreID = this.addJTextField(jPanelTop, "Mã cửa hàng", 5);
         jTextStore = this.addJTextField(jPanelTop, "Địa chỉ nhận hàng", 15);
         jTextStore.setEnabled(false);
@@ -34,5 +32,18 @@ public class FormOut extends Form {
             });
         this.jTableContainer.setViewportView(tableDetail);
     }
-    
+    @Override
+    public void handleEvent(Connection database) {
+       this.jButtonCreate.addActionListener((e) -> {
+            JOptionPane.showMessageDialog(this, "Ok!");
+        });
+        this.jButtonDel.addActionListener((e) -> {
+            this.resetForm();
+            this.jTextStore.setText("");
+            this.jTextStoreID.setText("");
+        });
+        this.jButtonPrint.addActionListener((e) -> {
+            JOptionPane.showMessageDialog(this, "Printing...!");
+        });
+    }
 }

@@ -4,12 +4,17 @@
  */
 package huce;
 
+import huce.Controller.DatabaseController;
 import huce.Controller.LoginController;
 import huce.Controller.LogoutController;
+import huce.Controller.WarehouseController;
+import huce.Model.WareHouse;
+import huce.View.Form;
 import huce.View.Login;
 import huce.View.Main;
 import huce.View.WarehousePanel;
 import java.sql.Connection;
+import javax.swing.JTable;
 
 /**
  *
@@ -44,14 +49,25 @@ public class App {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                // connect to SQL here: 
+                Connection database = null;
+                // prepare model:
+                WareHouse model = DatabaseController.loadData(database);
                 Main main = new Main();
                 Login login = new Login();
                 WarehousePanel warehousePanel = new WarehousePanel();
+                // create list product table for Import and Export form:
+                JTable listProduct = Form.createTable(new String[] { "ID", "Tên sản phẩm", "Số lượng còn" });
+                warehousePanel.setListProduct(listProduct);
                 
-                LoginController controller = new LoginController(main, login, warehousePanel, null);
-                LogoutController logoutController = new LogoutController(main, login, warehousePanel, null);
-                
-                
+                // add controller.
+                LoginController logincontroller = new LoginController(model);
+                LogoutController logoutController = new LogoutController(model);
+                WarehouseController warehouseController = new WarehouseController(model);
+                logincontroller.controll(main, warehousePanel, database, login);
+                logoutController.controll(main, warehousePanel, database, login);
+                warehouseController.controll(main, warehousePanel, database, null);
+                // show app:
                 main.pack();
                 main.setLocationRelativeTo(null);
                 main.setVisible(true);

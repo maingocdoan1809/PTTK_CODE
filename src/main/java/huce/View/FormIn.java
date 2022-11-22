@@ -8,9 +8,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.LayoutManager;
+import java.sql.Connection;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -21,19 +23,32 @@ import javax.swing.JTextField;
 public class FormIn extends Form {
     private JTextField jTextProvider;
     private JTable tableDetail;
-    
     public FormIn() {
         super();
-        JLabel type = new JLabel("Nhập hàng");
-        type.setFont(new Font("Segoe UI", Font.PLAIN, 30) {
-        });
-        type.setForeground(Color.red);
-        jTextProvider = super.addJTextField(jPanelTop, "Đơn vị giao hàng.", 15);
-        tableDetail = this.createTable( new String [] {
+        setTitle("Phiếu nhập hàng");
+        jTextProvider = super.addJTextField(jPanelTop, "Mã bên giao hàng.", 5);
+
+        jTextProvider = super.addJTextField(jPanelTop, "Tên bên giao.", 15);
+        jTextProvider.setEnabled(false);
+        
+        tableDetail = Form.createTable( new String [] {
                 "STT", "Tên sản phẩm", "Mã sản phẩm", "Mã lô", "Đơn vị ", "Theo chứng từ", "Thực nhập", "Đơn giá", "Thành tiền"
             });
         super.jTableContainer.setViewportView(tableDetail);
-        super.jPanelType.add(type);
+    }
+
+    @Override
+    public void handleEvent(Connection database) {
+       this.jButtonCreate.addActionListener((e) -> {
+            JOptionPane.showMessageDialog(this, "Ok!");
+        });
+        this.jButtonDel.addActionListener((e) -> {
+            this.resetForm();
+            this.jTextProvider.setText("");
+        });
+        this.jButtonPrint.addActionListener((e) -> {
+            JOptionPane.showMessageDialog(this, "Printing...!");
+        });
     }
  
 

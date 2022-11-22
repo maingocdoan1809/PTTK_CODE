@@ -5,20 +5,26 @@
 package huce.View;
 
 import java.awt.event.ActionListener;
+import javax.swing.JTable;
 
 /**
  *
  * @author Admin
  */
 public class WarehousePanel extends javax.swing.JPanel {
-
+    private JTable listProduct;
     /**
      * Creates new form WarehousePanel
      */
     public WarehousePanel() {
         initComponents();
     }
-
+    public void setListProduct(JTable table) {
+        listProduct = table;
+    }
+    public JTable getListProduct() {
+        return this.listProduct;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,8 +38,9 @@ public class WarehousePanel extends javax.swing.JPanel {
         jImportBtn = new javax.swing.JButton();
         jExportBtn = new javax.swing.JButton();
         jViewProductsBtn = new javax.swing.JButton();
-        jRequest = new javax.swing.JButton();
+        jRequestBtn = new javax.swing.JButton();
         jLogoutBtn = new javax.swing.JButton();
+        jViewProductLotBtn = new javax.swing.JButton();
         jMainPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(102, 51, 255));
@@ -47,9 +54,11 @@ public class WarehousePanel extends javax.swing.JPanel {
 
         jViewProductsBtn.setText("Xem sản phẩm");
 
-        jRequest.setText("Xem yêu cầu");
+        jRequestBtn.setText("Xem yêu cầu");
 
         jLogoutBtn.setText("Logout");
+
+        jViewProductLotBtn.setText("Xem phân khu");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -61,8 +70,9 @@ public class WarehousePanel extends javax.swing.JPanel {
                     .addComponent(jViewProductsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jExportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jImportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLogoutBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jRequestBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLogoutBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jViewProductLotBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -75,8 +85,10 @@ public class WarehousePanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jViewProductsBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jRequest)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
+                .addComponent(jViewProductLotBtn)
+                .addGap(18, 18, 18)
+                .addComponent(jRequestBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 334, Short.MAX_VALUE)
                 .addComponent(jLogoutBtn)
                 .addContainerGap())
         );
@@ -90,12 +102,32 @@ public class WarehousePanel extends javax.swing.JPanel {
     public void addLogoutListener(ActionListener actionListener) {
         this.jLogoutBtn.addActionListener(actionListener);
     }
+
+    public void addExportBtnListener(ActionListener actionListener) {
+        this.jExportBtn.addActionListener(actionListener);
+    }
+
+    public void addRequestBtnListener(ActionListener actionListener) {
+        this.jRequestBtn.addActionListener(actionListener);
+    }
+
+    public void addImportBtnListener(ActionListener actionListener) {
+        this.jImportBtn.addActionListener(actionListener);
+    }
+
+    public void addViewProductsBtnListener(ActionListener actionListener) {
+        this.jViewProductsBtn.addActionListener(actionListener);
+    }
+    public void addViewProductLotBtnListener(ActionListener actionListener) {
+        this.jViewProductLotBtn.addActionListener(actionListener);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jExportBtn;
     private javax.swing.JButton jImportBtn;
     private javax.swing.JButton jLogoutBtn;
     public javax.swing.JPanel jMainPanel;
-    private javax.swing.JButton jRequest;
+    private javax.swing.JButton jRequestBtn;
+    private javax.swing.JButton jViewProductLotBtn;
     private javax.swing.JButton jViewProductsBtn;
     // End of variables declaration//GEN-END:variables
 }

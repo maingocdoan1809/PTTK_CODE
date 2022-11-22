@@ -5,6 +5,7 @@
 package huce.Controller;
 
 import huce.Model.ApplyPanel;
+import huce.Model.WareHouse;
 import huce.View.Login;
 import huce.View.Main;
 import huce.View.WarehousePanel;
@@ -14,20 +15,23 @@ import java.sql.Connection;
  *
  * @author Admin
  */
-public class LoginController {
-    public LoginController(Main mainApp, Login login, WarehousePanel warehousePanel , Connection database) {
+public class LoginController extends Controller {
+
+    public LoginController(WareHouse wareHouse) {
+        super(wareHouse);
+    }
+    @Override
+    public void controll(Main mainApp, WarehousePanel warehousePanel, Connection database, Login login) {
         login.addLoginListener((e) -> {
             if (login.getUsername().equals("maingocdoan")
                     && login.getPassword().equals("28025458")) {
-                ApplyPanel.apply(mainApp.jMainPanel,warehousePanel);
+                ApplyPanel.apply(mainApp.jMainPanel, warehousePanel);
             } else {
                 login.showError();
             }
         });
         ApplyPanel.apply(mainApp.jMainPanel, login);
 
-
     }
-//    private void showPanel(  )
 
 }

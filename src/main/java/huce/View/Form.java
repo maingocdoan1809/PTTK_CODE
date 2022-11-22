@@ -4,7 +4,12 @@
  */
 package huce.View;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
+import java.sql.Connection;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -21,17 +26,10 @@ public abstract class Form extends javax.swing.JPanel {
      */
     public Form() {
         initComponents();
+        // add event listener;
     }
-
-    public JTextField addJTextField(JPanel parent, String text, int column) {
-        parent.add(new JLabel(text));
-        JTextField textField = new JTextField(column);
-        textField.setBorder(new EmptyBorder(5, 5, 5, 5));
-        parent.add(textField);
-        return textField;
-    }
-
-    public JTable createTable(String[] titles) {
+    
+    public static JTable createTable(String[] titles) {
         JTable jTableDetail = new JTable();
         jTableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
@@ -41,6 +39,35 @@ public abstract class Form extends javax.swing.JPanel {
         jTableDetail.getTableHeader().setReorderingAllowed(false);
         jTableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         return jTableDetail;
+    }
+    abstract public void handleEvent(Connection database);
+    protected void resetForm() {
+        this.jTextAccount.setText("");        
+        this.jTextAmount.setText("");
+        this.jTextIDForm.setText("");
+        this.jTextWhere.setText("");
+    }
+    public void setLookUpPanel(LookUpPanel panel) {
+        this.jLookUpPanel.add(panel, BorderLayout.SOUTH);
+    }
+    public JTextField addJTextField(JPanel parent, String text, int column) {
+        parent.add(new JLabel(text));
+        JTextField textField = new JTextField(column);
+        textField.setBorder(new EmptyBorder(5, 5, 5, 5));
+        parent.add(textField);
+        return textField;
+    }
+    public void setTitle(String title) {
+        JLabel type = new JLabel(title);
+        type.setFont(new Font("Segoe UI", Font.PLAIN, 30) {
+        });
+        type.setForeground(Color.red);
+        this.jPanelType.add(type);
+    }
+    // return a table with titles as the column.
+   
+    public void setListProductTable(JTable table) {
+        this.jTableListContainer.setViewportView(table);
     }
 
     /**
@@ -74,13 +101,9 @@ public abstract class Form extends javax.swing.JPanel {
         jPanelBottom = new javax.swing.JPanel();
         javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
         jTextAccount = new javax.swing.JTextField();
-        javax.swing.JPanel jPanel5 = new javax.swing.JPanel();
-        javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
-        jTableListProduct = new javax.swing.JTable();
-        javax.swing.JPanel jPanel6 = new javax.swing.JPanel();
-        jTextSearch = new javax.swing.JTextField();
-        jButtonSearch = new javax.swing.JButton();
+        jLookUpPanel = new javax.swing.JPanel();
         javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
+        jTableListContainer = new javax.swing.JScrollPane();
 
         setLayout(new java.awt.BorderLayout());
         add(jPanelType, java.awt.BorderLayout.PAGE_START);
@@ -109,11 +132,11 @@ public abstract class Form extends javax.swing.JPanel {
         jTextIDForm.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
         jPanelTop.add(jTextIDForm);
 
-        jLabel3.setText("Ngày lập");
+        jLabel3.setText("Ngày lập:");
         jPanelTop.add(jLabel3);
         jPanelTop.add(jDateCreated);
 
-        jLabel4.setText("Nhập tại kho:");
+        jLabel4.setText("Địa điểm:");
         jPanelTop.add(jLabel4);
 
         jTextWhere.setColumns(10);
@@ -126,10 +149,9 @@ public abstract class Form extends javax.swing.JPanel {
 
         jPanel10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 10, 0));
 
-        jLabel8.setText("Tổng số tiền");
+        jLabel8.setText("Tổng số tiền:");
         jPanel10.add(jLabel8);
 
-        jTextAmount.setEditable(false);
         jTextAmount.setColumns(15);
         jTextAmount.setEnabled(false);
         jPanel10.add(jTextAmount);
@@ -143,7 +165,7 @@ public abstract class Form extends javax.swing.JPanel {
         flowLayout1.setAlignOnBaseline(true);
         jPanelBottom.setLayout(flowLayout1);
 
-        jLabel7.setText("Người lập phiếu");
+        jLabel7.setText("Người lập phiếu:");
         jPanelBottom.add(jLabel7);
 
         jTextAccount.setColumns(10);
@@ -152,63 +174,34 @@ public abstract class Form extends javax.swing.JPanel {
 
         jPanel4.add(jPanelBottom, java.awt.BorderLayout.PAGE_END);
 
-        jPanel5.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel5.setLayout(new java.awt.BorderLayout());
-
-        jTableListProduct.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Tên SP", "Số lượng còn", "Vị trí"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTableListProduct.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(jTableListProduct);
-        jTableListProduct.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
-        jPanel5.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-        jTextSearch.setColumns(20);
-        jTextSearch.setBorder(javax.swing.BorderFactory.createEmptyBorder(5, 5, 5, 5));
-        jPanel6.add(jTextSearch);
-
-        jButtonSearch.setText("Tìm kiếm");
-        jPanel6.add(jButtonSearch);
-
-        jPanel5.add(jPanel6, java.awt.BorderLayout.PAGE_END);
+        jLookUpPanel.setBackground(new java.awt.Color(204, 204, 204));
+        jLookUpPanel.setLayout(new java.awt.BorderLayout());
 
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Danh sách sản phẩm đang có");
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jPanel5.add(jLabel6, java.awt.BorderLayout.PAGE_START);
+        jLookUpPanel.add(jLabel6, java.awt.BorderLayout.PAGE_START);
         jLabel6.getAccessibleContext().setAccessibleName("");
+
+        jLookUpPanel.add(jTableListContainer, java.awt.BorderLayout.CENTER);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLookUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLookUpPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -220,17 +213,16 @@ public abstract class Form extends javax.swing.JPanel {
     protected javax.swing.JButton jButtonCreate;
     protected javax.swing.JButton jButtonDel;
     protected javax.swing.JButton jButtonPrint;
-    protected javax.swing.JButton jButtonSearch;
     protected com.github.lgooddatepicker.components.DatePicker jDateCreated;
+    private javax.swing.JPanel jLookUpPanel;
     protected javax.swing.JPanel jPanelBottom;
     protected javax.swing.JPanel jPanelTop;
     protected javax.swing.JPanel jPanelType;
     protected javax.swing.JScrollPane jTableContainer;
-    protected javax.swing.JTable jTableListProduct;
+    public javax.swing.JScrollPane jTableListContainer;
     protected javax.swing.JTextField jTextAccount;
     protected javax.swing.JTextField jTextAmount;
     protected javax.swing.JTextField jTextIDForm;
-    protected javax.swing.JTextField jTextSearch;
     protected javax.swing.JTextField jTextWhere;
     // End of variables declaration//GEN-END:variables
 }

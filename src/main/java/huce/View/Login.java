@@ -6,24 +6,30 @@ package huce.View;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 /**
  *
  * @author Admin
  */
 public class Login extends javax.swing.JPanel {
+
     public String getUsername() {
         return this.jTextUserName.getText();
     }
+
     public String getPassword() {
         return new String(this.jTextPassword.getPassword());
     }
+
     public void addLoginListener(ActionListener event) {
-        this.jLogin.addActionListener( event);
+        this.jLogin.addActionListener(event);
     }
+
     public void showError() {
         this.jinformLabelLogin.setText("Tài khoản mật khẩu không chính xác.");
     }
+
     /**
      * Creates new form Login
      */
@@ -53,6 +59,7 @@ public class Login extends javax.swing.JPanel {
         jinformLabelLogin = new javax.swing.JLabel();
         javax.swing.JPanel jPanel6 = new javax.swing.JPanel();
         jLogin = new javax.swing.JButton();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
 
         jPanel3.setLayout(new java.awt.GridLayout(0, 1, 10, 10));
 
@@ -135,6 +142,10 @@ public class Login extends javax.swing.JPanel {
 
         jPanel3.add(jPanel6);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(102, 102, 255));
+        jLabel1.setText("Đăng nhập");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -143,11 +154,17 @@ public class Login extends javax.swing.JPanel {
                 .addContainerGap(200, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(200, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(357, 357, 357))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(200, Short.MAX_VALUE)
+                .addContainerGap(136, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(191, Short.MAX_VALUE))
         );
@@ -175,9 +192,9 @@ public class Login extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jShowPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jShowPasswordActionPerformed
-        if ( this.jShowPassword.isSelected()  ) {
+        if (this.jShowPassword.isSelected()) {
             // show password
-            jTextPassword.setEchoChar((char)0);
+            jTextPassword.setEchoChar((char) 0);
         } else {
             // hide password
             jTextPassword.setEchoChar('*');
@@ -185,16 +202,18 @@ public class Login extends javax.swing.JPanel {
     }//GEN-LAST:event_jShowPasswordActionPerformed
 
     public void resetText() {
-        this.jTextPassword.setText("");        
+        this.jTextPassword.setText("");
         this.jTextUserName.setText("");
-        
+
     }
     private void jTextUserNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextUserNameKeyTyped
-        this.jinformLabelLogin.setText("");
+            this.jinformLabelLogin.setText("");
+
     }//GEN-LAST:event_jTextUserNameKeyTyped
 
     private void jTextPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPasswordKeyTyped
-        this.jinformLabelLogin.setText("");
+        // TODO add your handling code here:
+            this.jinformLabelLogin.setText("");
     }//GEN-LAST:event_jTextPasswordKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
