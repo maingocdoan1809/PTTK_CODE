@@ -19,12 +19,7 @@ public class Main extends javax.swing.JFrame {
     public Main() {
         initComponents();
     }
-    public void showPanel(JPanel panel) {
-        this.jMainPanel.removeAll();
-        this.jMainPanel.revalidate();
-        this.jMainPanel.repaint();
-        this.jMainPanel.add(panel);
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,6 +47,6 @@ public class Main extends javax.swing.JFrame {
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jMainPanel;
+    public javax.swing.JPanel jMainPanel;
     // End of variables declaration//GEN-END:variables
 }

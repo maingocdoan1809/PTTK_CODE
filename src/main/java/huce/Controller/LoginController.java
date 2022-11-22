@@ -4,34 +4,28 @@
  */
 package huce.Controller;
 
+import huce.Model.ApplyPanel;
 import huce.View.Login;
 import huce.View.Main;
 import huce.View.WarehousePanel;
+import java.sql.Connection;
 
 /**
  *
  * @author Admin
  */
 public class LoginController {
-
-    Login login;
-    Main mainApp;
-
-    public LoginController() {
-        login = new Login();
-        mainApp = new Main();
+    public LoginController(Main mainApp, Login login, WarehousePanel warehousePanel , Connection database) {
         login.addLoginListener((e) -> {
             if (login.getUsername().equals("maingocdoan")
                     && login.getPassword().equals("28025458")) {
-                mainApp.showPanel(new WarehousePanel());
+                ApplyPanel.apply(mainApp.jMainPanel,warehousePanel);
             } else {
                 login.showError();
             }
         });
-        mainApp.showPanel(login);
-        mainApp.pack();
-        mainApp.setLocationRelativeTo(null);
-        mainApp.setVisible(true);
+        ApplyPanel.apply(mainApp.jMainPanel, login);
+
 
     }
 //    private void showPanel(  )

@@ -4,6 +4,8 @@
  */
 package huce.View;
 
+import java.awt.event.ActionListener;
+
 /**
  *
  * @author Admin
@@ -29,22 +31,25 @@ public class WarehousePanel extends javax.swing.JPanel {
         javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         jImportBtn = new javax.swing.JButton();
         jExportBtn = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jViewProductsBtn = new javax.swing.JButton();
         jRequest = new javax.swing.JButton();
+        jLogoutBtn = new javax.swing.JButton();
         jMainPanel = new javax.swing.JPanel();
 
         setBackground(new java.awt.Color(102, 51, 255));
         setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel1.setBackground(new java.awt.Color(102, 153, 255));
 
         jImportBtn.setText("Nhập hàng");
 
         jExportBtn.setText("Xuất hàng");
 
-        jButton3.setText("Xem sản phẩm");
+        jViewProductsBtn.setText("Xem sản phẩm");
 
         jRequest.setText("Xem yêu cầu");
+
+        jLogoutBtn.setText("Logout");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -53,10 +58,11 @@ public class WarehousePanel extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jViewProductsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jExportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jImportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jRequest, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLogoutBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -67,10 +73,12 @@ public class WarehousePanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jExportBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3)
+                .addComponent(jViewProductsBtn)
                 .addGap(18, 18, 18)
                 .addComponent(jRequest)
-                .addContainerGap(317, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 377, Short.MAX_VALUE)
+                .addComponent(jLogoutBtn)
+                .addContainerGap())
         );
 
         add(jPanel1, java.awt.BorderLayout.LINE_START);
@@ -79,12 +87,15 @@ public class WarehousePanel extends javax.swing.JPanel {
         add(jMainPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-
+    public void addLogoutListener(ActionListener actionListener) {
+        this.jLogoutBtn.addActionListener(actionListener);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jExportBtn;
     private javax.swing.JButton jImportBtn;
-    private javax.swing.JPanel jMainPanel;
+    private javax.swing.JButton jLogoutBtn;
+    public javax.swing.JPanel jMainPanel;
     private javax.swing.JButton jRequest;
+    private javax.swing.JButton jViewProductsBtn;
     // End of variables declaration//GEN-END:variables
 }

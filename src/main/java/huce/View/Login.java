@@ -184,6 +184,11 @@ public class Login extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_jShowPasswordActionPerformed
 
+    public void resetText() {
+        this.jTextPassword.setText("");        
+        this.jTextUserName.setText("");
+        
+    }
     private void jTextUserNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextUserNameKeyTyped
         this.jinformLabelLogin.setText("");
     }//GEN-LAST:event_jTextUserNameKeyTyped
@@ -191,7 +196,6 @@ public class Login extends javax.swing.JPanel {
     private void jTextPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPasswordKeyTyped
         this.jinformLabelLogin.setText("");
     }//GEN-LAST:event_jTextPasswordKeyTyped
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jLogin;
