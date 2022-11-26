@@ -30,9 +30,11 @@ public class ProductLotPanel extends javax.swing.JPanel {
         javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
         javax.swing.JScrollPane jScrollPane2 = new javax.swing.JScrollPane();
         jLotTable = new javax.swing.JTable();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
         javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         jSpotTable = new javax.swing.JTable();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -63,6 +65,12 @@ public class ProductLotPanel extends javax.swing.JPanel {
 
         jPanel3.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 102));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Phân khu");
+        jPanel3.add(jLabel1, java.awt.BorderLayout.PAGE_START);
+
         jPanel2.add(jPanel3);
 
         jPanel4.setLayout(new java.awt.BorderLayout());
@@ -84,6 +92,12 @@ public class ProductLotPanel extends javax.swing.JPanel {
         }
 
         jPanel4.add(jScrollPane1, java.awt.BorderLayout.CENTER);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 51, 102));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Ngăn chứa");
+        jPanel4.add(jLabel2, java.awt.BorderLayout.PAGE_START);
 
         jPanel2.add(jPanel4);
 

@@ -6,17 +6,23 @@ package huce.Controller;
 
 import huce.Model.ApplyPanel;
 import huce.Model.WareHouse;
+import huce.View.Form;
 import huce.View.FormIn;
 import huce.View.FormOut;
 import huce.View.FormRequest;
+import huce.View.InputProductData;
 import huce.View.ListProducts;
 import huce.View.ListRequestsPanel;
 import huce.View.Login;
 import huce.View.LookUpPanel;
 import huce.View.Main;
 import huce.View.ProductLotPanel;
+import huce.View.SimpleListProductsTable;
 import huce.View.WarehousePanel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import javax.swing.JFrame;
 
 /**
  *
@@ -31,18 +37,18 @@ public class WarehouseController extends Controller{
     @Override
     public void controll(Main mainApp, WarehousePanel warehousePanel, Connection database, Login login) {
         LookUpPanel lookUpPanel = new LookUpPanel(database);
+        SimpleListProductsTable splTable = new SimpleListProductsTable();
         warehousePanel.addImportBtnListener( (e) -> {
-            FormIn form = new FormIn();
+            Form form = new FormIn();
+            form.setListProductTable(splTable);
             form.setLookUpPanel(lookUpPanel);
             form.handleEvent(database);
-            form.setListProductTable(warehousePanel.getListProduct());
             ApplyPanel.apply(warehousePanel.jMainPanel, form);
         } );
         warehousePanel.addExportBtnListener( (e) -> {
-            FormOut form = new FormOut();
+            Form form =  new FormOut();
+            form.setListProductTable(splTable);
             form.setLookUpPanel(lookUpPanel);
-
-            form.setListProductTable(warehousePanel.getListProduct());
             form.handleEvent(database);
             ApplyPanel.apply(warehousePanel.jMainPanel, form);
         } );

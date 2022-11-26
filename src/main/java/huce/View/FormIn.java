@@ -22,18 +22,31 @@ import javax.swing.JTextField;
  */
 public class FormIn extends Form {
     private JTextField jTextProvider;
-    private JTable tableDetail;
     public FormIn() {
         super();
         setTitle("Phiếu nhập hàng");
         jTextProvider = super.addJTextField(jPanelTop, "Mã bên giao hàng.", 5);
-
         jTextProvider = super.addJTextField(jPanelTop, "Tên bên giao.", 15);
         jTextProvider.setEnabled(false);
         
-        tableDetail = Form.createTable( new String [] {
-                "STT", "Tên sản phẩm", "Mã sản phẩm", "Mã lô", "Đơn vị ", "Theo chứng từ", "Thực nhập", "Đơn giá", "Thành tiền"
-            });
+        tableDetail = new JTable();
+        tableDetail.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String [] {
+                "STT", "Mã sản phẩm",  "Tên sản phẩm", "Mã lô", "Đơn vị ", "Theo chứng từ", "Thực nhập", "Đơn giá", "Thành tiền"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false, true, true, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        } );
+        
+        tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
         super.jTableContainer.setViewportView(tableDetail);
     }
 
@@ -49,6 +62,7 @@ public class FormIn extends Form {
         this.jButtonPrint.addActionListener((e) -> {
             JOptionPane.showMessageDialog(this, "Printing...!");
         });
+        
     }
  
 

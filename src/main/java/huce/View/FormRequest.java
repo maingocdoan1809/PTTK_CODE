@@ -23,9 +23,17 @@ public class FormRequest extends Form {
         this.setTitle("Phiếu yêu cầu nhập hàng");
         jTextStore = this.addJTextField(this.jPanelTop, "ID Cửa hàng", 5);
         jTextReason = this.addJTextField(jPanelBottom, "Lý do", 20);
-        tableDetail = Form.createTable(new String[]{
-            "STT", "Tên sản phẩm", "Mã sản phẩm", "Mã lô", "Đơn vị ", "Theo chứng từ", "Thực nhập", "Đơn giá", "Thành tiền"
+        tableDetail = new JTable();
+        tableDetail.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{},
+                new String[]{
+                    "STT", "Tên sản phẩm", "Mã sản phẩm", "Mã lô", "Đơn vị ", "Theo chứng từ", "Thực nhập", "Đơn giá", "Thành tiền"
+                }
+        ) {
+
         });
+
+        tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
         super.jTableContainer.setViewportView(tableDetail);
     }

@@ -26,20 +26,10 @@ public abstract class Form extends javax.swing.JPanel {
      */
     public Form() {
         initComponents();
-        // add event listener;
+        
     }
     
-    public static JTable createTable(String[] titles) {
-        JTable jTableDetail = new JTable();
-        jTableDetail.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[][]{},
-                titles
-        ));
-        jTableDetail.setColumnSelectionAllowed(true);
-        jTableDetail.getTableHeader().setReorderingAllowed(false);
-        jTableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        return jTableDetail;
-    }
+
     abstract public void handleEvent(Connection database);
     protected void resetForm() {
         this.jTextAccount.setText("");        
@@ -67,9 +57,12 @@ public abstract class Form extends javax.swing.JPanel {
     // return a table with titles as the column.
    
     public void setListProductTable(JTable table) {
+        this.jListProductJTable = table;
         this.jTableListContainer.setViewportView(table);
     }
-
+    public JTable getTableDetail() {
+        return this.tableDetail;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -207,8 +200,9 @@ public abstract class Form extends javax.swing.JPanel {
 
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
+    protected JTable tableDetail;
 
-
+    protected  JTable jListProductJTable;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton jButtonCreate;
     protected javax.swing.JButton jButtonDel;

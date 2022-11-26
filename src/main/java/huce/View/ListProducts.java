@@ -33,8 +33,8 @@ public class ListProducts extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
+        jListProductsTable = new javax.swing.JTable();
         jLookUpPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jViewByType = new javax.swing.JButton();
@@ -51,7 +51,7 @@ public class ListProducts extends javax.swing.JPanel {
 
         jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jListProductsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -67,7 +67,7 @@ public class ListProducts extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jListProductsTable);
 
         jPanel1.add(jScrollPane1);
 
@@ -91,13 +91,12 @@ public class ListProducts extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JTable jListProductsTable;
     public javax.swing.JPanel jLookUpPanel;
     private javax.swing.JButton jOutofDateBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton jViewByType;
     // End of variables declaration//GEN-END:variables
 }

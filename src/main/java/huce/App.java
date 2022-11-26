@@ -56,10 +56,7 @@ public class App {
                 Main main = new Main();
                 Login login = new Login();
                 WarehousePanel warehousePanel = new WarehousePanel();
-                // create list product table for Import and Export form:
-                JTable listProduct = Form.createTable(new String[] { "ID", "Tên sản phẩm", "Số lượng còn" });
-                warehousePanel.setListProduct(listProduct);
-                
+
                 // add controller.
                 LoginController logincontroller = new LoginController(model);
                 LogoutController logoutController = new LogoutController(model);

@@ -12,18 +12,11 @@ import javax.swing.JTable;
  * @author Admin
  */
 public class WarehousePanel extends javax.swing.JPanel {
-    private JTable listProduct;
     /**
      * Creates new form WarehousePanel
      */
     public WarehousePanel() {
         initComponents();
-    }
-    public void setListProduct(JTable table) {
-        listProduct = table;
-    }
-    public JTable getListProduct() {
-        return this.listProduct;
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -42,6 +35,9 @@ public class WarehousePanel extends javax.swing.JPanel {
         jLogoutBtn = new javax.swing.JButton();
         jViewProductLotBtn = new javax.swing.JButton();
         jMainPanel = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(102, 51, 255));
         setLayout(new java.awt.BorderLayout());
@@ -95,7 +91,24 @@ public class WarehousePanel extends javax.swing.JPanel {
 
         add(jPanel1, java.awt.BorderLayout.LINE_START);
 
-        jMainPanel.setLayout(new javax.swing.BoxLayout(jMainPanel, javax.swing.BoxLayout.LINE_AXIS));
+        jMainPanel.setLayout(new javax.swing.BoxLayout(jMainPanel, javax.swing.BoxLayout.X_AXIS));
+
+        jPanel2.setLayout(new java.awt.GridLayout(3, 0));
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("WELCOME TO OUR WAREHOUSE MANAGEMENT APPLICATION");
+        jPanel2.add(jLabel1);
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 102, 204));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Please choose one of the options on the left side to continue...");
+        jPanel2.add(jLabel2);
+
+        jMainPanel.add(jPanel2);
+
         add(jMainPanel, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
