@@ -32,7 +32,6 @@ public abstract class Form extends javax.swing.JPanel {
 
     abstract public void handleEvent(Connection database);
     protected void resetForm() {
-        this.jTextAccount.setText("");        
         this.jTextAmount.setText("");
         this.jTextIDForm.setText("");
         this.jTextWhere.setText("");

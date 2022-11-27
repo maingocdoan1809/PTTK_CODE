@@ -13,6 +13,7 @@ public class InputProductData extends javax.swing.JPanel {
     /**
      * Creates new form InputProductData
      */
+    private String[] dataStrings;
     public InputProductData() {
         initComponents();
     }

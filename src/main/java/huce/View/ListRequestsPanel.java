@@ -4,6 +4,12 @@
  */
 package huce.View;
 
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JOptionPane;
+import javax.swing.event.TableModelEvent;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Admin
@@ -15,6 +21,51 @@ public class ListRequestsPanel extends javax.swing.JPanel {
      */
     public ListRequestsPanel() {
         initComponents();
+        var tableModel = (DefaultTableModel) jListRequestsTable.getModel();
+        this.jListRequestsTable.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+
+                int row = jListRequestsTable.getSelectedRow();
+                String state = (String) tableModel.getValueAt(row, 4);
+                if (state.equals("Chờ xử lý")) {
+                    jAcceptBtn.setEnabled(true);
+                    jRefuseBtn.setEnabled(true);
+                } else {
+                    jAcceptBtn.setEnabled(false);
+                    jRefuseBtn.setEnabled(false);
+                }
+            }
+
+        });
+        this.jListRequestsTable.getModel().addTableModelListener((e) -> {
+            if (e.getType() == TableModelEvent.INSERT) {
+                var data = tableModel.getDataVector();
+                data.sort( (a, b) -> {
+                    if ( ((String) a.elementAt(4)).equals("Chờ xử lý") ) {
+                        return -1;
+                    }
+                    return 1;
+                } );
+            }
+        });
+        this.jAcceptBtn.addActionListener((e) -> {
+            JOptionPane.showMessageDialog(null, "Ok");
+            int row = jListRequestsTable.getSelectedRow();
+            tableModel.setValueAt("Đã duyệt", row, 4);
+            jAcceptBtn.setEnabled(false);
+            jRefuseBtn.setEnabled(false);
+        });
+        this.jRefuseBtn.addActionListener((e) -> {
+            JOptionPane.showMessageDialog(null, "Ok");
+            int row = jListRequestsTable.getSelectedRow();
+            tableModel.setValueAt("Từ chối", row, 4);
+            jAcceptBtn.setEnabled(false);
+            jRefuseBtn.setEnabled(false);
+        });
+        this.jViewNewestRequestsBtn.addActionListener((e) -> {
+            tableModel.addRow(new String[]{"12", "243", "23434", "2323", "Chờ xử lý"});
+        });
     }
 
     /**
@@ -38,23 +89,31 @@ public class ListRequestsPanel extends javax.swing.JPanel {
 
         jListRequestsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {"1", "1234", "04-Mart1", "Hoàng Mai", "Chờ xử lý"},
+                {"3", "23", "abcdg", "fdgdf", "Từ chối"},
+                {"4", "2343", "gffg", "degfr", "Đã Duyệt"},
+                {"2", "456", "04-Mart2", "Linh Nam", "Chờ xử lý"}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID phiếu", "ID cửa hàng", "Tên cửa hàng", "Địa chỉ", "Trạng thái"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jListRequestsTable.setShowGrid(false);
         jScrollPane1.setViewportView(jListRequestsTable);
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);

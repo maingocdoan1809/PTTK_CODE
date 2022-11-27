@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class SimpleListProductsTable extends JTable{
     private DefaultTableModel tbDefaultTableModel;
+    private InputProductData inputProductData;
     public SimpleListProductsTable() {
         this.tbDefaultTableModel = new javax.swing.table.DefaultTableModel(
                 new Object[][]{
@@ -34,11 +35,11 @@ public class SimpleListProductsTable extends JTable{
             }
         };
        this.setModel(this.tbDefaultTableModel);
-        InputProductData inputProductData = new InputProductData();
         this.addMouseListener( new MouseAdapter() {
            @Override
            public void mouseClicked(MouseEvent e) {
                if ( e.getClickCount() == 2 ) {
+                   inputProductData = new InputProductData();
                    JFrame newFrame = new JFrame();
                    int rowSelected = getSelectedRow();
                    

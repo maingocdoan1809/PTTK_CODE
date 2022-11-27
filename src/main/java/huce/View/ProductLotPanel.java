@@ -44,10 +44,7 @@ public class ProductLotPanel extends javax.swing.JPanel {
 
         jLotTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+
             },
             new String [] {
                 "Mã phân khu", "Tên phân khu"
@@ -77,15 +74,20 @@ public class ProductLotPanel extends javax.swing.JPanel {
 
         jSpotTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Mã vị trí", "Số lượng tối đa", "Số lượng thực tế"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jSpotTable);
         if (jSpotTable.getColumnModel().getColumnCount() > 0) {
             jSpotTable.getColumnModel().getColumn(2).setResizable(false);
