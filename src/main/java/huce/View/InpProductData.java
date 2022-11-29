@@ -37,9 +37,10 @@ public class InpProductData extends javax.swing.JFrame {
             int numRow = tableModel.getRowCount();
             var formModel = (DefaultTableModel)form.getTableDetail().getModel();
             if ( form != null && form instanceof FormIn) {
-               formModel.addRow(new String[] {"%d".formatted(numRow), jTextName.getText(), jTextID.getText()});
+               formModel.addRow(new String[] {"%d".formatted(numRow), jTextID.getText(),  jTextName.getText(),"", 
+               jTextRequestNum.getText(), jTextRealInput.getText(), jTextLotNumber.getText()});
             } else {
-               formModel.addRow(new String[] {"%d".formatted(numRow), jTextName.getText() , jTextID.getText(), 
+               formModel.addRow(new String[] {"%d".formatted(numRow) , jTextID.getText(),jTextName.getText(), 
                    jTextRequestNum.getText()});
                this.dispose();
             }
@@ -88,7 +89,7 @@ public class InpProductData extends javax.swing.JFrame {
 
         jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
-        jPanel4.setLayout(new java.awt.GridLayout(5, 2, 10, 10));
+        jPanel4.setLayout(new java.awt.GridLayout(6, 2, 10, 10));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ID");
@@ -115,7 +116,7 @@ public class InpProductData extends javax.swing.JFrame {
         jPanel4.add(jTextRealInput);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("Mã lô");
+        jLabel3.setText("Đơn giá");
         jPanel4.add(jLabel3);
         jPanel4.add(jTextLotNumber);
 
@@ -124,16 +125,16 @@ public class InpProductData extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(99, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(98, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
         );
 
         jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);

@@ -48,11 +48,7 @@ public abstract class Form extends javax.swing.JPanel {
         return textField;
     }
     public void setTitle(String title) {
-        JLabel type = new JLabel(title);
-        type.setFont(new Font("Segoe UI", Font.PLAIN, 30) {
-        });
-        type.setForeground(Color.red);
-        this.jPanelType.add(type);
+        this.jLabel1.setText(title);
     }
     // return a table with titles as the column.
    
@@ -77,6 +73,7 @@ public abstract class Form extends javax.swing.JPanel {
     private void initComponents() {
 
         jPanelType = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
         jButtonDel = new javax.swing.JButton();
         jButtonCreate = new javax.swing.JButton();
@@ -103,6 +100,11 @@ public abstract class Form extends javax.swing.JPanel {
         jTableListContainer = new javax.swing.JScrollPane();
 
         setLayout(new java.awt.BorderLayout());
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 51, 102));
+        jPanelType.add(jLabel1);
+
         add(jPanelType, java.awt.BorderLayout.PAGE_START);
 
         jButtonDel.setText("Xóa phiếu");
@@ -212,6 +214,7 @@ public abstract class Form extends javax.swing.JPanel {
     protected javax.swing.JButton jButtonDel;
     protected javax.swing.JButton jButtonPrint;
     protected com.github.lgooddatepicker.components.DatePicker jDateCreated;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jLookUpPanel;
     protected javax.swing.JPanel jPanelBottom;
     protected javax.swing.JPanel jPanelTop;

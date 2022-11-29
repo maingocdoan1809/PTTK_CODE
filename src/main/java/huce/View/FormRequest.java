@@ -27,7 +27,7 @@ public class FormRequest extends Form {
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "STT", "Tên sản phẩm", "Mã sản phẩm", "Số lượng" , "Đơn giá", "Thành tiền"
+                    "STT", "Tên sản phẩm", "Mã sản phẩm", "Số lượng"
                 }
         ) {
 

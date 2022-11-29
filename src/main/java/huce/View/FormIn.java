@@ -22,38 +22,17 @@ import javax.swing.JTextField;
  *
  * @author Admin
  */
-public class FormIn extends Form {
-
-    private JTextField jTextProvider;
-    private JTextField jTextProviderId;
-    private JTextField jTextProductLotID;
-
+public class FormIn extends FormRequestIn {
     public FormIn(JPanel gobackPanel) {
-        super();
+        super(gobackPanel);
         setTitle("Phiếu nhập hàng");
-        jTextProviderId = super.addJTextField(jPanelTop, "Mã bên giao hàng.", 5);
-        jTextProvider = super.addJTextField(jPanelTop, "Tên bên giao.", 15);
-        jTextProvider.setEnabled(false);
-        jTextProductLotID = super.addJTextField(jPanelTop, "Mã lô.", 15);
-        tableDetail = new JTable();
+//        tableDetail = new JTable();
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
                     "STT", "Mã sản phẩm", "Tên sản phẩm", "Đơn vị ", "Theo chứng từ", "Thực nhập", "Đơn giá", "Thành tiền"
                 }
         ));
-        tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        super.jTableContainer.setViewportView(tableDetail);
-        setListProductTable(new SimpleListProductsTable(this));
-        ///
-        this.jButtonCreate.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(this, "Ok!");
-            ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
-
-        });
-        this.jButtonDel.addActionListener((e) -> {
-            ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
-        });
     }
 
 }
