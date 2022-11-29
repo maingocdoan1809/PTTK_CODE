@@ -34,22 +34,8 @@ public class FormRequest extends Form {
         });
 
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
+        setListProductTable(new SimpleListProductsTable(this));
         super.jTableContainer.setViewportView(tableDetail);
     }
 
-    @Override
-    public void handleEvent(Connection database) {
-        this.jButtonCreate.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(this, "Sent!");
-        });
-        this.jButtonDel.addActionListener((e) -> {
-            this.resetForm();
-            this.jTextStore.setText("");
-            this.jTextReason.setText("");
-        });
-        this.jButtonPrint.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(this, "Printing...!");
-        });
-    }
 }

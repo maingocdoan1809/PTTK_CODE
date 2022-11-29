@@ -14,51 +14,50 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Admin
  */
-public class SimpleListProductsTable extends JTable{
+public class SimpleListProductsTable extends JTable {
+
     private DefaultTableModel tbDefaultTableModel;
-    private InputProductData inputProductData;
-    public SimpleListProductsTable() {
+
+    public SimpleListProductsTable(Form form) {
         this.tbDefaultTableModel = new javax.swing.table.DefaultTableModel(
                 new Object[][]{
-                new Object[] {"1", "abc", "350045", "239", "Cái"}},
-                new String[] {
-                    "STT" , "ID", "Tên sản phẩm", "Giá tiền","Số lượng còn", "Đơn vị"
+                    new Object[]{"1", "1345", "Ban Phim", "239", "Cái"},
+                new Object[]{"2", "4535", "Chuot khong day", "34", "Cái"},
+                new Object[]{"3", "6745", "Snack cay cay", "55", "Gói"},
+                new Object[]{"4", "3445", "Pepsi", "40", "Chai/1.5l"}},
+                new String[]{
+                    "STT", "ID", "Tên sản phẩm", "Giá tiền", "Số lượng còn", "Đơn vị"
                 }
-               
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+            boolean[] canEdit = {false, false, false, false, false, false};
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return canEdit[row];
             }
+            
         };
-       this.setModel(this.tbDefaultTableModel);
-        this.addMouseListener( new MouseAdapter() {
-           @Override
-           public void mouseClicked(MouseEvent e) {
-               if ( e.getClickCount() == 2 ) {
-                   inputProductData = new InputProductData();
-                   JFrame newFrame = new JFrame();
-                   int rowSelected = getSelectedRow();
-                   
-                   String id = (String) tbDefaultTableModel.getValueAt(rowSelected, 1);                   
-                   String name =(String) tbDefaultTableModel.getValueAt(rowSelected, 2);
-                   inputProductData.jTextID.setText(id);
-                   inputProductData.jTextName.setText(name);
-                   newFrame.add(inputProductData);
-                   newFrame.pack();
-                   newFrame.setLocationRelativeTo(null);
-                   newFrame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                   newFrame.setVisible(true);
-               }
-           }
-           
-       } );
+        this.setModel(this.tbDefaultTableModel);
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) {
+                    InpProductData newFrame = new InpProductData(form);
+                    int rowSelected = getSelectedRow();
+                    String id = (String) tbDefaultTableModel.getValueAt(rowSelected, 1);
+                    String name = (String) tbDefaultTableModel.getValueAt(rowSelected, 2);
+                    newFrame.jTextID.setText(id);
+                    newFrame.jTextName.setText(name);
+                    newFrame.pack();
+                    newFrame.setLocationRelativeTo(null);
+                    newFrame.setVisible(true);
+                }
+            }
+
+        });
 
     }
+ 
     public DefaultTableModel getDefaultTableModel() {
-           return this.tbDefaultTableModel;
+        return this.tbDefaultTableModel;
     }
 }

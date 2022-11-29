@@ -35,33 +35,12 @@ public class FormOut extends Form {
                 new String[]{
                     "STT", "Mã sản phẩm", "Tên sản phẩm", "Slg yêu cầu", "Slg thực xuất", "Đơn giá", "Thành tiền"
                 }
-        ) {
-           boolean[] canEdit = new boolean [] {
-                false, false, false, false, true, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
 
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
+        setListProductTable(new SimpleListProductsTable(this));
         this.jTableContainer.setViewportView(tableDetail);
     }
 
-    @Override
-    public void handleEvent(Connection database) {
-        this.jButtonCreate.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(this, "Ok!");
-        });
-        this.jButtonDel.addActionListener((e) -> {
-            this.resetForm();
-            this.jTextStore.setText("");
-            this.jTextStoreID.setText("");
-        });
-        this.jButtonPrint.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(this, "Printing...!");
-        });
-    }
+    
 }

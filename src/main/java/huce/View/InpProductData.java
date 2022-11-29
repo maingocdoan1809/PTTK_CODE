@@ -1,24 +1,24 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package huce.View;
 
-import com.privatejgoodies.forms.layout.FormSpec;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Admin
  */
-public class InputProductData extends javax.swing.JPanel {
+public class InpProductData extends javax.swing.JFrame {
 
     /**
-     * Creates new form InputProductData
+     * Creates new form InpProductData
      */
     private String[] dataStrings;
     private Form form;
-    public InputProductData(Form form) {
+    public InpProductData(Form form) {
         initComponents();
         this.form = form;
         
@@ -37,12 +37,11 @@ public class InputProductData extends javax.swing.JPanel {
             int numRow = tableModel.getRowCount();
             var formModel = (DefaultTableModel)form.getTableDetail().getModel();
             if ( form != null && form instanceof FormIn) {
-               
-               formModel.addRow(new String[] {"%d".formatted(numRow), jTextID.getText(), jTextName.getText()});
+               formModel.addRow(new String[] {"%d".formatted(numRow), jTextName.getText(), jTextID.getText()});
             } else {
-               formModel.addRow(new String[] {"%d".formatted(numRow), jTextID.getText(), jTextName.getText(), 
+               formModel.addRow(new String[] {"%d".formatted(numRow), jTextName.getText() , jTextID.getText(), 
                    jTextRequestNum.getText()});
-
+               this.dispose();
             }
         });
     }
@@ -56,11 +55,12 @@ public class InputProductData extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
         javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
         jOkBtn = new javax.swing.JButton();
-        javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
         jTextID = new javax.swing.JTextField();
         javax.swing.JLabel jText = new javax.swing.JLabel();
@@ -72,73 +72,81 @@ public class InputProductData extends javax.swing.JPanel {
         javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
         jTextLotNumber = new javax.swing.JTextField();
 
-        setLayout(new java.awt.BorderLayout());
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new javax.swing.BoxLayout(getContentPane(), javax.swing.BoxLayout.LINE_AXIS));
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Nhập thông tin");
-        add(jLabel1, java.awt.BorderLayout.PAGE_START);
+        jPanel1.add(jLabel1, java.awt.BorderLayout.PAGE_START);
 
         jOkBtn.setText("Ok");
         jPanel2.add(jOkBtn);
 
-        add(jPanel2, java.awt.BorderLayout.PAGE_END);
+        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
-        jPanel3.setLayout(new java.awt.GridLayout(5, 2, 10, 10));
+        jPanel4.setLayout(new java.awt.GridLayout(5, 2, 10, 10));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("ID");
-        jPanel3.add(jLabel2);
+        jPanel4.add(jLabel2);
 
         jTextID.setEditable(false);
-        jPanel3.add(jTextID);
+        jPanel4.add(jTextID);
 
         jText.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jText.setText("Tên");
-        jPanel3.add(jText);
+        jPanel4.add(jText);
 
         jTextName.setEditable(false);
-        jPanel3.add(jTextName);
+        jPanel4.add(jTextName);
 
         jRequestNumlabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jRequestNumlabel.setText("Theo chứng từ");
-        jPanel3.add(jRequestNumlabel);
-        jPanel3.add(jTextRequestNum);
+        jPanel4.add(jRequestNumlabel);
+        jPanel4.add(jTextRequestNum);
 
         jlable1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlable1.setText("Thực nhập");
-        jPanel3.add(jlable1);
-        jPanel3.add(jTextRealInput);
+        jPanel4.add(jlable1);
+        jPanel4.add(jTextRealInput);
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Mã lô");
-        jPanel3.add(jLabel3);
-        jPanel3.add(jTextLotNumber);
+        jPanel4.add(jLabel3);
+        jPanel4.add(jTextLotNumber);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(95, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 417, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(96, Short.MAX_VALUE))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(99, Short.MAX_VALUE)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(98, Short.MAX_VALUE))
         );
 
-        add(jPanel1, java.awt.BorderLayout.CENTER);
+        jPanel1.add(jPanel3, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(jPanel1);
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JButton jOkBtn;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jRequestNumlabel;
     public javax.swing.JTextField jTextID;
     public javax.swing.JTextField jTextLotNumber;

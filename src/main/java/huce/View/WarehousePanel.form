@@ -44,7 +44,6 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jViewProductsBtn" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jExportBtn" alignment="0" max="32767" attributes="0"/>
                       <Component id="jImportBtn" alignment="0" max="32767" attributes="0"/>
                       <Component id="jRequestBtn" max="32767" attributes="0"/>
                       <Component id="jLogoutBtn" alignment="1" max="32767" attributes="0"/>
@@ -60,14 +59,12 @@
                   <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
                   <Component id="jImportBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jExportBtn" min="-2" max="-2" attributes="0"/>
+                  <Component id="jRequestBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jViewProductsBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jViewProductLotBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="jRequestBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="334" max="32767" attributes="0"/>
+                  <EmptySpace pref="379" max="32767" attributes="0"/>
                   <Component id="jLogoutBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -80,11 +77,6 @@
             <Property name="text" type="java.lang.String" value="Nh&#x1ead;p h&#xe0;ng"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JButton" name="jExportBtn">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t h&#xe0;ng"/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JButton" name="jViewProductsBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Xem s&#x1ea3;n ph&#x1ea9;m"/>
@@ -92,12 +84,12 @@
         </Component>
         <Component class="javax.swing.JButton" name="jRequestBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Xem y&#xea;u c&#x1ea7;u"/>
+            <Property name="text" type="java.lang.String" value="Xem y&#xea;u c&#x1ea7;u xu&#x1ea5;t h&#xe0;ng"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jLogoutBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Logout"/>
+            <Property name="text" type="java.lang.String" value="Log out"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jViewProductLotBtn">

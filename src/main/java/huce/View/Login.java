@@ -4,9 +4,11 @@
  */
 package huce.View;
 
+import huce.Model.ApplyPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import javax.swing.JPanel;
 
 /**
  *
@@ -33,8 +35,21 @@ public class Login extends javax.swing.JPanel {
     /**
      * Creates new form Login
      */
-    public Login() {
+    public Login(JPanel gobackPanel) {
         initComponents();
+        this.addLoginListener( (e) -> {
+            
+            if ( getUsername().equals("admin") && getPassword().equals("1234") ) {
+                ApplyPanel.apply(gobackPanel, new WarehousePanel());
+            } else if (getUsername().equals("maingocdoan") && getPassword().equals("28025458")) {
+                ApplyPanel.apply(gobackPanel, new FormRequest());
+            } else {
+                jinformLabelLogin.setText("Tài khoản mật khẩu không chính xác");
+                
+            }
+                 
+            
+        } );
     }
 
     /**

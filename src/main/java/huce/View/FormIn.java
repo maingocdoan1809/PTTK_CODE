@@ -4,6 +4,7 @@
  */
 package huce.View;
 
+import huce.Model.ApplyPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -13,57 +14,46 @@ import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
 /**
- * 
+ *
  * @author Admin
  */
 public class FormIn extends Form {
+
     private JTextField jTextProvider;
-    public FormIn() {
+    private JTextField jTextProviderId;
+    private JTextField jTextProductLotID;
+
+    public FormIn(JPanel gobackPanel) {
         super();
         setTitle("Phiếu nhập hàng");
-        jTextProvider = super.addJTextField(jPanelTop, "Mã bên giao hàng.", 5);
+        jTextProviderId = super.addJTextField(jPanelTop, "Mã bên giao hàng.", 5);
         jTextProvider = super.addJTextField(jPanelTop, "Tên bên giao.", 15);
         jTextProvider.setEnabled(false);
-        
+        jTextProductLotID = super.addJTextField(jPanelTop, "Mã lô.", 15);
         tableDetail = new JTable();
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
-                new String [] {
-                "STT", "Mã sản phẩm",  "Tên sản phẩm", "Mã lô", "Đơn vị ", "Theo chứng từ", "Thực nhập", "Đơn giá", "Thành tiền"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, true, false, true, true, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        } );
-        
+                new String[]{
+                    "STT", "Mã sản phẩm", "Tên sản phẩm", "Đơn vị ", "Theo chứng từ", "Thực nhập", "Đơn giá", "Thành tiền"
+                }
+        ));
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-
         super.jTableContainer.setViewportView(tableDetail);
-    }
-
-    @Override
-    public void handleEvent(Connection database) {
-       this.jButtonCreate.addActionListener((e) -> {
+        setListProductTable(new SimpleListProductsTable(this));
+        ///
+        this.jButtonCreate.addActionListener((e) -> {
             JOptionPane.showMessageDialog(this, "Ok!");
+            ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
+
         });
         this.jButtonDel.addActionListener((e) -> {
-            this.resetForm();
-            this.jTextProvider.setText("");
+            ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
         });
-        this.jButtonPrint.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(this, "Printing...!");
-        });
-        
     }
- 
 
 }

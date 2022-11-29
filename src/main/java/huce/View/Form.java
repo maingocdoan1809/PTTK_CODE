@@ -14,6 +14,7 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,11 +27,11 @@ public abstract class Form extends javax.swing.JPanel {
      */
     public Form() {
         initComponents();
-        
     }
-    
-
-    abstract public void handleEvent(Connection database);
+    public void setFormData(String... data) {
+        var tbModel = (DefaultTableModel) this.jListProductJTable.getModel();
+        tbModel.addRow(data);
+    }
     protected void resetForm() {
         this.jTextAmount.setText("");
         this.jTextIDForm.setText("");
@@ -58,9 +59,13 @@ public abstract class Form extends javax.swing.JPanel {
     public void setListProductTable(JTable table) {
         this.jListProductJTable = table;
         this.jTableListContainer.setViewportView(table);
+        this.jLookUpPanel.add(new LookUpPanel(table), BorderLayout.SOUTH);
     }
     public JTable getTableDetail() {
         return this.tableDetail;
+    }
+    public JTable getListProductJTable() {
+        return this.jListProductJTable;
     }
     /**
      * This method is called from within the constructor to initialize the form.

@@ -4,6 +4,7 @@
  */
 package huce.View;
 
+import huce.Model.ApplyPanel;
 import java.awt.event.ActionListener;
 import javax.swing.JTable;
 
@@ -15,8 +16,13 @@ public class WarehousePanel extends javax.swing.JPanel {
     /**
      * Creates new form WarehousePanel
      */
+    public static OptionImportPanel helloPanel;
     public WarehousePanel() {
         initComponents();
+        helloPanel = new OptionImportPanel(this.jMainPanel);
+        this.addImportBtnListener( (e) -> {
+            ApplyPanel.apply(this.jMainPanel, helloPanel);
+        } );
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -29,7 +35,6 @@ public class WarehousePanel extends javax.swing.JPanel {
 
         javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         jImportBtn = new javax.swing.JButton();
-        jExportBtn = new javax.swing.JButton();
         jViewProductsBtn = new javax.swing.JButton();
         jRequestBtn = new javax.swing.JButton();
         jLogoutBtn = new javax.swing.JButton();
@@ -46,13 +51,11 @@ public class WarehousePanel extends javax.swing.JPanel {
 
         jImportBtn.setText("Nhập hàng");
 
-        jExportBtn.setText("Xuất hàng");
-
         jViewProductsBtn.setText("Xem sản phẩm");
 
-        jRequestBtn.setText("Xem yêu cầu");
+        jRequestBtn.setText("Xem yêu cầu xuất hàng");
 
-        jLogoutBtn.setText("Logout");
+        jLogoutBtn.setText("Log out");
 
         jViewProductLotBtn.setText("Xem phân khu");
 
@@ -64,7 +67,6 @@ public class WarehousePanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jViewProductsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jExportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jImportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jRequestBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLogoutBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -77,14 +79,12 @@ public class WarehousePanel extends javax.swing.JPanel {
                 .addGap(46, 46, 46)
                 .addComponent(jImportBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jExportBtn)
+                .addComponent(jRequestBtn)
                 .addGap(18, 18, 18)
                 .addComponent(jViewProductsBtn)
                 .addGap(18, 18, 18)
                 .addComponent(jViewProductLotBtn)
-                .addGap(18, 18, 18)
-                .addComponent(jRequestBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 334, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 379, Short.MAX_VALUE)
                 .addComponent(jLogoutBtn)
                 .addContainerGap())
         );
@@ -115,11 +115,6 @@ public class WarehousePanel extends javax.swing.JPanel {
     public void addLogoutListener(ActionListener actionListener) {
         this.jLogoutBtn.addActionListener(actionListener);
     }
-
-    public void addExportBtnListener(ActionListener actionListener) {
-        this.jExportBtn.addActionListener(actionListener);
-    }
-
     public void addRequestBtnListener(ActionListener actionListener) {
         this.jRequestBtn.addActionListener(actionListener);
     }
@@ -135,7 +130,6 @@ public class WarehousePanel extends javax.swing.JPanel {
         this.jViewProductLotBtn.addActionListener(actionListener);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jExportBtn;
     private javax.swing.JButton jImportBtn;
     private javax.swing.JButton jLogoutBtn;
     public javax.swing.JPanel jMainPanel;

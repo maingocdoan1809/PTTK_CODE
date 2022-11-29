@@ -22,40 +22,15 @@ public class LookUpPanel extends javax.swing.JPanel {
     /**
      * Creates new form LookUpPanel
      */
-    Connection database;
-    ResultSet result;
 
-    public LookUpPanel(Connection database) {
-        this.database = database;
+    public LookUpPanel(JTable table) {
         initComponents();
         this.jButtonSearch.addActionListener((e) -> {
-            try {
-                String whatToSearch = this.jTextSearch.getText();
-                if (database != null && !whatToSearch.equals("")) {
-                    var stm = database.createStatement();
-                    this.result = stm.executeQuery(" Select * from SanPham where  "
-                            + "MaSp = '%s' or TenSp like '%"
-                            + "%s".formatted(whatToSearch) + "%' or NhaSx like '%"
-                            + "%s".formatted(whatToSearch) + "%'".formatted(whatToSearch));
-                }
-                this.jTextSearch.setText("");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Error");
-            }
+            
 
         });
         this.jClearResultBtn.addActionListener((e) -> {
-            try {
-                if (database != null) {
-                    var stm = database.createStatement();
-                    this.result = stm.executeQuery(" Select * from SanPham");
-
-                }
-                this.jTextSearch.setText("");
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this, "Error");
-            }
+            
 
         });
     }
