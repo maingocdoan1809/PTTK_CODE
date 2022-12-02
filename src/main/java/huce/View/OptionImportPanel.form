@@ -18,7 +18,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="jCreateBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="T&#x1ea1;o phi&#x1ebf;u nh&#x1ead;p"/>
+        <Property name="text" type="java.lang.String" value="T&#x1ea1;o y&#xea;u c&#x1ea7;u m&#x1edb;i"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">
@@ -28,7 +28,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="jViewBtn">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Xem ch&#x1ee9;ng t&#x1eeb;"/>
+        <Property name="text" type="java.lang.String" value="Xem y&#xea;u c&#x1ea7;u &#x111;&#xe3; t&#x1ea1;o"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout" value="org.netbeans.modules.form.compat2.layouts.DesignGridBagLayout$GridBagConstraintsDescription">

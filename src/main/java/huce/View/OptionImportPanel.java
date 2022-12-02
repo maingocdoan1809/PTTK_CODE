@@ -41,12 +41,12 @@ public class OptionImportPanel extends javax.swing.JPanel {
 
         setLayout(new java.awt.GridBagLayout());
 
-        jCreateBtn.setText("Tạo phiếu nhập");
+        jCreateBtn.setText("Tạo yêu cầu mới");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jCreateBtn, gridBagConstraints);
 
-        jViewBtn.setText("Xem chứng từ");
+        jViewBtn.setText("Xem yêu cầu đã tạo");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(10, 10, 10, 10);
         add(jViewBtn, gridBagConstraints);

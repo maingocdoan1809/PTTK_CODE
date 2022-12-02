@@ -4,9 +4,14 @@
  */
 package huce.View;
 
+import Controller.HandleSearchingRequestOut;
+import Controller.LoadListRequest;
+import Controller.LoadListRequestOut;
+import huce.Model.ApplyPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,9 +24,11 @@ public class ListRequestsPanel extends javax.swing.JPanel {
     /**
      * Creates new form ListRequestsPanel
      */
-    public ListRequestsPanel() {
+    public ListRequestsPanel(JPanel goBackJPanel) {
         initComponents();
         var tableModel = (DefaultTableModel) jListRequestsTable.getModel();
+        (new LoadListRequestOut()).loadTo(jListRequestsTable);
+        
         this.jListRequestsTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -38,21 +45,12 @@ public class ListRequestsPanel extends javax.swing.JPanel {
             }
 
         });
-        this.jListRequestsTable.getModel().addTableModelListener((e) -> {
-            if (e.getType() == TableModelEvent.INSERT) {
-                var data = tableModel.getDataVector();
-                data.sort( (a, b) -> {
-                    if ( ((String) a.elementAt(4)).equals("Chờ xử lý") ) {
-                        return -1;
-                    }
-                    return 1;
-                } );
-            }
-        });
+        
         this.jAcceptBtn.addActionListener((e) -> {
             JOptionPane.showMessageDialog(null, "Ok");
             int row = jListRequestsTable.getSelectedRow();
-            tableModel.setValueAt("Đã duyệt", row, 4);
+            String id = (String) tableModel.getValueAt(row, 0);
+            ApplyPanel.apply(goBackJPanel, new FormOut(goBackJPanel, id));
             jAcceptBtn.setEnabled(false);
             jRefuseBtn.setEnabled(false);
         });
@@ -66,6 +64,8 @@ public class ListRequestsPanel extends javax.swing.JPanel {
         this.jViewNewestRequestsBtn.addActionListener((e) -> {
             tableModel.addRow(new String[]{"12", "243", "23434", "2323", "Chờ xử lý"});
         });
+        
+        this.jLookUpPanel.add(new LookUpPanel(new HandleSearchingRequestOut(), jListRequestsTable));
     }
 
     /**
@@ -79,6 +79,8 @@ public class ListRequestsPanel extends javax.swing.JPanel {
 
         javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         jListRequestsTable = new javax.swing.JTable();
+        jPanel2 = new javax.swing.JPanel();
+        jLookUpPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jAcceptBtn = new javax.swing.JButton();
         jRefuseBtn = new javax.swing.JButton();
@@ -118,6 +120,9 @@ public class ListRequestsPanel extends javax.swing.JPanel {
 
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
+        jPanel2.setLayout(new java.awt.GridLayout(2, 0));
+        jPanel2.add(jLookUpPanel);
+
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jAcceptBtn.setText("Duyệt");
@@ -131,7 +136,9 @@ public class ListRequestsPanel extends javax.swing.JPanel {
         jViewNewestRequestsBtn.setText("Xem các yêu cầu mới");
         jPanel1.add(jViewNewestRequestsBtn);
 
-        add(jPanel1, java.awt.BorderLayout.PAGE_END);
+        jPanel2.add(jPanel1);
+
+        add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 255));
@@ -145,7 +152,9 @@ public class ListRequestsPanel extends javax.swing.JPanel {
     private javax.swing.JButton jAcceptBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jListRequestsTable;
+    private javax.swing.JPanel jLookUpPanel;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton jRefuseBtn;
     private javax.swing.JButton jViewNewestRequestsBtn;
     // End of variables declaration//GEN-END:variables

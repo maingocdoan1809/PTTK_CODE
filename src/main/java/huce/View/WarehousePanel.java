@@ -23,6 +23,15 @@ public class WarehousePanel extends javax.swing.JPanel {
         this.addImportBtnListener( (e) -> {
             ApplyPanel.apply(this.jMainPanel, helloPanel);
         } );
+        this.addRequestBtnListener((e) -> {
+            ApplyPanel.apply(this.jMainPanel, new ListRequestsPanel(this.jMainPanel));
+        });
+        this.addViewLocationBtnListener((e) -> {
+            ApplyPanel.apply(this.jMainPanel, new LocationPanel());
+        });
+        this.addViewProductsBtnListener((e) -> {
+            ApplyPanel.apply(this.jMainPanel, new ListProducts());
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +47,7 @@ public class WarehousePanel extends javax.swing.JPanel {
         jViewProductsBtn = new javax.swing.JButton();
         jRequestBtn = new javax.swing.JButton();
         jLogoutBtn = new javax.swing.JButton();
-        jViewProductLotBtn = new javax.swing.JButton();
+        jViewLocationBtn = new javax.swing.JButton();
         jMainPanel = new javax.swing.JPanel();
         javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
@@ -57,7 +66,7 @@ public class WarehousePanel extends javax.swing.JPanel {
 
         jLogoutBtn.setText("Log out");
 
-        jViewProductLotBtn.setText("Xem phân khu");
+        jViewLocationBtn.setText("Xem phân khu");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -70,7 +79,7 @@ public class WarehousePanel extends javax.swing.JPanel {
                     .addComponent(jImportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jRequestBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLogoutBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jViewProductLotBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jViewLocationBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -83,7 +92,7 @@ public class WarehousePanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jViewProductsBtn)
                 .addGap(18, 18, 18)
-                .addComponent(jViewProductLotBtn)
+                .addComponent(jViewLocationBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 379, Short.MAX_VALUE)
                 .addComponent(jLogoutBtn)
                 .addContainerGap())
@@ -126,15 +135,15 @@ public class WarehousePanel extends javax.swing.JPanel {
     public void addViewProductsBtnListener(ActionListener actionListener) {
         this.jViewProductsBtn.addActionListener(actionListener);
     }
-    public void addViewProductLotBtnListener(ActionListener actionListener) {
-        this.jViewProductLotBtn.addActionListener(actionListener);
+    public void addViewLocationBtnListener(ActionListener actionListener) {
+        this.jViewLocationBtn.addActionListener(actionListener);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jImportBtn;
     private javax.swing.JButton jLogoutBtn;
     public javax.swing.JPanel jMainPanel;
     private javax.swing.JButton jRequestBtn;
-    private javax.swing.JButton jViewProductLotBtn;
+    private javax.swing.JButton jViewLocationBtn;
     private javax.swing.JButton jViewProductsBtn;
     // End of variables declaration//GEN-END:variables
 }

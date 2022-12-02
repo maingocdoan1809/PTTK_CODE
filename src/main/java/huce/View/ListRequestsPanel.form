@@ -103,34 +103,47 @@
         </Component>
       </SubComponents>
     </Container>
-    <Container class="javax.swing.JPanel" name="jPanel1">
+    <Container class="javax.swing.JPanel" name="jPanel2">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
           <BorderConstraints direction="Last"/>
         </Constraint>
       </Constraints>
 
-      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
-        <Property name="alignment" type="int" value="2"/>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignGridLayout">
+        <Property name="columns" type="int" value="0"/>
+        <Property name="rows" type="int" value="2"/>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jAcceptBtn">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Duy&#x1ec7;t"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jRefuseBtn">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="T&#x1eeb; ch&#x1ed1;i"/>
-            <Property name="enabled" type="boolean" value="false"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JButton" name="jViewNewestRequestsBtn">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Xem c&#xe1;c y&#xea;u c&#x1ea7;u m&#x1edb;i"/>
-          </Properties>
-        </Component>
+        <Container class="javax.swing.JPanel" name="jLookUpPanel">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel1">
+
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
+            <Property name="alignment" type="int" value="2"/>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JButton" name="jAcceptBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Duy&#x1ec7;t"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jRefuseBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="T&#x1eeb; ch&#x1ed1;i"/>
+                <Property name="enabled" type="boolean" value="false"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JButton" name="jViewNewestRequestsBtn">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Xem c&#xe1;c y&#xea;u c&#x1ea7;u m&#x1edb;i"/>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel1">

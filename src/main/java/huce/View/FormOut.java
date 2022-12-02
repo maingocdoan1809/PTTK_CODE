@@ -4,6 +4,7 @@
  */
 package huce.View;
 
+import Controller.LoadListProductToFormOut;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -11,6 +12,7 @@ import java.sql.Connection;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -24,7 +26,7 @@ public class FormOut extends Form {
     private JTextField jTextStore;
     private JTextField jTextStoreID;
 
-    public FormOut() {
+    public FormOut(JPanel gobackJPanel, String id) {
         this.setTitle("Phiếu xuất hàng");
         jTextStoreID = this.addJTextField(jPanelTop, "Mã cửa hàng", 5);
         jTextStore = this.addJTextField(jPanelTop, "Địa chỉ nhận hàng", 15);
@@ -40,6 +42,7 @@ public class FormOut extends Form {
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         setListProductTable(new SimpleListProductsTable(this));
         this.jTableContainer.setViewportView(tableDetail);
+        new LoadListProductToFormOut().loadTo(id, jListProductJTable);
     }
 
     

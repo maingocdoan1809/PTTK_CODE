@@ -55,7 +55,6 @@ public abstract class Form extends javax.swing.JPanel {
     public void setListProductTable(JTable table) {
         this.jListProductJTable = table;
         this.jTableListContainer.setViewportView(table);
-        this.jLookUpPanel.add(new LookUpPanel(table), BorderLayout.SOUTH);
     }
     public JTable getTableDetail() {
         return this.tableDetail;
@@ -79,6 +78,10 @@ public abstract class Form extends javax.swing.JPanel {
         jButtonCreate = new javax.swing.JButton();
         jButtonPrint = new javax.swing.JButton();
         javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
+        javax.swing.JSplitPane jSplitPane2 = new javax.swing.JSplitPane();
+        jLookUpPanel = new javax.swing.JPanel();
+        jLabelRight = new javax.swing.JLabel();
+        jTableListContainer = new javax.swing.JScrollPane();
         javax.swing.JPanel jPanel4 = new javax.swing.JPanel();
         jPanelTop = new javax.swing.JPanel();
         javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
@@ -95,9 +98,6 @@ public abstract class Form extends javax.swing.JPanel {
         jPanelBottom = new javax.swing.JPanel();
         javax.swing.JLabel jLabel7 = new javax.swing.JLabel();
         jTextAccount = new javax.swing.JTextField();
-        jLookUpPanel = new javax.swing.JPanel();
-        javax.swing.JLabel jLabel6 = new javax.swing.JLabel();
-        jTableListContainer = new javax.swing.JScrollPane();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -117,6 +117,26 @@ public abstract class Form extends javax.swing.JPanel {
         jPanel2.add(jButtonPrint);
 
         add(jPanel2, java.awt.BorderLayout.PAGE_END);
+
+        jPanel3.setLayout(new javax.swing.BoxLayout(jPanel3, javax.swing.BoxLayout.LINE_AXIS));
+
+        jSplitPane2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jLookUpPanel.setBackground(new java.awt.Color(204, 204, 204));
+        jLookUpPanel.setLayout(new java.awt.BorderLayout());
+
+        jLabelRight.setBackground(new java.awt.Color(255, 255, 255));
+        jLabelRight.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabelRight.setForeground(new java.awt.Color(0, 0, 0));
+        jLabelRight.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabelRight.setText("Danh sách sản phẩm đang có");
+        jLabelRight.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLookUpPanel.add(jLabelRight, java.awt.BorderLayout.PAGE_START);
+        jLabelRight.getAccessibleContext().setAccessibleName("");
+
+        jLookUpPanel.add(jTableListContainer, java.awt.BorderLayout.CENTER);
+
+        jSplitPane2.setRightComponent(jLookUpPanel);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setLayout(new java.awt.BorderLayout());
@@ -173,36 +193,9 @@ public abstract class Form extends javax.swing.JPanel {
 
         jPanel4.add(jPanelBottom, java.awt.BorderLayout.PAGE_END);
 
-        jLookUpPanel.setBackground(new java.awt.Color(204, 204, 204));
-        jLookUpPanel.setLayout(new java.awt.BorderLayout());
+        jSplitPane2.setLeftComponent(jPanel4);
 
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Danh sách sản phẩm đang có");
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLookUpPanel.add(jLabel6, java.awt.BorderLayout.PAGE_START);
-        jLabel6.getAccessibleContext().setAccessibleName("");
-
-        jLookUpPanel.add(jTableListContainer, java.awt.BorderLayout.CENTER);
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 732, Short.MAX_VALUE)
-                .addGap(0, 0, 0)
-                .addComponent(jLookUpPanel, javax.swing.GroupLayout.PREFERRED_SIZE, 430, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 599, Short.MAX_VALUE)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLookUpPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        jPanel3.add(jSplitPane2);
 
         add(jPanel3, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
@@ -215,6 +208,7 @@ public abstract class Form extends javax.swing.JPanel {
     protected javax.swing.JButton jButtonPrint;
     protected com.github.lgooddatepicker.components.DatePicker jDateCreated;
     private javax.swing.JLabel jLabel1;
+    protected javax.swing.JLabel jLabelRight;
     private javax.swing.JPanel jLookUpPanel;
     protected javax.swing.JPanel jPanelBottom;
     protected javax.swing.JPanel jPanelTop;

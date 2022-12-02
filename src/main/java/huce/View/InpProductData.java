@@ -42,8 +42,8 @@ public class InpProductData extends javax.swing.JFrame {
             } else {
                formModel.addRow(new String[] {"%d".formatted(numRow) , jTextID.getText(),jTextName.getText(), 
                    jTextRequestNum.getText()});
-               this.dispose();
             }
+               this.dispose();
         });
     }
     

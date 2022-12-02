@@ -4,6 +4,7 @@
  */
 package huce.View;
 
+import Controller.LoadListProductToFormIn;
 import huce.Model.ApplyPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -23,7 +24,7 @@ import javax.swing.JTextField;
  * @author Admin
  */
 public class FormIn extends FormRequestIn {
-    public FormIn(JPanel gobackPanel) {
+    public FormIn(JPanel gobackPanel, String id) {
         super(gobackPanel);
         setTitle("Phiếu nhập hàng");
 //        tableDetail = new JTable();
@@ -33,6 +34,8 @@ public class FormIn extends FormRequestIn {
                     "STT", "Mã sản phẩm", "Tên sản phẩm", "Đơn vị ", "Theo chứng từ", "Thực nhập", "Đơn giá", "Thành tiền"
                 }
         ));
+        this.jLabelRight.setText("Các sản phẩm được yêu cầu");
+        (new LoadListProductToFormIn()).loadTo(id, jListProductJTable);
     }
 
 }

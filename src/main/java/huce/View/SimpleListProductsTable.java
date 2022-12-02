@@ -26,7 +26,7 @@ public class SimpleListProductsTable extends JTable {
                 new Object[]{"3", "6745", "Snack cay cay" ,"55", "Gói"},
                 new Object[]{"4", "3445", "Pepsi", "40", "Chai/1.5l"}},
                 new String[]{
-                    "STT", "ID", "Tên sản phẩm", "Số lượng còn", "Đơn vị"
+                    "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
                 }
         ) {
             boolean[] canEdit = {false, false, false, false, false, false};

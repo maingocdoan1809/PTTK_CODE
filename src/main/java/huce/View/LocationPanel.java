@@ -8,12 +8,12 @@ package huce.View;
  *
  * @author Admin
  */
-public class ProductLotPanel extends javax.swing.JPanel {
+public class LocationPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form ProductLotPanel
      */
-    public ProductLotPanel() {
+    public LocationPanel() {
         initComponents();
     }
 

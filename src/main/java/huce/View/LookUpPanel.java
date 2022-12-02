@@ -4,6 +4,7 @@
  */
 package huce.View;
 
+import Controller.HandleSearching;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -23,16 +24,9 @@ public class LookUpPanel extends javax.swing.JPanel {
      * Creates new form LookUpPanel
      */
 
-    public LookUpPanel(JTable table) {
+    public LookUpPanel(HandleSearching handleSearching, JTable table) {
         initComponents();
-        this.jButtonSearch.addActionListener((e) -> {
-            
-
-        });
-        this.jClearResultBtn.addActionListener((e) -> {
-            
-
-        });
+        handleSearching.handel(this, table);
     }
 
     /**
@@ -66,8 +60,8 @@ public class LookUpPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    protected javax.swing.JButton jButtonSearch;
-    protected javax.swing.JButton jClearResultBtn;
-    protected javax.swing.JTextField jTextSearch;
+    public javax.swing.JButton jButtonSearch;
+    public javax.swing.JButton jClearResultBtn;
+    public javax.swing.JTextField jTextSearch;
     // End of variables declaration//GEN-END:variables
 }

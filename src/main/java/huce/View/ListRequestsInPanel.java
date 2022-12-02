@@ -4,11 +4,15 @@
  */
 package huce.View;
 
+import Controller.HandelSearchingRequestIn;
+import Controller.LoadListRequestIn;
 import huce.Model.ApplyPanel;
+import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,13 +25,18 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
      */
     public ListRequestsInPanel(JPanel gobackJPanel) {
         initComponents();
+        var tbModel = (DefaultTableModel)jListRequestsTable.getModel();
+        // load data
+        new LoadListRequestIn().loadTo(jListRequestsTable);
+        //
         this.jAcceptBtn.addActionListener((e) -> {
-            ApplyPanel.apply(gobackJPanel, new FormIn(gobackJPanel));
+            int row = jListRequestsTable.getSelectedRow();
+            String id = (String) tbModel.getValueAt(row,0);
+            ApplyPanel.apply(gobackJPanel, new FormIn(gobackJPanel, id));
         });
         this.jListRequestsTable.addMouseListener( new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                var tbModel = jListRequestsTable.getModel();
                 int row = jListRequestsTable.getSelectedRow();
                 String state = (String) tbModel.getValueAt(row, 4);                
                 String id = (String) tbModel.getValueAt(row, 0);
@@ -38,6 +47,7 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
         this.jGobackBtn.addActionListener((e) -> {
             ApplyPanel.apply(gobackJPanel, WarehousePanel.helloPanel);
         });
+        this.jBottomPanel.add(new LookUpPanel(new HandelSearchingRequestIn(), jListRequestsTable), BorderLayout.NORTH);
     }
 
     /**
@@ -52,7 +62,8 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
         javax.swing.JPanel jPanel1 = new javax.swing.JPanel();
         javax.swing.JScrollPane jScrollPane1 = new javax.swing.JScrollPane();
         jListRequestsTable = new javax.swing.JTable();
-        javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
+        jBottomPanel = new javax.swing.JPanel();
+        javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
         jAcceptBtn = new javax.swing.JButton();
         jRefuseBtn = new javax.swing.JButton();
         jGobackBtn = new javax.swing.JButton();
@@ -86,20 +97,24 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
-        jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jBottomPanel.setLayout(new java.awt.BorderLayout());
 
-        jAcceptBtn.setText("Duyệt");
+        jPanel3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+
+        jAcceptBtn.setText("Tạo phiếu nhập");
         jAcceptBtn.setEnabled(false);
-        jPanel2.add(jAcceptBtn);
+        jPanel3.add(jAcceptBtn);
 
-        jRefuseBtn.setText("Từ chối");
+        jRefuseBtn.setText("Hủy phiếu này");
         jRefuseBtn.setEnabled(false);
-        jPanel2.add(jRefuseBtn);
+        jPanel3.add(jRefuseBtn);
 
         jGobackBtn.setText("Quay lại");
-        jPanel2.add(jGobackBtn);
+        jPanel3.add(jGobackBtn);
 
-        jPanel1.add(jPanel2, java.awt.BorderLayout.PAGE_END);
+        jBottomPanel.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+
+        jPanel1.add(jBottomPanel, java.awt.BorderLayout.PAGE_END);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 51, 255));
@@ -113,6 +128,7 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jAcceptBtn;
+    private javax.swing.JPanel jBottomPanel;
     private javax.swing.JButton jGobackBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jListRequestsTable;

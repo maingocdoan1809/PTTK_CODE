@@ -4,6 +4,7 @@
  */
 package huce.View;
 
+import Controller.LoadListProductToFormRequest;
 import huce.Model.ApplyPanel;
 import java.sql.Connection;
 import javax.swing.JPanel;
@@ -39,6 +40,8 @@ public class FormRequestIn extends Form{
         });
         super.jTableContainer.setViewportView(this.tableDetail);
         setListProductTable(new SimpleListProductsTable(this));
+        new LoadListProductToFormRequest().loadTo(null, this.jListProductJTable);
+
     }
    
     

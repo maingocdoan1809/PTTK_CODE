@@ -4,6 +4,7 @@
  */
 package huce.View;
 
+import Controller.LoadListProductToFormRequest;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -15,7 +16,6 @@ import javax.swing.JTextField;
  */
 public class FormRequest extends Form {
 
-    private JTable tableDetail;
     private JTextField jTextStore;
     private JTextField jTextReason;
 
@@ -32,10 +32,10 @@ public class FormRequest extends Form {
         ) {
 
         });
-
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         setListProductTable(new SimpleListProductsTable(this));
         super.jTableContainer.setViewportView(tableDetail);
+        new LoadListProductToFormRequest().loadTo(null, this.jListProductJTable);
     }
 
 }
