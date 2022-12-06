@@ -4,7 +4,7 @@
  */
 package huce.View;
 
-import Controller.HandleSearching;
+import huce.Controller.HandleSearching;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

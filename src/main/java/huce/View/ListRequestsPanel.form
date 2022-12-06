@@ -117,7 +117,9 @@
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jLookUpPanel">
 
-          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout"/>
+          <Layout class="org.netbeans.modules.form.compat2.layouts.DesignFlowLayout">
+            <Property name="alignment" type="int" value="2"/>
+          </Layout>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel1">
 

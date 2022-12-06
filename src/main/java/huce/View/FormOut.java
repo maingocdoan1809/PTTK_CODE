@@ -4,7 +4,7 @@
  */
 package huce.View;
 
-import Controller.LoadListProductToFormOut;
+import huce.Controller.LoadListProductToFormOut;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;

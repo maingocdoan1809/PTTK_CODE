@@ -20,11 +20,7 @@ public class SimpleListProductsTable extends JTable {
 
     public SimpleListProductsTable(Form form) {
         this.tbDefaultTableModel = new javax.swing.table.DefaultTableModel(
-                new Object[][]{
-                    new Object[]{"1", "1345", "Ban Phim", "239", "Cái"},
-                new Object[]{"2", "4535", "Chuot khong day", "34", "Cái"},
-                new Object[]{"3", "6745", "Snack cay cay" ,"55", "Gói"},
-                new Object[]{"4", "3445", "Pepsi", "40", "Chai/1.5l"}},
+                null,
                 new String[]{
                     "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
                 }

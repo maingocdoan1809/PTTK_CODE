@@ -4,6 +4,10 @@
  */
 package huce.View;
 
+import huce.Controller.LoginController;
+import huce.DAO.AccountDAO;
+import huce.Model.Account;
+import huce.Model.AdminAccount;
 import huce.Model.ApplyPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -38,17 +42,20 @@ public class Login extends javax.swing.JPanel {
     public Login(JPanel gobackPanel) {
         initComponents();
         this.addLoginListener( (e) -> {
-            
-            if ( getUsername().equals("admin") && getPassword().equals("1234") ) {
-                ApplyPanel.apply(gobackPanel, new WarehousePanel());
-            } else if (getUsername().equals("maingocdoan") && getPassword().equals("28025458")) {
-                ApplyPanel.apply(gobackPanel, new FormRequest());
+            LoginController loginController = new LoginController();
+            Account account = loginController.login( jTextUserName.getText(), new String(
+                    jTextPassword.getPassword() ));
+            if ( account == null) {
+                // thong bao dang nhap sai
             } else {
-                jinformLabelLogin.setText("Tài khoản mật khẩu không chính xác");
-                
+                if ( account instanceof AdminAccount) {
+                    ApplyPanel.apply(gobackPanel, new WarehousePanel());
+                } else {
+                    ApplyPanel.apply(gobackPanel, new ListRequestsPanel(gobackPanel));
+                }
             }
-                 
             
+
         } );
     }
 

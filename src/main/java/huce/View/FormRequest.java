@@ -4,7 +4,7 @@
  */
 package huce.View;
 
-import Controller.LoadListProductToFormRequest;
+import huce.Controller.LoadListProductToFormRequest;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;

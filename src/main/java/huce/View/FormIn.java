@@ -4,7 +4,7 @@
  */
 package huce.View;
 
-import Controller.LoadListProductToFormIn;
+import huce.Controller.LoadListProductToFormIn;
 import huce.Model.ApplyPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;

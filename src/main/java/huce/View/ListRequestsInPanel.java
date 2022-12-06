@@ -4,8 +4,8 @@
  */
 package huce.View;
 
-import Controller.HandelSearchingRequestIn;
-import Controller.LoadListRequestIn;
+import huce.Controller.HandelSearchingRequestIn;
+import huce.Controller.LoadListRequestIn;
 import huce.Model.ApplyPanel;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;

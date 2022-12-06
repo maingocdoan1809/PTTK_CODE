@@ -4,9 +4,9 @@
  */
 package huce.View;
 
-import Controller.HandleSearchingRequestOut;
-import Controller.LoadListRequest;
-import Controller.LoadListRequestOut;
+import huce.Controller.HandleSearchingRequestOut;
+import huce.Controller.LoadListRequest;
+import huce.Controller.LoadListRequestOut;
 import huce.Model.ApplyPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -121,6 +121,8 @@ public class ListRequestsPanel extends javax.swing.JPanel {
         add(jScrollPane1, java.awt.BorderLayout.CENTER);
 
         jPanel2.setLayout(new java.awt.GridLayout(2, 0));
+
+        jLookUpPanel.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
         jPanel2.add(jLookUpPanel);
 
         jPanel1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
