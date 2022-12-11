@@ -18,7 +18,7 @@ public class LoginController {
         AccountDAO dao = new AccountDAO();
         var accounts = dao.getAll();
         var account = accounts.get(username);
-        if ( account.getData()[2].equals(password) ) {
+        if ( account != null && account.getData()[1].equals(password) ) {
             return accounts.get(username);
         }
 

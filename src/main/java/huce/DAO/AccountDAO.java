@@ -18,16 +18,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Admin
  */
-public class AccountDAO implements DataAccect<Account>{
+public class AccountDAO implements DataAccess<Account>{
 
     @Override
     public Account get(String id) {
         Connection c = Database.getConnection();
         System.out.println(c);
         Account account = null;
-
-        
-        
         return account;
     }
 

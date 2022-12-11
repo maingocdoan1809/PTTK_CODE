@@ -46,7 +46,7 @@ public class Login extends javax.swing.JPanel {
             Account account = loginController.login( jTextUserName.getText(), new String(
                     jTextPassword.getPassword() ));
             if ( account == null) {
-                // thong bao dang nhap sai
+                this.jinformLabelLogin.setText("Tài khoản mật khẩu không chính xác");
             } else {
                 if ( account instanceof AdminAccount) {
                     ApplyPanel.apply(gobackPanel, new WarehousePanel());

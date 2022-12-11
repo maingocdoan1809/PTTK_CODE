@@ -11,12 +11,12 @@ import java.util.HashMap;
  *
  * @author Admin
  */
-public interface DataAccect<T> {
+public interface DataAccess<T> {
     T get(String id);
     void insert(T data);
     void update(String id, T newData);
     void delete(String id);
-    // String == id
+    // String == primary key
     // T == object
     HashMap<String, T> getAll();
 }
