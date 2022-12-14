@@ -11,13 +11,11 @@ import javax.swing.JTable;
  *
  * @author Admin
  */
-public class HandelSearchingRequestIn implements HandleSearching{
+public class HandleSearchingProducts implements HandleSearching{
 
     @Override
-    public void handel(LookUpPanel lookUpPanel, JTable table) {
-        lookUpPanel.jButtonSearch.addActionListener((e) -> {
-            System.out.println("Handle request in");
-        });
+    public void handel( JTable table) {
+        System.out.println("Okk");
     }
     
 }

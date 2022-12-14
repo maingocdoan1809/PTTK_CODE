@@ -5,6 +5,7 @@
 package huce.View;
 
 import huce.Controller.HandleSearchingRequestOut;
+import huce.Controller.LoadListProductToFormOut;
 import huce.Controller.LoadListRequest;
 import huce.Controller.LoadListRequestOut;
 import huce.Model.ApplyPanel;

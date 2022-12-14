@@ -4,18 +4,14 @@
  */
 package huce.Controller;
 
-import huce.View.LookUpPanel;
 import javax.swing.JTable;
 
 /**
  *
  * @author Admin
  */
-public class HandleSearchingRequestOut implements HandleSearching {
-
-    @Override
-    public void handel(JTable table) {
-            System.out.println("Handle request out");
+public class LoadProductLocation {
+    public void loadTo(JTable jLot, JTable jSpot) {
+        System.out.println("Load to jLot, jSpot");
     }
-
 }

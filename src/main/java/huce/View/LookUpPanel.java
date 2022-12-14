@@ -26,7 +26,9 @@ public class LookUpPanel extends javax.swing.JPanel {
 
     public LookUpPanel(HandleSearching handleSearching, JTable table) {
         initComponents();
-        handleSearching.handel(this, table);
+        this.jButtonSearch.addActionListener((e) -> {
+            handleSearching.handel(table);
+        });
     }
 
     /**

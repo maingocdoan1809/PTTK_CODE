@@ -49,7 +49,13 @@ public class Login extends javax.swing.JPanel {
                 this.jinformLabelLogin.setText("Tài khoản mật khẩu không chính xác");
             } else {
                 if ( account instanceof AdminAccount) {
-                    ApplyPanel.apply(gobackPanel, new WarehousePanel());
+                    var warehouse = new WarehousePanel();
+                    warehouse.addLogoutListener((evt -> {
+                        ApplyPanel.apply(gobackPanel, new Login(gobackPanel));
+                    }));
+                    
+                    ApplyPanel.apply(gobackPanel, warehouse);
+                    
                 } else {
                     ApplyPanel.apply(gobackPanel, new ListRequestsPanel(gobackPanel));
                 }

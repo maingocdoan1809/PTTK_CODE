@@ -4,6 +4,8 @@
  */
 package huce.View;
 
+import huce.Controller.LoadProductLocation;
+
 /**
  *
  * @author Admin
@@ -15,6 +17,7 @@ public class LocationPanel extends javax.swing.JPanel {
      */
     public LocationPanel() {
         initComponents();
+        new LoadProductLocation().loadTo(jLotTable, jSpotTable);
     }
 
     /**

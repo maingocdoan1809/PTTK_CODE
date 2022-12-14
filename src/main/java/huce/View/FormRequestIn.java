@@ -4,9 +4,12 @@
  */
 package huce.View;
 
+import huce.Controller.HandleCreateForm;
+import huce.Controller.HandleCreateFormRequestIn;
 import huce.Controller.LoadListProductToFormRequest;
 import huce.Model.ApplyPanel;
 import java.sql.Connection;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -24,7 +27,13 @@ public class FormRequestIn extends Form{
         jTextProvider = super.addJTextField(jPanelTop, "Tên bên giao.", 15);
         jTextProvider.setEnabled(false);
         this.jButtonCreate.addActionListener((e) -> {
-            ApplyPanel.apply(gobackPanel, new ListRequestsInPanel(gobackPanel));
+            HandleCreateForm handleCreateForm = new HandleCreateFormRequestIn();
+            if ( handleCreateForm.create() ) {
+                ApplyPanel.apply(gobackPanel, new ListRequestsInPanel(gobackPanel));
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid input, try again");
+            }
+            
         });
         this.jButtonDel.addActionListener((e) -> {
             ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);

@@ -4,6 +4,9 @@
  */
 package huce.View;
 
+import huce.Controller.HandelExpiredProduct;
+import huce.Controller.HandleSearchingProducts;
+import huce.Controller.LoadAllProducts;
 import java.awt.BorderLayout;
 
 /**
@@ -17,9 +20,12 @@ public class ListProducts extends javax.swing.JPanel {
      */
     public ListProducts() {
         initComponents();
-    }
-    public void setLookUpPanel(LookUpPanel panel) {
-        this.jLookUpPanel.add(panel, BorderLayout.NORTH);
+        this.jOutofDateBtn.addActionListener((e) -> {
+            new HandelExpiredProduct().handel();
+        });
+        LookUpPanel lkp = new LookUpPanel(new HandleSearchingProducts(), jListProductsTable);
+        this.jLookUpPanel.add(lkp);
+        new LoadAllProducts().loadTo(jListProductsTable);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -37,8 +43,9 @@ public class ListProducts extends javax.swing.JPanel {
         jListProductsTable = new javax.swing.JTable();
         jLookUpPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jViewByType = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
         jOutofDateBtn = new javax.swing.JButton();
+        jSearchPanel = new javax.swing.JPanel();
 
         setLayout(new java.awt.BorderLayout());
 
@@ -56,11 +63,11 @@ public class ListProducts extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Tên sản phẩm", "Nhóm hàng", "Giá tiền", "NSX", "HSD", "Số lượng tồn", "Trạng thái"
+                "ID", "Tên sản phẩm", "Nhóm hàng", "Vị trí", "Giá tiền", "NSX", "HSD", "Số lượng tồn", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -75,13 +82,15 @@ public class ListProducts extends javax.swing.JPanel {
 
         jLookUpPanel.setLayout(new java.awt.BorderLayout());
 
-        jPanel4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
+        jPanel4.setLayout(new java.awt.GridLayout(2, 0));
 
-        jViewByType.setText("Sắp xếp theo nhóm hàng");
-        jPanel4.add(jViewByType);
+        jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
         jOutofDateBtn.setText("Xem sản phẩm hết hạn");
-        jPanel4.add(jOutofDateBtn);
+        jPanel5.add(jOutofDateBtn);
+
+        jPanel4.add(jPanel5);
+        jPanel4.add(jSearchPanel);
 
         jLookUpPanel.add(jPanel4, java.awt.BorderLayout.PAGE_END);
 
@@ -97,6 +106,7 @@ public class ListProducts extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JButton jViewByType;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jSearchPanel;
     // End of variables declaration//GEN-END:variables
 }

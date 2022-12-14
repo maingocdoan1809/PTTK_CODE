@@ -11,11 +11,11 @@ import javax.swing.JTable;
  *
  * @author Admin
  */
-public class HandleSearchingRequestOut implements HandleSearching {
+public class HandleSearchingRequestIn implements HandleSearching{
 
     @Override
     public void handel(JTable table) {
-            System.out.println("Handle request out");
+            System.out.println("Handle request in");
     }
-
+    
 }

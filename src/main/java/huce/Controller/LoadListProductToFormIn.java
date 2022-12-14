@@ -22,7 +22,7 @@ public class LoadListProductToFormIn implements LoadListProductToForm {
    
     @Override
     public void loadTo(String id, JTable toTable) {
-        
+        System.out.println(id);
     }
 
 }

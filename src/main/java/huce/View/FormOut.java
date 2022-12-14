@@ -4,7 +4,11 @@
  */
 package huce.View;
 
+import huce.Controller.HandleCreateForm;
+import huce.Controller.HandleCreateFormIn;
+import huce.Controller.HandleCreateFormOut;
 import huce.Controller.LoadListProductToFormOut;
+import huce.Model.ApplyPanel;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
@@ -26,7 +30,7 @@ public class FormOut extends Form {
     private JTextField jTextStore;
     private JTextField jTextStoreID;
 
-    public FormOut(JPanel gobackJPanel, String id) {
+    public FormOut(JPanel gobackPanel, String id) {
         this.setTitle("Phiếu xuất hàng");
         jTextStoreID = this.addJTextField(jPanelTop, "Mã cửa hàng", 5);
         jTextStore = this.addJTextField(jPanelTop, "Địa chỉ nhận hàng", 15);
@@ -43,6 +47,18 @@ public class FormOut extends Form {
         setListProductTable(new SimpleListProductsTable(this));
         this.jTableContainer.setViewportView(tableDetail);
         new LoadListProductToFormOut().loadTo(id, jListProductJTable);
+        this.jButtonCreate.addActionListener((e) -> {
+            HandleCreateForm handleCreateForm = new HandleCreateFormOut();
+            if ( handleCreateForm.create() ) {
+                ApplyPanel.apply(gobackPanel, new ListRequestsPanel(gobackPanel));
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid input, try again");
+            }
+
+        });
+        this.jButtonDel.addActionListener((e) -> {
+            ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
+        });
     }
 
     

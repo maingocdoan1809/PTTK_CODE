@@ -4,18 +4,16 @@
  */
 package huce.Controller;
 
-import huce.View.LookUpPanel;
-import javax.swing.JTable;
-
 /**
  *
  * @author Admin
  */
-public class HandleSearchingRequestOut implements HandleSearching {
+public class HandleCreateFormRequest implements HandleCreateForm{
 
     @Override
-    public void handel(JTable table) {
-            System.out.println("Handle request out");
+    public boolean create() {
+        System.out.println("Handle create form request");
+        return true;
     }
-
+    
 }

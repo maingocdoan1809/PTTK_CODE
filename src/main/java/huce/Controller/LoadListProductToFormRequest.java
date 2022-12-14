@@ -14,7 +14,7 @@ public class LoadListProductToFormRequest implements LoadListProductToForm{
 
     @Override
     public void loadTo(String id, JTable toTable) {
-        System.out.println("Load all data to Table");
+        System.out.println("Load"  + id + " data to Table");
     }
     
 }

@@ -12,5 +12,5 @@ import javax.swing.JTable;
  * @author Admin
  */
 public interface HandleSearching {
-    void handel(LookUpPanel lookUpPanel, JTable table);
+    void handel(JTable table);
 }

@@ -4,7 +4,7 @@
  */
 package huce.View;
 
-import huce.Controller.HandelSearchingRequestIn;
+import huce.Controller.HandleSearchingRequestIn;
 import huce.Controller.LoadListRequestIn;
 import huce.Model.ApplyPanel;
 import java.awt.BorderLayout;
@@ -41,13 +41,15 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
                 String state = (String) tbModel.getValueAt(row, 4);                
                 String id = (String) tbModel.getValueAt(row, 0);
                 jAcceptBtn.setEnabled(state.equals("Chờ duyệt"));
+                jRefuseBtn.setEnabled(state.equals("Chờ duyệt"));
+
             }
             
         } );
         this.jGobackBtn.addActionListener((e) -> {
             ApplyPanel.apply(gobackJPanel, WarehousePanel.helloPanel);
         });
-        this.jBottomPanel.add(new LookUpPanel(new HandelSearchingRequestIn(), jListRequestsTable), BorderLayout.NORTH);
+        this.jBottomPanel.add(new LookUpPanel(new HandleSearchingRequestIn(), jListRequestsTable), BorderLayout.NORTH);
     }
 
     /**
