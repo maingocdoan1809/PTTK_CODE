@@ -63,7 +63,7 @@ public class ListRequestsPanel extends javax.swing.JPanel {
             jRefuseBtn.setEnabled(false);
         });
         this.jViewNewestRequestsBtn.addActionListener((e) -> {
-            tableModel.addRow(new String[]{"12", "243", "23434", "2323", "Chờ xử lý"});
+            new LoadListRequestOut().loadTo(jListRequestsTable);
         });
         
         this.jLookUpPanel.add(new LookUpPanel(new HandleSearchingRequestOut(), jListRequestsTable));

@@ -42,24 +42,24 @@ public class Login extends javax.swing.JPanel {
     public Login(JPanel gobackPanel) {
         initComponents();
         this.addLoginListener( (e) -> {
-            LoginController loginController = new LoginController();
-            Account account = loginController.login( jTextUserName.getText(), new String(
-                    jTextPassword.getPassword() ));
-            if ( account == null) {
-                this.jinformLabelLogin.setText("Tài khoản mật khẩu không chính xác");
-            } else {
-                if ( account instanceof AdminAccount) {
+//            LoginController loginController = new LoginController();
+//            Account account = loginController.login( jTextUserName.getText(), new String(
+//                    jTextPassword.getPassword() ));
+//            if ( account == null) {
+//                this.jinformLabelLogin.setText("Tài khoản mật khẩu không chính xác");
+//            } else {
+//                if ( account instanceof AdminAccount) {
                     var warehouse = new WarehousePanel();
                     warehouse.addLogoutListener((evt -> {
                         ApplyPanel.apply(gobackPanel, new Login(gobackPanel));
                     }));
                     
                     ApplyPanel.apply(gobackPanel, warehouse);
-                    
-                } else {
-                    ApplyPanel.apply(gobackPanel, new ListRequestsPanel(gobackPanel));
-                }
-            }
+//                    
+//                } else {
+//                    ApplyPanel.apply(gobackPanel, new ListRequestsPanel(gobackPanel));
+//                }
+//            }
             
 
         } );
