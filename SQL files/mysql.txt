@@ -1,0 +1,126 @@
+CREATE TABLE PhanKhu (
+	MaPhanKhu varchar(10) PRIMARY KEY,
+    TenPhanKhu varchar(60)
+);
+CREATE TABLE ViTri (
+	MaViTri varchar(10) PRIMARY KEY,
+    MaPhanKhu varchar(10),
+    FOREIGN KEY(MaPhanKhu) REFERENCES PhanKhu(MaPhanKhu)  ON DELETE CASCADE,
+    SoLuongToiDa int,
+    SoLuongThucTe int
+);
+CREATE TABLE SanPham(
+	MaSp varchar(10) PRIMARY KEY,
+    TenSp varchar(60),
+    MaViTri varchar(10), 
+    FOREIGN KEY (MaViTri) REFERENCES ViTri(MaViTri) ON DELETE CASCADE,
+    XuatXu varchar(60),
+    NhaSx varchar(60),
+    NSX date,
+    HSD date,
+    GiaNhap float,
+    GiaBan float,
+    DonVi varchar(10)
+);
+CREATE TABLE PhieuYeuCauNhap (
+	MaPhieuYCN varchar(10) PRIMARY KEY,
+    MaNCC varchar(10),
+    FOREIGN KEY (MaNCC) REFERENCES nhacungcap(MaNCC) ON DELETE CASCADE,
+    NgayLap datetime,
+    TrangThai varchar(30),
+    MaNguoiLap varchar(10),
+    FOREIGN KEY (MaNguoiLap) REFERENCES taikhoan(TenTaiKhoan) ON DELETE CASCADE
+);
+CREATE TABLE ChiTietNhapHang (
+    MaPhieuChiTietYCN varchar(10) PRIMARY KEY,
+	MaPhieuYCN varchar(10),
+    FOREIGN KEY (MaPhieuYCN) REFERENCES phieuyeucaunhap(MaPhieuYCN) ON DELETE CASCADE,
+    MaNCC varchar(10),
+    FOREIGN KEY (MaNCC) REFERENCES nhacungcap(MaNCC) ON DELETE CASCADE,
+    MaSp varchar(10),
+    FOREIGN KEY (MaSp) REFERENCES sanpham(MaSp) ON DELETE CASCADE,
+    SoLuongTheoYeuCau int
+);
+
+CREATE TABLE PhieuNhap (
+	MaPhieu varchar(10) PRIMARY KEY,
+    MaPhieuYCN varchar(10),
+    FOREIGN KEY (MaPhieuYCN) REFERENCES phieuyeucaunhap(MaPhieuYCN) ON DELETE CASCADE,
+    NgayLapPhieu date,
+    DiaDiemLapPhieu varchar(60),
+    TongSoTien float,
+    TrangThai varchar(30),
+    MaNguoiLap varchar(10),
+    FOREIGN KEY (MaNguoiLap) REFERENCES taikhoan(TenTaiKhoan) ON DELETE CASCADE
+);
+CREATE TABLE ChiTietNhapHang (
+    MaPhieuChiTietNhapHang varchar(10) PRIMARY KEY,
+	MaPhieu varchar(10),
+    FOREIGN KEY (MaPhieu) REFERENCES phieunhap(MaPhieu) ON DELETE CASCADE,
+    MaSp varchar(10),
+    FOREIGN KEY (MaSp) REFERENCES sanpham(MaSp) ON DELETE CASCADE,
+    SoLuongNhap int,
+    SoLuongTheoYeuCau int,
+    ThanhTien float
+);
+CREATE TABLE PhieuXuat (
+	MaPhieu varchar(10) PRIMARY KEY,
+    MaCH varchar(10),
+    FOREIGN KEY (MaCH) REFERENCES cuahang(MaCH) ON DELETE CASCADE,
+    NgayLapPhieu date,
+    DiaDiemLapPhieu varchar(60),
+    TongSoTien float,
+    TrangThai varchar(30),
+    MaNguoiLap varchar(10),
+    FOREIGN KEY (MaNguoiLap) REFERENCES taikhoan(TenTaiKhoan) ON DELETE CASCADE
+);
+CREATE TABLE ChiTietXuatHang (
+    MaPhieuChiTietXuatHang varchar(10) PRIMARY KEY,
+	MaPhieu varchar(10),
+    FOREIGN KEY (MaPhieu) REFERENCES phieuxuat(MaPhieu) ON DELETE CASCADE,
+    MaSp varchar(10),
+    FOREIGN KEY (MaSp) REFERENCES sanpham(MaSp) ON DELETE CASCADE,
+    SoLuong int,
+    SoLuongTheoYeuCau int,
+    ThanhTien float
+);
+CREATE TABLE PhieuYeuCauXuat (
+	MaPhieu varchar(10) PRIMARY KEY,
+    MaCH varchar(10),
+    FOREIGN KEY (MaCH) REFERENCES cuahang(MaCH) ON DELETE CASCADE,
+    NgayLapPhieu date,
+    DiaDiemLapPhieu varchar(60),
+    TongSoTien float,
+    TrangThai varchar(30),
+    LyDo varchar(255),
+    MaNguoiLap varchar(10),
+    FOREIGN KEY (MaNguoiLap) REFERENCES taikhoan(TenTaiKhoan) ON DELETE CASCADE
+);
+CREATE TABLE ChiTietYeuCauXuatHang (
+    MaPhieuChiTietXuatHang varchar(10) PRIMARY KEY,
+	MaPhieu varchar(10),
+    FOREIGN KEY (MaPhieu) REFERENCES phieuxuat(MaPhieu) ON DELETE CASCADE,
+    MaSp varchar(10),
+    FOREIGN KEY (MaSp) REFERENCES sanpham(MaSp) ON DELETE CASCADE,
+    SoLuong int,
+    ThanhTien float
+);
+CREATE TABLE NhaCungCap (
+	MaNCC varchar(10) PRIMARY KEY,
+    TenNCC varchar(60),
+    DiaChi varchar(60),
+    SoDienThoai varchar(11)
+);
+CREATE TABLE CuaHang (
+	MaCH varchar(10) PRIMARY KEY,
+    TenCH varchar(60),
+    DiaChi varchar(60),
+    SoDienThoai varchar(11)
+);
+CREATE TABLE TaiKhoan(
+	TenTaiKhoan varchar(60) PRIMARY KEY,
+    MatKhau varchar(60),
+    ChucVu boolean
+);
+
+INSERT INTO SanPham VALUES ("SP1","Tủ lạnh","VT1","Việt Nam","HO2","","",1000000,150000,"chiếc");
