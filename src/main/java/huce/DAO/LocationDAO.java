@@ -6,6 +6,7 @@ package huce.DAO;
 
 import huce.Model.Database;
 import huce.Model.Location;
+import huce.Model.Spot;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -40,9 +41,25 @@ public class LocationDAO implements DataAccess<Location> {
         return null;
     }
 
+    public Location get(Spot spot) {
+        LocationDAO locationDAO = new LocationDAO();
+        Connection database = Database.getConnection();
+        try {
+            var stm = database.createStatement();
+            var result = stm.executeQuery(
+                    "Select `maphankhu` from `vitri` where `mavitri` = '%s'".formatted(spot.getId()));
+            if (result.next()) {
+                return locationDAO.get(result.getString("maphankhu"));
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+
     @Override
     public HashMap<String, Location> getAll() {
-        
+
         Connection database = Database.getConnection();
 
         try {
@@ -52,10 +69,10 @@ public class LocationDAO implements DataAccess<Location> {
             );
             SpotDAO spDao = new SpotDAO();
             HashMap<String, Location> locations = new HashMap<>();
-            while(result.next()) {
+            while (result.next()) {
                 String locationID = result.getString("maphankhu");
                 Location location = get(locationID);
-                location.setSpots( spDao.getAllInLocation(locationID) );
+                location.setSpots(spDao.getAllInLocation(locationID));
                 locations.put(locationID, location);
             }
             return locations;
@@ -63,7 +80,7 @@ public class LocationDAO implements DataAccess<Location> {
             Logger.getLogger(LocationDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-        
+
     }
 
 }

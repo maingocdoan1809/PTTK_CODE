@@ -30,35 +30,7 @@ public class AccountDAO implements DataAccess<Account>{
     public Account get(String username) throws UnsupportedOperationException{
         throw new UnsupportedOperationException("");
     }
-
-    /**
-     * 
-     * insert new Account to database
-     * @param data : an Account to be inserted.
-     */
-    @Override
-    public void insert(Account data) {
-    }
     
-    /**
-     * @deprecated This function is not supported by AccountDAO.
-     * @param id
-     * @param newData
-     * @throws UnsupportedOperationException 
-     */
-    @Override
-    public void update(String id, Account newData) throws UnsupportedOperationException{
-        throw new UnsupportedOperationException();
-    }
-    /**
-     * @deprecated This function is not supported by AccountDAO.
-     * @param id
-     * @throws UnsupportedOperationException 
-     */
-    @Override
-    public void delete(String id) throws UnsupportedOperationException{
-        throw new UnsupportedOperationException();
-    }
 
     @Override
     public HashMap<String, Account> getAll() {

@@ -26,6 +26,14 @@ public class Location {
     public ArrayList<Spot> getSpots() {
         return this.spots;
     }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
     
     public String[] toStringArr(int ...stt) {
         if ( stt.length > 0 ) {

@@ -18,16 +18,16 @@ public interface DataAccess<T> {
         throw new UnsupportedOperationException();
     }
 
-    default void insert(T data) {
+    default boolean insert(T data) {
         throw new UnsupportedOperationException();
     }
 
-    default void update(String id, T newData) {
+    default boolean update(String id, T newData) {
         throw new UnsupportedOperationException();
 
     }
 
-    default void delete(String id) {
+    default boolean delete(String id) {
         throw new UnsupportedOperationException();
 
     }

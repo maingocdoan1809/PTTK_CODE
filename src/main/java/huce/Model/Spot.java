@@ -4,6 +4,8 @@
  */
 package huce.Model;
 
+import huce.DAO.LocationDAO;
+
 /**
  *
  * @author MAI NGOC DOAN
@@ -16,6 +18,22 @@ public class Spot {
         this.id = id;
         this.maxQuantity = max;
         this.realQuantity = real;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public int getMaxQuantity() {
+        return maxQuantity;
+    }
+
+    public int getRealQuantity() {
+        return realQuantity;
+    }
+    public Location getCurrLocation() {
+        LocationDAO locationDAO = new LocationDAO();
+        return locationDAO.get(this);
     }
     public String[] toStringArr(int ...stt) {
         if (stt.length > 0) {

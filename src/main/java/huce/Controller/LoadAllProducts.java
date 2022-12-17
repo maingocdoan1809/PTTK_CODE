@@ -4,8 +4,10 @@
  */
 package huce.Controller;
 
+import huce.DAO.ProductDAO;
 import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -13,6 +15,14 @@ import javax.swing.JTable;
  */
 public class LoadAllProducts {
     public void loadTo(JTable table) {
-        System.out.println("Load all products");
+        var tableModel = (DefaultTableModel) table.getModel();
+        tableModel.setRowCount(0);
+        int stt = 1;
+        ProductDAO pdao = new ProductDAO();
+        var products = pdao.getAll();
+        for ( var product : products.values() ) {
+            tableModel.addRow(product.toStringArr(stt));
+            stt++;
+        }
     }
 }

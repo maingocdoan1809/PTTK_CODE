@@ -5,6 +5,7 @@
 package huce.DAO;
 
 import huce.Model.Database;
+import huce.Model.Location;
 import huce.Model.Spot;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -37,7 +38,6 @@ public class SpotDAO implements DataAccess<Spot> {
             return null;
         }
     }
-
     public ArrayList<Spot> getAllInLocation(String locationId) {
         Connection database = Database.getConnection();
         try {

@@ -63,7 +63,7 @@ public class ListProducts extends javax.swing.JPanel {
 
             },
             new String [] {
-                "ID", "Tên sản phẩm", "Nhóm hàng", "Vị trí", "Giá tiền", "NSX", "HSD", "Số lượng tồn", "Trạng thái"
+                "STT", "ID", "Tên sản phẩm", "Vị trí", "Nhóm hàng", "Giá tiền", "NSX", "HSD", "Số lượng tồn"
             }
         ) {
             boolean[] canEdit = new boolean [] {
