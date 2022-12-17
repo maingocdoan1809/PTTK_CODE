@@ -10,5 +10,17 @@ package huce.Model;
  */
 public class Spot {
     private String id;
-    private int maxQuantities; 
+    private int maxQuantity;
+    private int realQuantity;
+    public Spot(String id, int max, int real) {
+        this.id = id;
+        this.maxQuantity = max;
+        this.realQuantity = real;
+    }
+    public String[] toStringArr(int ...stt) {
+        if (stt.length > 0) {
+            return new String[]{stt[0] + "", id, maxQuantity + "", realQuantity + ""};
+        }
+        return new String[]{id, maxQuantity + "", realQuantity + ""};
+    }
 }

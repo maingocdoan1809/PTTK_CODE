@@ -50,11 +50,11 @@ public class LocationPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã phân khu", "Tên phân khu"
+                "STT", "Mã phân khu", "Tên phân khu"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -80,11 +80,11 @@ public class LocationPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã vị trí", "Số lượng tối đa", "Số lượng thực tế"
+                "STT", "Mã vị trí", "Số lượng tối đa", "Số lượng thực tế"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -92,9 +92,6 @@ public class LocationPanel extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jSpotTable);
-        if (jSpotTable.getColumnModel().getColumnCount() > 0) {
-            jSpotTable.getColumnModel().getColumn(2).setResizable(false);
-        }
 
         jPanel4.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 

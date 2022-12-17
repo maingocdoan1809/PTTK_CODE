@@ -20,30 +20,51 @@ import javax.swing.table.DefaultTableModel;
  */
 public class AccountDAO implements DataAccess<Account>{
 
+    /**
+     * @deprecated This function is not supported by AccountDAO.
+     * @param username
+     * @return
+     * @throws UnsupportedOperationException 
+     */
     @Override
-    public Account get(String id) {
-        Connection c = Database.getConnection();
-        System.out.println(c);
-        Account account = null;
-        return account;
+    public Account get(String username) throws UnsupportedOperationException{
+        throw new UnsupportedOperationException("");
     }
 
+    /**
+     * 
+     * insert new Account to database
+     * @param data : an Account to be inserted.
+     */
     @Override
     public void insert(Account data) {
     }
-
+    
+    /**
+     * @deprecated This function is not supported by AccountDAO.
+     * @param id
+     * @param newData
+     * @throws UnsupportedOperationException 
+     */
     @Override
-    public void update(String id, Account newData) {
+    public void update(String id, Account newData) throws UnsupportedOperationException{
+        throw new UnsupportedOperationException();
     }
-
+    /**
+     * @deprecated This function is not supported by AccountDAO.
+     * @param id
+     * @throws UnsupportedOperationException 
+     */
     @Override
-    public void delete(String id) {
+    public void delete(String id) throws UnsupportedOperationException{
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public HashMap<String, Account> getAll() {
         HashMap<String, Account> data = new HashMap<>();
         Connection c = Database.getConnection();
+        
         try {
             var stm = c.createStatement();
             var result = stm.executeQuery("Select * from `1` ");
@@ -64,5 +85,6 @@ public class AccountDAO implements DataAccess<Account>{
         return data;
         
     }
+
     
 }

@@ -4,38 +4,66 @@
  */
 package huce.DAO;
 
+import huce.Model.Database;
 import huce.Model.Location;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author MAI NGOC DOAN
  */
-public class LocationDAO implements DataAccess<Location>{
+public class LocationDAO implements DataAccess<Location> {
 
     @Override
     public Location get(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        Connection database = Database.getConnection();
+        String name = null;
 
-    @Override
-    public void insert(Location data) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+        try {
+            var stm = database.createStatement();
+            var result = stm.executeQuery(
+                    "Select `tenphankhu` from `phankhu` where `maphankhu` = '%s'".formatted(id)
+            );
 
-    @Override
-    public void update(String id, Location newData) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
+            if (result.next()) {
+                name = result.getString("tenphankhu");
+                return new Location(id, name);
+            }
 
-    @Override
-    public void delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
     }
 
     @Override
     public HashMap<String, Location> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        
+        Connection database = Database.getConnection();
+
+        try {
+            var stm = database.createStatement();
+            var result = stm.executeQuery(
+                    "Select `maphankhu` from `phankhu`"
+            );
+            SpotDAO spDao = new SpotDAO();
+            HashMap<String, Location> locations = new HashMap<>();
+            while(result.next()) {
+                String locationID = result.getString("maphankhu");
+                Location location = get(locationID);
+                location.setSpots( spDao.getAllInLocation(locationID) );
+                locations.put(locationID, location);
+            }
+            return locations;
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+        
     }
-    
+
 }

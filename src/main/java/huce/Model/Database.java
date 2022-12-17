@@ -14,7 +14,14 @@ import java.sql.DriverManager;
 public class Database {
 
     private static Connection instance;
-
+    /**
+     * 
+     * @return a connection to a database with 3 properties:
+     *  {@code url}, {@code username}, {@code password}, 
+     * you can modify it through {@code Database}'s
+     * static variables
+     * 
+     */
     public static Connection getConnection() {
         if (Database.instance == null) {
             try {
@@ -25,10 +32,18 @@ public class Database {
         }
         return instance;
     }
-    static String url = "jdbc:mysql://localhost:3306/QLKho";
-    static String user = "root";
-    static String password = "";
-
+    private static String url = "jdbc:mysql://localhost:3306/qlkho";
+    private static String user = "root";
+    private static String password = "";
+    public static void setDataBaseStr(String url) {
+        Database.url = url;
+    }
+    public static void setUsername(String username) {
+        Database.user = username;
+    }
+    public static void setPassword(String password) {
+        Database.password = password;
+    }
     private Database() {
     }
 

@@ -15,8 +15,23 @@ public class Location {
     private String name;
     ArrayList<Spot> spots;
 
-    public Location() {
-        spots = new ArrayList<>();
+    public Location(String id, String name) {
+        this.id = id;
+        this.name = name;
+        spots = null;
+    }
+    public void setSpots(ArrayList<Spot> spots) {
+        this.spots = spots;
+    } 
+    public ArrayList<Spot> getSpots() {
+        return this.spots;
+    }
+    
+    public String[] toStringArr(int ...stt) {
+        if ( stt.length > 0 ) {
+            return new String[]{stt[0] + "", id, name};
+        }
+        return new String[]{id, name};
     }
     
 }

@@ -4,38 +4,59 @@
  */
 package huce.DAO;
 
+import huce.Model.Database;
 import huce.Model.Spot;
+import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author MAI NGOC DOAN
  */
-public class SpotDAO implements DataAccess<Spot>{
-
+public class SpotDAO implements DataAccess<Spot> {
+    
     @Override
     public Spot get(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        Connection database = Database.getConnection();
+        int max = 0;
+        int real = 0;
+        try {
+            var stm = database.createStatement();
+            var result = stm.executeQuery("Select `soluongthucte`, `soluongtoida` from `vitri` where `mavitri` = '%s'".formatted(id));
+            result.next();
+            max = result.getInt("soluongtoida");            
+            real = result.getInt("soluongthucte");
+            
+            return new Spot(id, max, real);
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
 
-    @Override
-    public void insert(Spot data) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public ArrayList<Spot> getAllInLocation(String locationId) {
+        Connection database = Database.getConnection();
+        try {
+            var stm = database.createStatement();
+            var result = stm.executeQuery(
+                    "Select * from `vitri` where `maphankhu` = '%s'".
+                            formatted(locationId));
+            ArrayList<Spot> spots = new ArrayList<>();
+            while (result.next()) {
+                spots.add(new Spot(
+                        result.getString("mavitri"),
+                        result.getInt("soluongtoida"),
+                        result.getInt("soluongthucte")));
+            }
+            return spots;
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationDAO.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
+        
     }
-
-    @Override
-    public void update(String id, Spot newData) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public void delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public HashMap<String, Spot> getAll() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-    
 }

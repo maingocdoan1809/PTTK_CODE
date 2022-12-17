@@ -10,13 +10,32 @@ import java.util.HashMap;
 /**
  *
  * @author Admin
+ * @param <T>
  */
 public interface DataAccess<T> {
-    T get(String id);
-    void insert(T data);
-    void update(String id, T newData);
-    void delete(String id);
+
+    default T get(String id) {
+        throw new UnsupportedOperationException();
+    }
+
+    default void insert(T data) {
+        throw new UnsupportedOperationException();
+    }
+
+    default void update(String id, T newData) {
+        throw new UnsupportedOperationException();
+
+    }
+
+    default void delete(String id) {
+        throw new UnsupportedOperationException();
+
+    }
+
     // String == primary key
     // T == object
-    HashMap<String, T> getAll();
+    default HashMap<String, T> getAll() {
+        throw new UnsupportedOperationException();
+
+    }
 }
