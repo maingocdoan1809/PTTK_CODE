@@ -77,10 +77,7 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
 
         jListRequestsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"1", "1234", "04-Mart1", "28-11-2022", "Chờ duyệt"},
-                {"3", "23", "abcdg", "20-11-2022", "Đã duyệt"},
-                {"4", "2343", "gffg", "20-10-2022", "Đã duyệt"},
-                {"2", "456", "04-Mart2", "20-09-2022", null}
+
             },
             new String [] {
                 "ID phiếu", "ID Nhà cung cấp", "Tên nhà cung cấp", "Ngày yêu cầu", "Trạng thái"

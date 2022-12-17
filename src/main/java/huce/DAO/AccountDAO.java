@@ -39,11 +39,10 @@ public class AccountDAO implements DataAccess<Account>{
         
         try {
             var stm = c.createStatement();
-            var result = stm.executeQuery("Select * from `1` ");
+            var result = stm.executeQuery("Select * from `taikhoan` ");
             while (result.next()) {
-                String id = result.getString("ID");
-                String username = result.getString("Username");
-                String password = result.getString("Password");
+                String username = result.getString("Tentaikhoan");
+                String password = result.getString("matkhau");
                 String position = result.getString("Chucvu");
                 if ( position.equals("1")) {
                     data.put(username, new AdminAccount(username, password));

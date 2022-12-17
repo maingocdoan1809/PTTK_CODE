@@ -27,15 +27,20 @@ public class FormRequest extends Form {
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "STT", "Tên sản phẩm", "Mã sản phẩm", "Số lượng"
+                    "STT","Mã sản phẩm", "Tên sản phẩm", "Số lượng"
                 }
-        ) {
-
+        ){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+            }
+            
         });
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         setListProductTable(new SimpleListProductsTable(this));
         super.jTableContainer.setViewportView(tableDetail);
         new LoadListProductToFormRequest().loadTo(null, this.jListProductJTable);
+        Form.addUnselectProductEvent(tableDetail, jListProductJTable, 3);
     }
 
 }

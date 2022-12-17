@@ -41,7 +41,13 @@ public class FormOut extends Form {
                 new String[]{
                     "STT", "Mã sản phẩm", "Tên sản phẩm", "Slg yêu cầu", "Slg thực xuất", "Đơn giá", "Thành tiền"
                 }
-        ));
+        ){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+            }
+            
+        });
 
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         setListProductTable(new SimpleListProductsTable(this));
@@ -59,6 +65,7 @@ public class FormOut extends Form {
         this.jButtonDel.addActionListener((e) -> {
             ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
         });
+        Form.addUnselectProductEvent(tableDetail, jListProductJTable, 3);
     }
 
     

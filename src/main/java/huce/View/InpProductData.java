@@ -16,13 +16,13 @@ public class InpProductData extends javax.swing.JFrame {
     /**
      * Creates new form InpProductData
      */
-    private String[] dataStrings;
     private Form form;
+
     public InpProductData(Form form) {
         initComponents();
         this.form = form;
-        
-        if ( form instanceof FormIn) {
+
+        if (form instanceof FormIn) {
             this.jTextLotNumber.setEnabled(true);
             this.jRequestNumlabel.setText("Theo chứng từ");
             this.jTextRealInput.setEnabled(true);
@@ -31,22 +31,30 @@ public class InpProductData extends javax.swing.JFrame {
             this.jRequestNumlabel.setText("Số lượng yêu cầu");
             this.jTextRealInput.setEnabled(false);
         }
-        
-        this.jOkBtn.addActionListener((e) -> {
-            var tableModel = (DefaultTableModel)form.getListProductJTable().getModel(); 
-            int numRow = tableModel.getRowCount();
-            var formModel = (DefaultTableModel)form.getTableDetail().getModel();
-            if ( form != null && form instanceof FormIn) {
-               formModel.addRow(new String[] {"%d".formatted(numRow), jTextID.getText(),  jTextName.getText(),"", 
-               jTextRequestNum.getText(), jTextRealInput.getText(), jTextLotNumber.getText()});
+        this.jOkBtn.addActionListener((var e) -> {
+            var tableModel = (DefaultTableModel) form.getListProductJTable().getModel();
+            var formModel = (DefaultTableModel) form.getTableDetail().getModel();
+            int numRow = formModel.getRowCount() + 1;
+            if (form != null && form instanceof FormIn) {
+                formModel.addRow(new String[]{"%d".formatted(numRow), jTextID.getText(), jTextName.getText(), "",
+                    jTextRequestNum.getText(), jTextRealInput.getText(), jTextLotNumber.getText()});
+
             } else {
-               formModel.addRow(new String[] {"%d".formatted(numRow) , jTextID.getText(),jTextName.getText(), 
-                   jTextRequestNum.getText()});
+                formModel.addRow(new String[]{"%d".formatted(numRow), jTextID.getText(), jTextName.getText(),
+                    jTextRequestNum.getText()});
             }
-               this.dispose();
+            int selectedRow = form.getListProductJTable().getSelectedRow();
+            Integer num
+                    = 
+                    Integer.parseInt((String) tableModel.getValueAt(selectedRow, 3))
+                  - 
+                    Integer.parseInt(jTextRequestNum.getText());
+
+            tableModel.setValueAt(num, selectedRow, 3);
+            this.dispose();
         });
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

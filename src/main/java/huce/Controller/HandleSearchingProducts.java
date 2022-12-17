@@ -15,7 +15,7 @@ public class HandleSearchingProducts implements HandleSearching{
 
     @Override
     public void handel( JTable table) {
-        System.out.println("Okk");
+        
     }
     
 }

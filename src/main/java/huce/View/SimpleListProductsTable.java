@@ -18,12 +18,16 @@ public class SimpleListProductsTable extends JTable {
 
     private DefaultTableModel tbDefaultTableModel;
 
-    public SimpleListProductsTable(Form form) {
+    public SimpleListProductsTable(Form form, String ...title) {
+        String[] titleTable = new String[]{
+                    "STT", "ID", "Tên sản phẩm", "Số lượng trong kho", "Đơn vị"
+                };
+        if ( title.length > 0 ) {
+            titleTable = title;
+        }
         this.tbDefaultTableModel = new javax.swing.table.DefaultTableModel(
                 null,
-                new String[]{
-                    "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
-                }
+                titleTable
         ) {
             boolean[] canEdit = {false, false, false, false, false, false};
             @Override

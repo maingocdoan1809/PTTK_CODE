@@ -7,6 +7,8 @@ package huce.View;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -61,6 +63,44 @@ public abstract class Form extends javax.swing.JPanel {
     }
     public JTable getListProductJTable() {
         return this.jListProductJTable;
+    }
+    public static void addUnselectProductEvent(JTable from, JTable to, int index) {
+        from.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if ( e.getClickCount() == 2 ) {
+                    int rowSelected = from.getSelectedRow();
+                    var fromModel = (DefaultTableModel) from.getModel();
+                    var toModel = (DefaultTableModel) to.getModel();
+                    String nameProduct = (String) fromModel.getValueAt(rowSelected, 2);
+                    int slg = Integer.parseInt( (String) fromModel.getValueAt(rowSelected, index) );
+                    int option = JOptionPane.showConfirmDialog(null, "Huỷ thêm " + nameProduct + " ?");
+                    if (option == JOptionPane.OK_OPTION) {
+                        fromModel.removeRow(rowSelected);
+                        // reassign stt
+                        int numRowFrom = from.getRowCount();
+                        for ( int i = rowSelected; i < numRowFrom; i++ ) {
+                            int stt = Integer.parseInt( (String) fromModel.getValueAt(i, 0));
+                            fromModel.setValueAt(stt - 1, i, 0);
+                        }
+                        
+                        //
+                        int numRowTo = to.getRowCount();
+                        for (int i = 1; i <= numRowTo; i++) {
+                            String currName = (String) to.getValueAt(i, 2);
+                            if ( currName.equals(nameProduct) ) {
+                                var currNumP =(Integer) to.getValueAt(i, 3);
+                                toModel.setValueAt( currNumP + slg + "", i, 3);
+                                break;
+                            }
+                        }
+                        
+                        
+                    }
+                }
+            }
+            
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.

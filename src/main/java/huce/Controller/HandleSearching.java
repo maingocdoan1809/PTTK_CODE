@@ -4,7 +4,6 @@
  */
 package huce.Controller;
 
-import huce.View.LookUpPanel;
 import javax.swing.JTable;
 
 /**

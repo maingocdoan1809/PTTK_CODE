@@ -47,6 +47,58 @@ public class Product {
         this.spot = spot;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPriceIn(Float priceIn) {
+        this.priceIn = priceIn;
+    }
+
+    public void setPriceOut(Float priceOut) {
+        this.priceOut = priceOut;
+    }
+
+    public void setIssue(String issue) {
+        this.issue = issue;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
+    }
+
+    public void setMgf(String mgf) {
+        this.mgf = mgf;
+    }
+
+    public void setExp(String exp) {
+        this.exp = exp;
+    }
+
+    public void setUnit(String unit) {
+        this.unit = unit;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getUnit() {
+        return unit;
+    }
+
+    public Spot getSpot() {
+        return spot;
+    }
+    
     public String[] toStringArr(int... stt) {
         var currLocation = spot.getCurrLocation();
         String idLocation = null;

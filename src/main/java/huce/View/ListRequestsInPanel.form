@@ -42,37 +42,12 @@
             <Component class="javax.swing.JTable" name="jListRequestsTable">
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                  <Table columnCount="5" rowCount="4">
-                    <Column editable="false" title="ID phi&#x1ebf;u" type="java.lang.Object">
-                      <Data value="1"/>
-                      <Data value="3"/>
-                      <Data value="4"/>
-                      <Data value="2"/>
-                    </Column>
-                    <Column editable="true" title="ID Nh&#xe0; cung c&#x1ea5;p" type="java.lang.Object">
-                      <Data value="1234"/>
-                      <Data value="23"/>
-                      <Data value="2343"/>
-                      <Data value="456"/>
-                    </Column>
-                    <Column editable="false" title="T&#xea;n nh&#xe0; cung c&#x1ea5;p" type="java.lang.Object">
-                      <Data value="04-Mart1"/>
-                      <Data value="abcdg"/>
-                      <Data value="gffg"/>
-                      <Data value="04-Mart2"/>
-                    </Column>
-                    <Column editable="false" title="Ng&#xe0;y y&#xea;u c&#x1ea7;u" type="java.lang.Object">
-                      <Data value="28-11-2022"/>
-                      <Data value="20-11-2022"/>
-                      <Data value="20-10-2022"/>
-                      <Data value="20-09-2022"/>
-                    </Column>
-                    <Column editable="true" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object">
-                      <Data value="Ch&#x1edd; duy&#x1ec7;t"/>
-                      <Data value="&#x110;&#xe3; duy&#x1ec7;t"/>
-                      <Data value="&#x110;&#xe3; duy&#x1ec7;t"/>
-                      <Data value="null"/>
-                    </Column>
+                  <Table columnCount="5" rowCount="0">
+                    <Column editable="false" title="ID phi&#x1ebf;u" type="java.lang.Object"/>
+                    <Column editable="true" title="ID Nh&#xe0; cung c&#x1ea5;p" type="java.lang.Object"/>
+                    <Column editable="false" title="T&#xea;n nh&#xe0; cung c&#x1ea5;p" type="java.lang.Object"/>
+                    <Column editable="false" title="Ng&#xe0;y y&#xea;u c&#x1ea7;u" type="java.lang.Object"/>
+                    <Column editable="true" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

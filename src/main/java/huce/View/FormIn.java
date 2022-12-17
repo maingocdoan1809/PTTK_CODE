@@ -6,19 +6,8 @@ package huce.View;
 
 import huce.Controller.HandleCreateForm;
 import huce.Controller.HandleCreateFormIn;
-import huce.Controller.HandleCreateFormRequest;
-import huce.Controller.HandleCreateFormRequestIn;
 import huce.Controller.LoadListProductToFormIn;
-import huce.Controller.LoadListProductToFormRequest;
 import huce.Model.ApplyPanel;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.LayoutManager;
-import java.sql.Connection;
-import javax.swing.BoxLayout;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -44,9 +33,16 @@ public class FormIn extends Form{
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "STT", "Mã sản phẩm", "Tên sản phẩm", "Đơn vị ", "Theo chứng từ", "Thực nhập", "Đơn giá", "Thành tiền"
-                }
-        ));
+                    "STT", "Mã sản phẩm", "Tên sản phẩm", "Theo chứng từ", "Thực nhập", "Đơn vị "
+                } 
+                
+        ) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+            }
+            
+        });
         
         this.jLabelRight.setText("Các sản phẩm được yêu cầu");
         (new LoadListProductToFormIn()).loadTo(id, jListProductJTable);
@@ -63,14 +59,10 @@ public class FormIn extends Form{
             ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
         });
         super.jTableContainer.setViewportView(this.tableDetail);
-        setListProductTable(new SimpleListProductsTable(this));
-        
-        
-        
-        
-        
-       
-        
+        setListProductTable(new SimpleListProductsTable(this, new String[]{
+            "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
+        }));
+        Form.addUnselectProductEvent(tableDetail, jListProductJTable, 4);
     }
 
 }
