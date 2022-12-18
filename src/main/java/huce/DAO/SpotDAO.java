@@ -59,4 +59,17 @@ public class SpotDAO implements DataAccess<Spot> {
         }
         
     }
+    public void updateQuantity(Spot spot, int extraNum) {
+        updateQuantity(spot.getId(), extraNum);
+    }
+    public void updateQuantity(String spotId, int extraNum) {
+        Connection connection = Database.getConnection();
+        try {
+            var stm = connection.createStatement();
+            stm.execute( "update `vitri` set `soluongthucte` = `soluongthucte` + " 
+                    + extraNum + " where `mavitri` = %s".formatted(spotId) );
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

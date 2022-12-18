@@ -4,6 +4,7 @@
  */
 package huce.Controller;
 
+import huce.Model.Product;
 import javax.swing.JTable;
 
 /**
@@ -11,5 +12,5 @@ import javax.swing.JTable;
  * @author Admin
  */
 public interface LoadListProductToForm {
-    void loadTo(String id, JTable toTable);
+    void loadTo(String id, JTable toTable, Product ...products);
 }

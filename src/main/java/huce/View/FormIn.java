@@ -33,7 +33,7 @@ public class FormIn extends Form{
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "STT", "Mã sản phẩm", "Tên sản phẩm", "Theo chứng từ", "Thực nhập", "Đơn vị "
+                    "STT", "Mã sản phẩm", "Tên sản phẩm", "Theo chứng từ", "Thực nhập", "Đơn vị ", "Đơn giá"
                 } 
                 
         ) {
@@ -62,7 +62,7 @@ public class FormIn extends Form{
         setListProductTable(new SimpleListProductsTable(this, new String[]{
             "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
         }));
-        Form.addUnselectProductEvent(tableDetail, jListProductJTable, 4);
+        Form.addUnselectProductEvent(this, 4);
     }
 
 }

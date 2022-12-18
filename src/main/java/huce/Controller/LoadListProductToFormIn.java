@@ -7,6 +7,7 @@ package huce.Controller;
 import com.github.lgooddatepicker.ysandbox.TestStart;
 import huce.DAO.AccountDAO;
 import huce.Model.Database;
+import huce.Model.Product;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -21,7 +22,7 @@ public class LoadListProductToFormIn implements LoadListProductToForm {
 
    
     @Override
-    public void loadTo(String id, JTable toTable) {
+    public void loadTo(String id, JTable toTable, Product ...products) {
         System.out.println(id);
     }
 

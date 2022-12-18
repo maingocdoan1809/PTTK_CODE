@@ -20,7 +20,40 @@ import java.util.logging.Logger;
 public class ProductDAO implements DataAccess<Product> {
 
     @Override
-    public Product get(String id) {
+    synchronized public Product get(String id) {
+        return getBy("MaSp", id);
+    }
+    
+    @Override
+    synchronized public HashMap<String, Product> getAll() {
+        return getAllBy(null,null);
+    }
+    synchronized private HashMap<String, Product> getAllBy(String columnName, String value) {
+                Connection database = Database.getConnection();
+
+        try {
+            String query = "Select `maSp` from `sanpham`";
+            if ( columnName != null && value != null ) {
+                query += " where `%s` = '%s' ".formatted(columnName, value);
+            }
+            var stm = database.createStatement();
+            var result = stm.executeQuery(
+                    query
+            );
+            HashMap<String, Product> products = new HashMap<>();
+            while(result.next()) {
+                String pId = result.getString("maSp");
+                products.put( pId , get(pId));
+            }
+            return products;
+
+        } catch (SQLException ex) {
+            Logger.getLogger(LocationDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return null;
+    }
+    synchronized private Product getBy(String columnName, String value) {
         Product p = null;
 
         Connection database = Database.getConnection();
@@ -28,12 +61,12 @@ public class ProductDAO implements DataAccess<Product> {
         try {
             var stm = database.createStatement();
             var result = stm.executeQuery(
-                    "Select * from `sanpham` where `masp` = '%s'".formatted(id)
+                    "Select * from `sanpham` where `%s` = '%s'".formatted(columnName, value)
             );
 
             if (result.next()) {
                 p = new Product(
-                        id,
+                        result.getString("MaSP"),
                         result.getString("TenSp"),
                         result.getString("Donvi")
                 );
@@ -59,45 +92,21 @@ public class ProductDAO implements DataAccess<Product> {
 
         return p;
     }
-
-    @Override
-    public boolean insert(Product data) {
-        
-        return true;
+    synchronized public Product getByName(String name) {
+        return getBy("TenSp", name);
     }
-
-    @Override
-    public boolean update(String id, Product newData) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public boolean delete(String id) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
-
-    @Override
-    public HashMap<String, Product> getAll() {
-
-        Connection database = Database.getConnection();
-
+    synchronized public void importProduct(String id, int num) {
+        Connection connection = Database.getConnection();
         try {
-            var stm = database.createStatement();
-            var result = stm.executeQuery(
-                    "Select `maSp` from `sanpham`"
-            );
-            HashMap<String, Product> products = new HashMap<>();
-            while(result.next()) {
-                String pId = result.getString("maSp");
-                products.put( pId , get(pId));
-            }
-            return products;
-
-        } catch (SQLException ex) {
-            Logger.getLogger(LocationDAO.class.getName()).log(Level.SEVERE, null, ex);
+            var stm = connection.createStatement();
+            Product p = get(id);
+            String spot = p.getSpot().getId();
+            stm.execute(" Update `vitri` set `soluongthucte` = `soluongthucte` + %d where  `mavitri` = '%s' ".formatted(num, spot));
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
-
-        return null;
     }
-
+    synchronized public void exportProduct(String id, int num) {
+        importProduct(id, -num);
+    }
 }

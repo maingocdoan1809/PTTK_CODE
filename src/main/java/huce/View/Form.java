@@ -4,12 +4,14 @@
  */
 package huce.View;
 
+import huce.DAO.ProductDAO;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
+import java.util.Locale;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -29,19 +31,24 @@ public abstract class Form extends javax.swing.JPanel {
      */
     public Form() {
         initComponents();
+        jDateCreated.setLocale(Locale.CHINA);
     }
+
     public void setFormData(String... data) {
         var tbModel = (DefaultTableModel) this.jListProductJTable.getModel();
         tbModel.addRow(data);
     }
+
     protected void resetForm() {
         this.jTextAmount.setText("");
         this.jTextIDForm.setText("");
         this.jTextWhere.setText("");
     }
+
     public void setLookUpPanel(LookUpPanel panel) {
         this.jLookUpPanel.add(panel, BorderLayout.SOUTH);
     }
+
     public JTextField addJTextField(JPanel parent, String text, int column) {
         parent.add(new JLabel(text));
         JTextField textField = new JTextField(column);
@@ -49,59 +56,78 @@ public abstract class Form extends javax.swing.JPanel {
         parent.add(textField);
         return textField;
     }
+
     public void setTitle(String title) {
         this.jLabel1.setText(title);
     }
     // return a table with titles as the column.
-   
+
     public void setListProductTable(JTable table) {
         this.jListProductJTable = table;
         this.jTableListContainer.setViewportView(table);
     }
+
     public JTable getTableDetail() {
         return this.tableDetail;
     }
+
     public JTable getListProductJTable() {
         return this.jListProductJTable;
     }
-    public static void addUnselectProductEvent(JTable from, JTable to, int index) {
-        from.addMouseListener(new MouseAdapter() {
+
+    public static void addUnselectProductEvent(Form form, int index) {
+        var formDetail = form.jListProductJTable;
+        var formTable = form.getTableDetail();
+        formTable.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if ( e.getClickCount() == 2 ) {
-                    int rowSelected = from.getSelectedRow();
-                    var fromModel = (DefaultTableModel) from.getModel();
-                    var toModel = (DefaultTableModel) to.getModel();
+                if (e.getClickCount() == 2) {
+                    int rowSelected = formTable.getSelectedRow();
+                    var fromModel = (DefaultTableModel) formTable.getModel();
+                    var toModel = (DefaultTableModel) formDetail.getModel();
                     String nameProduct = (String) fromModel.getValueAt(rowSelected, 2);
-                    int slg = Integer.parseInt( (String) fromModel.getValueAt(rowSelected, index) );
+                    int slg = Integer.parseInt((String) fromModel.getValueAt(rowSelected, index));
                     int option = JOptionPane.showConfirmDialog(null, "Huỷ thêm " + nameProduct + " ?");
                     if (option == JOptionPane.OK_OPTION) {
                         fromModel.removeRow(rowSelected);
                         // reassign stt
-                        int numRowFrom = from.getRowCount();
-                        for ( int i = rowSelected; i < numRowFrom; i++ ) {
-                            int stt = Integer.parseInt( (String) fromModel.getValueAt(i, 0));
+                        int numRowFrom = formTable.getRowCount();
+                        for (int i = rowSelected; i < numRowFrom; i++) {
+                            int stt = Integer.parseInt((String) fromModel.getValueAt(i, 0));
                             fromModel.setValueAt(stt - 1, i, 0);
                         }
-                        
+
                         //
-                        int numRowTo = to.getRowCount();
+                        int numRowTo = formDetail.getRowCount();
+                        if (form instanceof FormRequest || form instanceof FormRequestIn) {
+                            return;
+                        }
                         for (int i = 1; i <= numRowTo; i++) {
-                            String currName = (String) to.getValueAt(i, 2);
-                            if ( currName.equals(nameProduct) ) {
-                                var currNumP =(Integer) to.getValueAt(i, 3);
-                                toModel.setValueAt( currNumP + slg + "", i, 3);
+                            String currName = (String) formDetail.getValueAt(i, 2);
+                            if (currName.equals(nameProduct)) {
+                                var currNumP = Integer.parseInt((String) formDetail.getValueAt(i, 3));
+                                if (form instanceof FormOut) {
+                                    toModel.setValueAt((currNumP + slg) + "", i, 3);
+                                    ProductDAO pdao = new ProductDAO();
+                                    pdao.importProduct((String) formDetail.getValueAt(i, 1), slg);
+                                } else {
+                                    toModel.setValueAt((currNumP - slg) + "", i, 3);
+                                    ProductDAO pdao = new ProductDAO();
+                                    pdao.exportProduct((String) formDetail.getValueAt(i, 1), slg);
+                                }
                                 break;
+
                             }
                         }
-                        
-                        
+
                     }
                 }
             }
-            
+
         });
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -167,7 +193,6 @@ public abstract class Form extends javax.swing.JPanel {
 
         jLabelRight.setBackground(new java.awt.Color(255, 255, 255));
         jLabelRight.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabelRight.setForeground(new java.awt.Color(0, 0, 0));
         jLabelRight.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabelRight.setText("Danh sách sản phẩm đang có");
         jLabelRight.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -241,7 +266,7 @@ public abstract class Form extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
     protected JTable tableDetail;
 
-    protected  JTable jListProductJTable;
+    protected JTable jListProductJTable;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     protected javax.swing.JButton jButtonCreate;
     protected javax.swing.JButton jButtonDel;
@@ -249,7 +274,7 @@ public abstract class Form extends javax.swing.JPanel {
     protected com.github.lgooddatepicker.components.DatePicker jDateCreated;
     private javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabelRight;
-    private javax.swing.JPanel jLookUpPanel;
+    protected javax.swing.JPanel jLookUpPanel;
     protected javax.swing.JPanel jPanelBottom;
     protected javax.swing.JPanel jPanelTop;
     protected javax.swing.JPanel jPanelType;

@@ -5,38 +5,35 @@
 package huce.Controller;
 
 import huce.DAO.ProductDAO;
-import huce.View.LookUpPanel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Admin
+ * @author MAI NGOC DOAN
  */
-public class HandleSearchingProducts implements HandleSearching{
+public class HandleSearchingForm implements HandleSearching {
 
     @Override
-    public void search( JTable table, String whatToSearch) {
+    public void search(JTable table, String whatToSearch) {
+        // id always null
         ProductDAO pdao = new ProductDAO();
         var tableModel = (DefaultTableModel) table.getModel();
-        tableModel.setRowCount(0);
         try {
             // search by ID:
             var productByID = pdao.get(whatToSearch);
             // search by Name:
             var productByName = pdao.getByName(whatToSearch);
-            if ( productByID == null && productByName == null) {
+            if (productByID == null && productByName == null) {
                 throw new Exception("Không tìm thấy kết quả");
             }
-            
-            if ( productByID != null ) {
-                new LoadAllProducts().loadTo(table, productByID);
+            tableModel.setRowCount(0);
+            if (productByID != null) {
+                new LoadListProductToFormRequest().loadTo(null, table, productByID);
             }
-            if ( productByName != null ) {
-                new LoadAllProducts().loadTo(table, productByName);
+            if (productByName != null) {
+                new LoadListProductToFormRequest().loadTo(null, table, productByName);
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -45,7 +42,7 @@ public class HandleSearchingProducts implements HandleSearching{
 
     @Override
     public void clear(JTable table) {
-        new LoadAllProducts().loadTo(table);
+        new LoadListProductToFormRequest().loadTo(null, table);
     }
-    
+
 }

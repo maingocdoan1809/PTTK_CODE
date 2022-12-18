@@ -4,7 +4,10 @@
  */
 package huce.View;
 
+import huce.Controller.HandleSearchingForm;
+import huce.Controller.HandleSearchingProducts;
 import huce.Controller.LoadListProductToFormRequest;
+import java.awt.BorderLayout;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -27,7 +30,7 @@ public class FormRequest extends Form {
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "STT","Mã sản phẩm", "Tên sản phẩm", "Số lượng"
+                    "STT","Mã sản phẩm", "Tên sản phẩm", "Số lượng yêu cầu"
                 }
         ){
             @Override
@@ -40,7 +43,10 @@ public class FormRequest extends Form {
         setListProductTable(new SimpleListProductsTable(this));
         super.jTableContainer.setViewportView(tableDetail);
         new LoadListProductToFormRequest().loadTo(null, this.jListProductJTable);
-        Form.addUnselectProductEvent(tableDetail, jListProductJTable, 3);
+        Form.addUnselectProductEvent(this, 3);
+        
+        this.jLookUpPanel.add(new LookUpPanel(new HandleSearchingForm(), this.jListProductJTable), 
+                BorderLayout.SOUTH);
     }
 
 }

@@ -26,7 +26,6 @@ import javax.swing.JTextField;
  */
 public class FormOut extends Form {
 
-    private JTable tableDetail;
     private JTextField jTextStore;
     private JTextField jTextStoreID;
 
@@ -39,23 +38,25 @@ public class FormOut extends Form {
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{
-                    "STT", "Mã sản phẩm", "Tên sản phẩm", "Slg yêu cầu", "Slg thực xuất", "Đơn giá", "Thành tiền"
+                    "STT", "Mã sản phẩm", "Tên sản phẩm", "Theo yêu cầu", "Thực xuất", "Đơn vị ", "Đơn giá"
                 }
-        ){
+        ) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
             }
-            
+
         });
 
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        setListProductTable(new SimpleListProductsTable(this));
+        setListProductTable(new SimpleListProductsTable(this, new String[]{
+            "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
+        }));
         this.jTableContainer.setViewportView(tableDetail);
         new LoadListProductToFormOut().loadTo(id, jListProductJTable);
         this.jButtonCreate.addActionListener((e) -> {
             HandleCreateForm handleCreateForm = new HandleCreateFormOut();
-            if ( handleCreateForm.create() ) {
+            if (handleCreateForm.create()) {
                 ApplyPanel.apply(gobackPanel, new ListRequestsPanel(gobackPanel));
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid input, try again");
@@ -65,8 +66,8 @@ public class FormOut extends Form {
         this.jButtonDel.addActionListener((e) -> {
             ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
         });
-        Form.addUnselectProductEvent(tableDetail, jListProductJTable, 3);
+
+        Form.addUnselectProductEvent(this, 3);
     }
 
-    
 }

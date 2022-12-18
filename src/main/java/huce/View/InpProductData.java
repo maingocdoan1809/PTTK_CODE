@@ -4,6 +4,9 @@
  */
 package huce.View;
 
+import huce.DAO.ProductDAO;
+import java.awt.HeadlessException;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -26,33 +29,71 @@ public class InpProductData extends javax.swing.JFrame {
             this.jTextLotNumber.setEnabled(true);
             this.jRequestNumlabel.setText("Theo chứng từ");
             this.jTextRealInput.setEnabled(true);
+        } else if (form instanceof FormOut) {
+            this.jTextLotNumber.setEnabled(true);
+            this.jTextRealInput.setEnabled(true);
+            this.jlable1.setText("Thực xuất");
+            this.jRequestNumlabel.setText("Theo yêu cầu");
         } else {
             this.jTextLotNumber.setEnabled(false);
             this.jRequestNumlabel.setText("Số lượng yêu cầu");
             this.jTextRealInput.setEnabled(false);
         }
         this.jOkBtn.addActionListener((var e) -> {
-            var tableModel = (DefaultTableModel) form.getListProductJTable().getModel();
-            var formModel = (DefaultTableModel) form.getTableDetail().getModel();
-            int numRow = formModel.getRowCount() + 1;
-            if (form != null && form instanceof FormIn) {
-                formModel.addRow(new String[]{"%d".formatted(numRow), jTextID.getText(), jTextName.getText(), "",
-                    jTextRequestNum.getText(), jTextRealInput.getText(), jTextLotNumber.getText()});
-
-            } else {
-                formModel.addRow(new String[]{"%d".formatted(numRow), jTextID.getText(), jTextName.getText(),
-                    jTextRequestNum.getText()});
+            try {
+                var tableModel = (DefaultTableModel) form.getListProductJTable().getModel();
+                var formModel = (DefaultTableModel) form.getTableDetail().getModel();
+                int numRow = formModel.getRowCount() + 1;
+                int selectedRow = form.getListProductJTable().getSelectedRow();
+                ProductDAO pdao = new ProductDAO();
+                int num
+                        = Integer.parseInt((String) tableModel.getValueAt(selectedRow, 3))
+                        /// minus
+                        - Integer.parseInt(jTextRequestNum.getText());;
+                ///
+                String id = jTextID.getText();
+                // nếu cái đã chọn chưa có ở trong chi tiết phiếu
+                if (!isInTable(formModel, id)) {
+                    // xử lý cho 2 form nhập, xuất
+                    if (form instanceof FormIn || form instanceof FormOut) {
+                        formModel.addRow(new String[]{"%d".formatted(numRow), id, jTextName.getText(),
+                            jTextRequestNum.getText(), jTextRealInput.getText(), jTextLotNumber.getText()});
+                        // riêng form
+                        if (form instanceof FormOut ) {
+                            // nếu xuất hàng nhiều hơn lượng có trong kho thì báo lỗi
+                            if ( num < 0 ) {
+                                throw new Exception();
+                            }
+                            // ngược lại update database.
+                            pdao.exportProduct(id, Integer.parseInt(jTextRequestNum.getText()));
+                            tableModel.setValueAt(num + "", selectedRow, 3);
+                        }
+                       
+                    } 
+                    // xử lý cho form yêu cầu, các loại form này không làm thay đổi dữ liệu database
+                    else if (form instanceof FormRequest || form instanceof FormRequestIn) {
+                        formModel.addRow(new String[]{"%d".formatted(numRow), id, jTextName.getText(),
+                            jTextRequestNum.getText()});
+                        
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Số lượng vượt quá hoặc bạn đã thêm sản phẩm này rồi!");
+                }
+                this.dispose();
+            } catch (Exception evt) {
+                JOptionPane.showMessageDialog(null, "Nhập sai dữ liệu");
             }
-            int selectedRow = form.getListProductJTable().getSelectedRow();
-            Integer num
-                    = 
-                    Integer.parseInt((String) tableModel.getValueAt(selectedRow, 3))
-                  - 
-                    Integer.parseInt(jTextRequestNum.getText());
-
-            tableModel.setValueAt(num, selectedRow, 3);
-            this.dispose();
         });
+    }
+
+    private boolean isInTable(DefaultTableModel tbModel, String id) {
+        int rows = tbModel.getRowCount();
+        for (int i = 0; i < rows; i++) {
+            if (tbModel.getValueAt(i, 1).equals(id)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -76,7 +117,7 @@ public class InpProductData extends javax.swing.JFrame {
         jTextName = new javax.swing.JTextField();
         jRequestNumlabel = new javax.swing.JLabel();
         jTextRequestNum = new javax.swing.JTextField();
-        javax.swing.JLabel jlable1 = new javax.swing.JLabel();
+        jlable1 = new javax.swing.JLabel();
         jTextRealInput = new javax.swing.JTextField();
         javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
         jTextLotNumber = new javax.swing.JTextField();
@@ -162,5 +203,6 @@ public class InpProductData extends javax.swing.JFrame {
     public javax.swing.JTextField jTextName;
     public javax.swing.JTextField jTextRealInput;
     public javax.swing.JTextField jTextRequestNum;
+    private javax.swing.JLabel jlable1;
     // End of variables declaration//GEN-END:variables
 }

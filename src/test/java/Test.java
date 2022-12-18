@@ -1,9 +1,11 @@
 
+import com.github.lgooddatepicker.components.DatePicker;
 import huce.DAO.LocationDAO;
 import huce.Model.Location;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.Locale;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,11 +18,9 @@ import java.sql.SQLException;
 public class Test {
 
     public static void main(String[] args) {
-        LocationDAO dao = new LocationDAO();
-        var ps = dao.getAll();
-        for (var p : ps.values()) {
-            System.out.println("PID: " + p + "\n");
-            System.out.println(p.getSpots());
-        }
+        DatePicker d = new DatePicker();
+        d.setLocale(Locale.CHINA);
+        d.setDateToToday();
+        System.out.println(d.getDate() );
     }
 }

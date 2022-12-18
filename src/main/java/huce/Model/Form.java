@@ -9,4 +9,7 @@ package huce.Model;
  * @author MAI NGOC DOAN
  */
 public abstract class Form {
+    private String id;
+    private String dateCreate;
+    
 }

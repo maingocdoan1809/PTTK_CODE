@@ -77,14 +77,14 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
 
         jListRequestsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, "Chờ duyệt"}
             },
             new String [] {
                 "ID phiếu", "ID Nhà cung cấp", "Tên nhà cung cấp", "Ngày yêu cầu", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, false, false, true
+                false, false, false, false, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

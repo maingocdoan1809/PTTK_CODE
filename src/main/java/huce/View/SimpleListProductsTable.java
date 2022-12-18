@@ -20,7 +20,7 @@ public class SimpleListProductsTable extends JTable {
 
     public SimpleListProductsTable(Form form, String ...title) {
         String[] titleTable = new String[]{
-                    "STT", "ID", "Tên sản phẩm", "Số lượng trong kho", "Đơn vị"
+                    "STT", "ID", "Tên sản phẩm", "Đơn vị"
                 };
         if ( title.length > 0 ) {
             titleTable = title;

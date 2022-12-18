@@ -5,11 +5,13 @@
 package huce.Controller;
 
 import javax.swing.JTable;
+import javax.swing.JTextField;
 
 /**
  *
  * @author Admin
  */
 public interface HandleSearching {
-    void handel(JTable table);
+    void search(JTable table, String whatToSearch);
+    void clear(JTable table);
 }

@@ -106,7 +106,7 @@ public class Product {
         if (currLocation != null) {
 
             kind = currLocation.getName();
-            idLocation = currLocation.getId() + " - " + this.id;
+            idLocation = currLocation.getId() + " - " + this.spot.getId();
         }
         if (stt.length > 0) {
             return new String[]{stt[0] + "",
