@@ -19,7 +19,10 @@ import javax.swing.table.DefaultTableModel;
  * @author Admin
  */
 public class ListRequestsInPanel extends javax.swing.JPanel {
-
+    public static String PENDINGMODE = "Đang chờ";
+    public static String PROCESSINGMODE = "Đang xử lý";
+    public static String FINISHMODE = "Hoàn thành";
+    public static String CANCELMODE = "Đã hủy";
     /**
      * Creates new form ListRequestsInPanel
      */
@@ -31,17 +34,16 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
         //
         this.jAcceptBtn.addActionListener((e) -> {
             int row = jListRequestsTable.getSelectedRow();
-            String id = (String) tbModel.getValueAt(row,0);
+            String id = (String) tbModel.getValueAt(row,1);
             ApplyPanel.apply(gobackJPanel, new FormIn(gobackJPanel, id));
         });
         this.jListRequestsTable.addMouseListener( new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
                 int row = jListRequestsTable.getSelectedRow();
-                String state = (String) tbModel.getValueAt(row, 4);                
-                String id = (String) tbModel.getValueAt(row, 0);
-                jAcceptBtn.setEnabled(state.equals("Chờ duyệt"));
-                jRefuseBtn.setEnabled(state.equals("Chờ duyệt"));
+                String state = (String) tbModel.getValueAt(row, 5);                 
+                jAcceptBtn.setEnabled(state.equals(PENDINGMODE) || state.equals(PROCESSINGMODE));
+                jRefuseBtn.setEnabled(state.equals(PENDINGMODE));
 
             }
             
@@ -77,14 +79,14 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
 
         jListRequestsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, "Chờ duyệt"}
+                {null, null, null, null, null, "Chờ duyệt"}
             },
             new String [] {
-                "ID phiếu", "ID Nhà cung cấp", "Tên nhà cung cấp", "Ngày yêu cầu", "Trạng thái"
+                "STT", "ID phiếu", "ID Nhà cung cấp", "Tên nhà cung cấp", "Ngày yêu cầu", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -93,6 +95,10 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
         });
         jListRequestsTable.setShowGrid(false);
         jScrollPane1.setViewportView(jListRequestsTable);
+        if (jListRequestsTable.getColumnModel().getColumnCount() > 0) {
+            jListRequestsTable.getColumnModel().getColumn(0).setResizable(false);
+            jListRequestsTable.getColumnModel().getColumn(5).setResizable(false);
+        }
 
         jPanel1.add(jScrollPane1, java.awt.BorderLayout.CENTER);
 

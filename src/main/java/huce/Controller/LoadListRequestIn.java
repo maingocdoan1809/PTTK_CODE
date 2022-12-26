@@ -4,6 +4,10 @@
  */
 package huce.Controller;
 
+import huce.DAO.FormRequestInDAO;
+import huce.DAO.ProviderDAO;
+import huce.Model.FormRequest;
+import huce.Model.FormRequestIn;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,7 +20,25 @@ public class LoadListRequestIn implements LoadListRequest{
 
     @Override
     public void loadTo(JTable table) {
-        System.out.println("Load to RequestIn table");
+        FormRequestInDAO dAO = new FormRequestInDAO();
+        var allForms = dAO.getAll();
+        var tableModel = (DefaultTableModel) table.getModel();
+        tableModel.setRowCount(0);
+        int stt = 1;
+        ProviderDAO pdao = new ProviderDAO();
+        for ( var form : allForms.values() ) {
+            var formRequest = (FormRequestIn) form;
+            tableModel.addRow( new String[]{
+                stt + "",
+                formRequest.getId(),
+                formRequest.getProvider(),
+                pdao.get(formRequest.getProvider()).getName(),
+                formRequest.getCreateDate(),
+                formRequest.getState()
+            } );
+            stt++;
+        }
+        
     }
 
 }

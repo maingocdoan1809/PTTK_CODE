@@ -4,11 +4,30 @@
  */
 package huce.Model;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author MAI NGOC DOAN
  */
-public class FormIn extends Form{
+public class FormIn extends Form {
 
-    
+    private String idFormRequestIn;
+    private float value;
+
+    public String getIdFormRequestIn() {
+        return idFormRequestIn;
+    }
+
+    public void setIdFormRequestIn(String idFormRequestIn) {
+        this.idFormRequestIn = idFormRequestIn;
+    }
+
+    public float getValue() {
+        return value;
+    }
+
+    public void setValue(float value) {
+        this.value = value;
+    }
 }

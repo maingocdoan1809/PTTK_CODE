@@ -29,10 +29,9 @@ public class SimpleListProductsTable extends JTable {
                 null,
                 titleTable
         ) {
-            boolean[] canEdit = {false, false, false, false, false, false};
             @Override
             public boolean isCellEditable(int row, int column) {
-                return canEdit[row];
+                return false;
             }
             
         };

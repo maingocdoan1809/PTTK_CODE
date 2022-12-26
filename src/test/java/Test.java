@@ -1,7 +1,11 @@
 
 import com.github.lgooddatepicker.components.DatePicker;
+import huce.DAO.FormInDAO;
 import huce.DAO.LocationDAO;
+import huce.DAO.StoreDAO;
+import huce.Model.FormIn;
 import huce.Model.Location;
+import huce.Model.Store;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -18,9 +22,8 @@ import java.util.Locale;
 public class Test {
 
     public static void main(String[] args) {
-        DatePicker d = new DatePicker();
-        d.setLocale(Locale.CHINA);
-        d.setDateToToday();
-        System.out.println(d.getDate() );
+        FormInDAO formInDAO = new FormInDAO();
+        var formIn = formInDAO.getAll("1234");
+        System.out.println(formIn);
     }
 }

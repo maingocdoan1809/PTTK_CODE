@@ -17,14 +17,15 @@ import javax.swing.JTextField;
  *
  * @author Admin
  */
-public class FormIn extends Form{
+public class FormIn extends Form {
+
     private JTextField jTextProvider;
     private JTextField jTextProviderId;
+
     public FormIn(JPanel gobackPanel, String id) {
         super();
         setTitle("Phiếu nhập hàng");
-        
-        
+
         jTextProviderId = super.addJTextField(jPanelTop, "Mã bên giao.", 5);
         jTextProvider = super.addJTextField(jPanelTop, "Tên bên giao.", 15);
         jTextProvider.setEnabled(false);
@@ -34,21 +35,19 @@ public class FormIn extends Form{
                 new Object[][]{},
                 new String[]{
                     "STT", "Mã sản phẩm", "Tên sản phẩm", "Theo chứng từ", "Thực nhập", "Đơn vị ", "Đơn giá"
-                } 
-                
+                }
         ) {
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false; // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
             }
-            
+
         });
-        
+
         this.jLabelRight.setText("Các sản phẩm được yêu cầu");
-        (new LoadListProductToFormIn()).loadTo(id, jListProductJTable);
         this.jButtonCreate.addActionListener((e) -> {
             HandleCreateForm handleCreateForm = new HandleCreateFormIn();
-            if ( handleCreateForm.create() ) {
+            if (handleCreateForm.create()) {
                 ApplyPanel.apply(gobackPanel, new ListRequestsInPanel(gobackPanel));
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid input, try again");
@@ -62,6 +61,7 @@ public class FormIn extends Form{
         setListProductTable(new SimpleListProductsTable(this, new String[]{
             "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
         }));
+        (new LoadListProductToFormIn()).loadTo(id, jListProductJTable);
         Form.addUnselectProductEvent(this, 4);
     }
 

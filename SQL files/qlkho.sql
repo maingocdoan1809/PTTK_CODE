@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 16, 2022 at 07:36 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- Generation Time: Dec 26, 2022 at 05:35 AM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -28,13 +28,19 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `chitietnhaphang` (
-  `MaPhieuChiTietNhapHang` varchar(10) NOT NULL,
-  `MaPhieu` varchar(10) DEFAULT NULL,
-  `MaSp` varchar(10) DEFAULT NULL,
+  `MaPhieu` varchar(10) NOT NULL,
+  `MaSp` varchar(10) NOT NULL,
   `SoLuongNhap` int(11) DEFAULT NULL,
-  `SoLuongTheoYeuCau` int(11) DEFAULT NULL,
   `ThanhTien` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chitietnhaphang`
+--
+
+INSERT INTO `chitietnhaphang` (`MaPhieu`, `MaSp`, `SoLuongNhap`, `ThanhTien`) VALUES
+('1233', '1223', 4, 111111),
+('1233', '2426', 1, 3333);
 
 -- --------------------------------------------------------
 
@@ -43,13 +49,11 @@ CREATE TABLE `chitietnhaphang` (
 --
 
 CREATE TABLE `chitietxuathang` (
-  `MaPhieuChiTietXuatHang` varchar(10) NOT NULL,
-  `MaPhieu` varchar(10) DEFAULT NULL,
-  `MaSp` varchar(10) DEFAULT NULL,
+  `MaPhieu` varchar(10) NOT NULL,
+  `MaSp` varchar(10) NOT NULL,
   `SoLuong` int(11) DEFAULT NULL,
-  `SoLuongTheoYeuCau` int(11) DEFAULT NULL,
   `ThanhTien` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -58,12 +62,19 @@ CREATE TABLE `chitietxuathang` (
 --
 
 CREATE TABLE `chitietyeucaunhaphang` (
-  `MaPhieuChiTietYCN` varchar(10) NOT NULL,
-  `MaPhieuYCN` varchar(10) DEFAULT NULL,
-  `MaNCC` varchar(10) DEFAULT NULL,
-  `MaSp` varchar(10) DEFAULT NULL,
+  `MaPhieuYCN` varchar(10) NOT NULL,
+  `MaSp` varchar(10) NOT NULL,
   `SoLuongTheoYeuCau` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chitietyeucaunhaphang`
+--
+
+INSERT INTO `chitietyeucaunhaphang` (`MaPhieuYCN`, `MaSp`, `SoLuongTheoYeuCau`) VALUES
+('1000', '1223', 4),
+('1000', '2426', 1),
+('1234', '2426', 1);
 
 -- --------------------------------------------------------
 
@@ -72,12 +83,10 @@ CREATE TABLE `chitietyeucaunhaphang` (
 --
 
 CREATE TABLE `chitietyeucauxuathang` (
-  `MaPhieuChiTietXuatHang` varchar(10) NOT NULL,
-  `MaPhieu` varchar(10) DEFAULT NULL,
-  `MaSp` varchar(10) DEFAULT NULL,
-  `SoLuong` int(11) DEFAULT NULL,
-  `ThanhTien` float DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `MaPhieuYCX` varchar(10) NOT NULL,
+  `MaSp` varchar(10) NOT NULL,
+  `SoLuong` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -90,7 +99,14 @@ CREATE TABLE `cuahang` (
   `TenCH` varchar(60) DEFAULT NULL,
   `DiaChi` varchar(60) DEFAULT NULL,
   `SoDienThoai` varchar(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `cuahang`
+--
+
+INSERT INTO `cuahang` (`MaCH`, `TenCH`, `DiaChi`, `SoDienThoai`) VALUES
+('7423', 'T-Mart Minh Khai', '189 Minh Khai - Hai Ba Trung', '042938423');
 
 -- --------------------------------------------------------
 
@@ -103,7 +119,15 @@ CREATE TABLE `nhacungcap` (
   `TenNCC` varchar(60) DEFAULT NULL,
   `DiaChi` varchar(60) DEFAULT NULL,
   `SoDienThoai` varchar(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `nhacungcap`
+--
+
+INSERT INTO `nhacungcap` (`MaNCC`, `TenNCC`, `DiaChi`, `SoDienThoai`) VALUES
+('1565', 'DDT', 'Đống Đa, Hà Nội', '0343354235'),
+('3124', 'An An', 'Định công, Hoàng Mai, Hà Nội', '023984343');
 
 -- --------------------------------------------------------
 
@@ -114,14 +138,15 @@ CREATE TABLE `nhacungcap` (
 CREATE TABLE `phankhu` (
   `MaPhanKhu` varchar(10) NOT NULL,
   `TenPhanKhu` varchar(60) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `phankhu`
 --
 
 INSERT INTO `phankhu` (`MaPhanKhu`, `TenPhanKhu`) VALUES
-('PK1', 'Khu đồ gia dụng');
+('PK1', 'Khu đồ gia dụng'),
+('PK2-BK', 'Bánh kẹo');
 
 -- --------------------------------------------------------
 
@@ -132,12 +157,18 @@ INSERT INTO `phankhu` (`MaPhanKhu`, `TenPhanKhu`) VALUES
 CREATE TABLE `phieunhap` (
   `MaPhieu` varchar(10) NOT NULL,
   `MaPhieuYCN` varchar(10) DEFAULT NULL,
-  `NgayLapPhieu` date DEFAULT NULL,
+  `NgayLapPhieu` date DEFAULT current_timestamp(),
   `DiaDiemLapPhieu` varchar(60) DEFAULT NULL,
   `TongSoTien` float DEFAULT NULL,
-  `TrangThai` varchar(30) DEFAULT NULL,
   `MaNguoiLap` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `phieunhap`
+--
+
+INSERT INTO `phieunhap` (`MaPhieu`, `MaPhieuYCN`, `NgayLapPhieu`, `DiaDiemLapPhieu`, `TongSoTien`, `MaNguoiLap`) VALUES
+('1233', '1000', '2022-12-26', 'Tại Kho', 23834, 'admin');
 
 -- --------------------------------------------------------
 
@@ -147,13 +178,13 @@ CREATE TABLE `phieunhap` (
 
 CREATE TABLE `phieuxuat` (
   `MaPhieu` varchar(10) NOT NULL,
+  `MaPhieuYCX` varchar(10) NOT NULL,
   `MaCH` varchar(10) DEFAULT NULL,
   `NgayLapPhieu` date DEFAULT NULL,
   `DiaDiemLapPhieu` varchar(60) DEFAULT NULL,
   `TongSoTien` float DEFAULT NULL,
-  `TrangThai` varchar(30) DEFAULT NULL,
   `MaNguoiLap` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -167,7 +198,15 @@ CREATE TABLE `phieuyeucaunhap` (
   `NgayLap` datetime DEFAULT NULL,
   `TrangThai` varchar(30) DEFAULT NULL,
   `MaNguoiLap` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `phieuyeucaunhap`
+--
+
+INSERT INTO `phieuyeucaunhap` (`MaPhieuYCN`, `MaNCC`, `NgayLap`, `TrangThai`, `MaNguoiLap`) VALUES
+('1000', '3124', '2022-12-26 07:04:12', 'Hoàn thành', 'admin'),
+('1234', '3124', '2022-10-27 07:05:19', 'Đang chờ', 'admin');
 
 -- --------------------------------------------------------
 
@@ -176,15 +215,13 @@ CREATE TABLE `phieuyeucaunhap` (
 --
 
 CREATE TABLE `phieuyeucauxuat` (
-  `MaPhieu` varchar(10) NOT NULL,
+  `MaPhieuYCX` varchar(10) NOT NULL,
   `MaCH` varchar(10) DEFAULT NULL,
   `NgayLapPhieu` date DEFAULT NULL,
-  `DiaDiemLapPhieu` varchar(60) DEFAULT NULL,
-  `TongSoTien` float DEFAULT NULL,
   `TrangThai` varchar(30) DEFAULT NULL,
   `LyDo` varchar(255) DEFAULT NULL,
   `MaNguoiLap` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -195,7 +232,7 @@ CREATE TABLE `phieuyeucauxuat` (
 CREATE TABLE `sanpham` (
   `MaSp` varchar(10) NOT NULL,
   `TenSp` varchar(60) DEFAULT NULL,
-  `MaViTri` varchar(10) DEFAULT NULL,
+  `MaViTri` varchar(10) NOT NULL,
   `XuatXu` varchar(60) DEFAULT NULL,
   `NhaSx` varchar(60) DEFAULT NULL,
   `NSX` date DEFAULT NULL,
@@ -203,13 +240,15 @@ CREATE TABLE `sanpham` (
   `GiaNhap` float DEFAULT NULL,
   `GiaBan` float DEFAULT NULL,
   `DonVi` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `sanpham`
 --
 
 INSERT INTO `sanpham` (`MaSp`, `TenSp`, `MaViTri`, `XuatXu`, `NhaSx`, `NSX`, `HSD`, `GiaNhap`, `GiaBan`, `DonVi`) VALUES
+('1223', 'Máy bơm mini', 'SP2', 'Trung quốc', 'Trung quốc', NULL, NULL, 430, 500, 'Cái'),
+('2426', 'Bánh gạo An An', 'BK1AA', 'Việt Nam', 'Công ty CP Bánh kẹo AN AN', '2021-12-23', '2023-01-01', 17.5, 20, 'Gói'),
 ('SP1', 'Tủ lạnh', 'VT1', 'Việt Nam', 'HO2', '0000-00-00', '0000-00-00', 1000000, 150000, 'chiếc');
 
 -- --------------------------------------------------------
@@ -222,7 +261,15 @@ CREATE TABLE `taikhoan` (
   `TenTaiKhoan` varchar(60) NOT NULL,
   `MatKhau` varchar(60) DEFAULT NULL,
   `ChucVu` tinyint(1) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `taikhoan`
+--
+
+INSERT INTO `taikhoan` (`TenTaiKhoan`, `MatKhau`, `ChucVu`) VALUES
+('admin', 'admin1234', 1),
+('staff', 'staf1234', 0);
 
 -- --------------------------------------------------------
 
@@ -235,14 +282,16 @@ CREATE TABLE `vitri` (
   `MaPhanKhu` varchar(10) DEFAULT NULL,
   `SoLuongToiDa` int(11) DEFAULT NULL,
   `SoLuongThucTe` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `vitri`
 --
 
 INSERT INTO `vitri` (`MaViTri`, `MaPhanKhu`, `SoLuongToiDa`, `SoLuongThucTe`) VALUES
-('VT1', 'PK1', 10, 5);
+('BK1AA', 'PK2-BK', 50, 20),
+('SP2', 'PK1', 20, 19),
+('VT1', 'PK1', 12, 5);
 
 --
 -- Indexes for dumped tables
@@ -252,7 +301,7 @@ INSERT INTO `vitri` (`MaViTri`, `MaPhanKhu`, `SoLuongToiDa`, `SoLuongThucTe`) VA
 -- Indexes for table `chitietnhaphang`
 --
 ALTER TABLE `chitietnhaphang`
-  ADD PRIMARY KEY (`MaPhieuChiTietNhapHang`),
+  ADD PRIMARY KEY (`MaPhieu`,`MaSp`),
   ADD KEY `MaPhieu` (`MaPhieu`),
   ADD KEY `MaSp` (`MaSp`);
 
@@ -260,7 +309,7 @@ ALTER TABLE `chitietnhaphang`
 -- Indexes for table `chitietxuathang`
 --
 ALTER TABLE `chitietxuathang`
-  ADD PRIMARY KEY (`MaPhieuChiTietXuatHang`),
+  ADD PRIMARY KEY (`MaPhieu`,`MaSp`),
   ADD KEY `MaPhieu` (`MaPhieu`),
   ADD KEY `MaSp` (`MaSp`);
 
@@ -268,17 +317,16 @@ ALTER TABLE `chitietxuathang`
 -- Indexes for table `chitietyeucaunhaphang`
 --
 ALTER TABLE `chitietyeucaunhaphang`
-  ADD PRIMARY KEY (`MaPhieuChiTietYCN`),
+  ADD PRIMARY KEY (`MaPhieuYCN`,`MaSp`),
   ADD KEY `MaPhieuYCN` (`MaPhieuYCN`),
-  ADD KEY `MaNCC` (`MaNCC`),
   ADD KEY `MaSp` (`MaSp`);
 
 --
 -- Indexes for table `chitietyeucauxuathang`
 --
 ALTER TABLE `chitietyeucauxuathang`
-  ADD PRIMARY KEY (`MaPhieuChiTietXuatHang`),
-  ADD KEY `MaPhieu` (`MaPhieu`),
+  ADD PRIMARY KEY (`MaPhieuYCX`,`MaSp`),
+  ADD KEY `MaPhieu` (`MaPhieuYCX`),
   ADD KEY `MaSp` (`MaSp`);
 
 --
@@ -313,7 +361,8 @@ ALTER TABLE `phieunhap`
 ALTER TABLE `phieuxuat`
   ADD PRIMARY KEY (`MaPhieu`),
   ADD KEY `MaCH` (`MaCH`),
-  ADD KEY `MaNguoiLap` (`MaNguoiLap`);
+  ADD KEY `MaNguoiLap` (`MaNguoiLap`),
+  ADD KEY `MPYCX` (`MaPhieuYCX`);
 
 --
 -- Indexes for table `phieuyeucaunhap`
@@ -327,7 +376,7 @@ ALTER TABLE `phieuyeucaunhap`
 -- Indexes for table `phieuyeucauxuat`
 --
 ALTER TABLE `phieuyeucauxuat`
-  ADD PRIMARY KEY (`MaPhieu`),
+  ADD PRIMARY KEY (`MaPhieuYCX`),
   ADD KEY `MaCH` (`MaCH`),
   ADD KEY `MaNguoiLap` (`MaNguoiLap`);
 
@@ -335,7 +384,7 @@ ALTER TABLE `phieuyeucauxuat`
 -- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  ADD PRIMARY KEY (`MaSp`),
+  ADD PRIMARY KEY (`MaSp`,`MaViTri`),
   ADD KEY `MaViTri` (`MaViTri`);
 
 --
@@ -374,14 +423,13 @@ ALTER TABLE `chitietxuathang`
 --
 ALTER TABLE `chitietyeucaunhaphang`
   ADD CONSTRAINT `chitietyeucaunhaphang_ibfk_1` FOREIGN KEY (`MaPhieuYCN`) REFERENCES `phieuyeucaunhap` (`MaPhieuYCN`) ON DELETE CASCADE,
-  ADD CONSTRAINT `chitietyeucaunhaphang_ibfk_2` FOREIGN KEY (`MaNCC`) REFERENCES `nhacungcap` (`MaNCC`) ON DELETE CASCADE,
   ADD CONSTRAINT `chitietyeucaunhaphang_ibfk_3` FOREIGN KEY (`MaSp`) REFERENCES `sanpham` (`MaSp`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `chitietyeucauxuathang`
 --
 ALTER TABLE `chitietyeucauxuathang`
-  ADD CONSTRAINT `chitietyeucauxuathang_ibfk_1` FOREIGN KEY (`MaPhieu`) REFERENCES `phieuxuat` (`MaPhieu`) ON DELETE CASCADE,
+  ADD CONSTRAINT `chitietyeucauxuathang_ibfk_1` FOREIGN KEY (`MaPhieuYCX`) REFERENCES `phieuyeucauxuat` (`MaPhieuYCX`) ON DELETE CASCADE,
   ADD CONSTRAINT `chitietyeucauxuathang_ibfk_2` FOREIGN KEY (`MaSp`) REFERENCES `sanpham` (`MaSp`) ON DELETE CASCADE;
 
 --
@@ -395,6 +443,7 @@ ALTER TABLE `phieunhap`
 -- Constraints for table `phieuxuat`
 --
 ALTER TABLE `phieuxuat`
+  ADD CONSTRAINT `MPYCX` FOREIGN KEY (`MaPhieuYCX`) REFERENCES `phieuyeucauxuat` (`MaPhieuYCX`),
   ADD CONSTRAINT `phieuxuat_ibfk_1` FOREIGN KEY (`MaCH`) REFERENCES `cuahang` (`MaCH`) ON DELETE CASCADE,
   ADD CONSTRAINT `phieuxuat_ibfk_2` FOREIGN KEY (`MaNguoiLap`) REFERENCES `taikhoan` (`TenTaiKhoan`) ON DELETE CASCADE;
 

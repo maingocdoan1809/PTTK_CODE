@@ -4,11 +4,10 @@
  */
 package huce.DAO;
 
-import huce.Model.Form;
-
 /**
  *
  * @author MAI NGOC DOAN
  */
-public interface FormDAO extends DataAccess<Form>{
+public class FormOutDAO implements FormDAO{
+    
 }
