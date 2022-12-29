@@ -4,6 +4,8 @@
  */
 package huce.View;
 
+import ObserverPattern.Observer;
+import ObserverPattern.Subject;
 import huce.Controller.HandleCreateForm;
 import huce.Controller.HandleCreateFormIn;
 import huce.Controller.LoadListProductToFormIn;
@@ -17,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author Admin
  */
-public class FormIn extends Form {
+public class FormIn extends Form implements Subject{
 
     private JTextField jTextProvider;
     private JTextField jTextProviderId;
@@ -62,7 +64,11 @@ public class FormIn extends Form {
             "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
         }));
         (new LoadListProductToFormIn()).loadTo(id, jListProductJTable);
-        Form.addUnselectProductEvent(this, 4);
+    }
+
+    @Override
+    public void update(Observer observer) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

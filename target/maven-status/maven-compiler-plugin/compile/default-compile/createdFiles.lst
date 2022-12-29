@@ -1,9 +1,11 @@
 huce\Controller\LoadListProductToForm.class
 huce\View\Login.class
 huce\View\WarehousePanel.class
+ObserverPattern\Observer.class
 huce\Model\Spot.class
 huce\DAO\AccountDAO.class
 huce\View\Login$3.class
+huce\View\FormOut$1.class
 huce\View\SimpleListProductsTable$1.class
 huce\View\FormRequest$1.class
 huce\Controller\LoadAllProducts.class
@@ -14,8 +16,10 @@ huce\View\LocationPanel.class
 huce\View\ListRequestsPanel$2.class
 huce\Model\WareHouse.class
 huce\Model\Location.class
+huce\Controller\HandleSearchingForm.class
 huce\Controller\HandleSearchingProducts.class
 huce\Model\FormIn.class
+huce\View\FormIn$1.class
 huce\Controller\HandleCreateForm.class
 huce\Controller\HandleSearchingRequestIn.class
 huce\View\FormRequestIn.class
@@ -34,14 +38,17 @@ huce\View\OptionImportPanel.class
 huce\Model\FormOut.class
 huce\Model\Provider.class
 huce\View\LocationPanel$1.class
+huce\DAO\FormRequestInDAO.class
 huce\Controller\HandleCreateFormRequest.class
 huce\View\FormRequest.class
 huce\Controller\LoadListProductToFormOut.class
 huce\Model\StaffAccount.class
+huce\DAO\FormInDAO.class
 huce\View\ExpiredProducts.class
 huce\Model\AdminAccount.class
 huce\View\ExpiredProducts$1.class
 huce\View\FormIn.class
+ObserverPattern\Subject.class
 huce\DAO\FormDAO.class
 huce\DAO\DataAccess.class
 huce\View\SimpleListProductsTable.class
@@ -50,7 +57,6 @@ huce\View\Login$1.class
 huce\Controller\LoadListRequestIn.class
 huce\View\FormRequestIn$1.class
 huce\View\ListRequestsPanel.class
-huce\Controller\HandleSelectProductToForm.class
 huce\View\ListProducts$1.class
 huce\Controller\HandleCreateFormIn.class
 huce\Model\FormRequestIn.class
@@ -61,6 +67,7 @@ huce\DAO\ProductDAO.class
 huce\View\Main.class
 huce\Controller\HandleCreateFormRequestIn.class
 huce\Model\Account.class
+huce\DAO\FormOutDAO.class
 huce\Controller\HandelExpiredProduct.class
 huce\Model\Form.class
 huce\View\ListRequestsPanel$1.class

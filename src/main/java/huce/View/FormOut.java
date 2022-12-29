@@ -4,17 +4,12 @@
  */
 package huce.View;
 
+import ObserverPattern.Observer;
+import ObserverPattern.Subject;
 import huce.Controller.HandleCreateForm;
-import huce.Controller.HandleCreateFormIn;
 import huce.Controller.HandleCreateFormOut;
 import huce.Controller.LoadListProductToFormOut;
 import huce.Model.ApplyPanel;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.sql.Connection;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -24,7 +19,7 @@ import javax.swing.JTextField;
  *
  * @author Admin
  */
-public class FormOut extends Form {
+public class FormOut extends Form implements Subject{
 
     private JTextField jTextStore;
     private JTextField jTextStoreID;
@@ -67,7 +62,11 @@ public class FormOut extends Form {
             ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
         });
 
-        Form.addUnselectProductEvent(this, 3);
+    }
+
+    @Override
+    public void update(Observer observer) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }
