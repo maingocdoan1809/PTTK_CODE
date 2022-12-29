@@ -45,7 +45,7 @@ public class FormOut extends Form implements Subject{
 
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         setListProductTable(new SimpleListProductsTable(this, new String[]{
-            "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
+            "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu", "Số lượng yêu cầu còn lại", "Đơn vị"
         }));
         this.jTableContainer.setViewportView(tableDetail);
         new LoadListProductToFormOut().loadTo(id, jListProductJTable);

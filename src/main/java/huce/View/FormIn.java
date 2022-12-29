@@ -14,12 +14,13 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Admin
  */
-public class FormIn extends Form implements Subject{
+public class FormIn extends Form implements Subject {
 
     private JTextField jTextProvider;
     private JTextField jTextProviderId;
@@ -61,14 +62,23 @@ public class FormIn extends Form implements Subject{
         });
         super.jTableContainer.setViewportView(this.tableDetail);
         setListProductTable(new SimpleListProductsTable(this, new String[]{
-            "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
+            "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu", "Số lượng yêu cầu còn lại", "Đơn vị"
         }));
         (new LoadListProductToFormIn()).loadTo(id, jListProductJTable);
     }
 
     @Override
     public void update(Observer observer) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        InpProductData inputData = (InpProductData) observer;
+        var tableDetailModel = (DefaultTableModel) this.tableDetail.getModel();
+        var productTableModel = this.jListProductJTable.getModel();
+        int currRowCount = tableDetailModel.getRowCount() + 1;
+        tableDetailModel.addRow(new String[]{
+            currRowCount + "", inputData.jTextID.getText(), inputData.jTextName.getText(), inputData.jTextRequestNum.getText(),
+            inputData.jTextRealInput.getText(), inputData.jTextLotNumber.getText()
+        });
+
     }
+    
 
 }

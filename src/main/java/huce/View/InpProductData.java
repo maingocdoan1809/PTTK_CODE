@@ -23,10 +23,12 @@ public class InpProductData extends javax.swing.JFrame implements Observer{
         if (form instanceof FormIn) {
             this.jTextLotNumber.setEnabled(true);
             this.jRequestNumlabel.setText("Theo chứng từ");
+            this.jTextRequestNum.setEnabled(false);
             this.jTextRealInput.setEnabled(true);
         } else if (form instanceof FormOut) {
             this.jTextLotNumber.setEnabled(true);
             this.jTextRealInput.setEnabled(true);
+            this.jTextRequestNum.setEnabled(false);
             this.jlable1.setText("Thực xuất");
             this.jRequestNumlabel.setText("Theo yêu cầu");
         } else {
@@ -36,6 +38,7 @@ public class InpProductData extends javax.swing.JFrame implements Observer{
         }
         this.jOkBtn.addActionListener((var e) -> {
             notifySubject();
+            dispose();
         });
     }
 

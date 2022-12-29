@@ -68,6 +68,15 @@ public abstract class Form extends javax.swing.JPanel implements Subject{
     public JTable getListProductJTable() {
         return this.jListProductJTable;
     }
+    public String getValueInListProAt(String idProduct, int col) {
+        var proTableModel = (DefaultTableModel) this.jListProductJTable.getModel();
+        for ( var row : proTableModel.getDataVector() ) {
+            if ( row.get(1).equals(idProduct) ) {
+                return (String) row.get(col);
+            }
+        }
+        return null;
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
