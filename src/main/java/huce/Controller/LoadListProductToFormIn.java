@@ -4,15 +4,8 @@
  */
 package huce.Controller;
 
-import com.github.lgooddatepicker.ysandbox.TestStart;
-import huce.DAO.AccountDAO;
 import huce.DAO.FormRequestInDAO;
-import huce.Model.Database;
 import huce.Model.Product;
-import huce.View.FormRequestIn;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,7 +26,7 @@ public class LoadListProductToFormIn implements LoadListProductToForm {
         for ( String idP : remainProducts.keySet() ) {
             var infor = remainProducts.get(idP);
             tableModel.addRow(new String[]{
-                stt + "", idP, infor.get("tensp"), infor.get("soluongtheoyeucau"), infor.get("donvi")
+                stt + "", idP, infor.get("tensp"), infor.get("soluongtheoyeucau"), "conlai" ,infor.get("donvi")
             });
             stt++;
         }

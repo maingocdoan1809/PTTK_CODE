@@ -4,14 +4,14 @@
  */
 package huce.View;
 
+import ObserverPattern.Observer;
+import ObserverPattern.Subject;
 import huce.Controller.HandleCreateForm;
 import huce.Controller.HandleCreateFormRequestIn;
 import huce.Controller.HandleSearchingForm;
-import huce.Controller.HandleSearchingProducts;
 import huce.Controller.LoadListProductToFormRequest;
 import huce.Model.ApplyPanel;
 import java.awt.BorderLayout;
-import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -21,7 +21,7 @@ import javax.swing.JTextField;
  *
  * @author Admin
  */
-public class FormRequestIn extends Form {
+public class FormRequestIn extends Form implements Subject{
 
     private JTextField jTextProvider;
     private JTextField jTextProviderId;
@@ -59,10 +59,14 @@ public class FormRequestIn extends Form {
         super.jTableContainer.setViewportView(this.tableDetail);
         setListProductTable(new SimpleListProductsTable(this));
         new LoadListProductToFormRequest().loadTo(null, this.jListProductJTable);
-        Form.addUnselectProductEvent(this, 3);
         this.jLookUpPanel.add(new LookUpPanel(new HandleSearchingForm(), this.jListProductJTable), 
         BorderLayout.SOUTH);
 
+    }
+
+    @Override
+    public void update(Observer observer) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

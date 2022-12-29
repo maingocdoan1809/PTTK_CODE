@@ -4,16 +4,10 @@
  */
 package huce.View;
 
-import huce.DAO.ProductDAO;
+import ObserverPattern.Subject;
 import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.sql.Connection;
 import java.util.Locale;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -24,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Admin
  */
-public abstract class Form extends javax.swing.JPanel {
+public abstract class Form extends javax.swing.JPanel implements Subject{
 
     /**
      * Creates new form ProductImport
@@ -74,58 +68,14 @@ public abstract class Form extends javax.swing.JPanel {
     public JTable getListProductJTable() {
         return this.jListProductJTable;
     }
-
-    public static void addUnselectProductEvent(Form form, int index) {
-        var formDetail = form.jListProductJTable;
-        var formTable = form.getTableDetail();
-        formTable.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() == 2) {
-                    int rowSelected = formTable.getSelectedRow();
-                    var fromModel = (DefaultTableModel) formTable.getModel();
-                    var toModel = (DefaultTableModel) formDetail.getModel();
-                    String nameProduct = (String) fromModel.getValueAt(rowSelected, 2);
-                    int slg = Integer.parseInt((String) fromModel.getValueAt(rowSelected, index));
-                    int option = JOptionPane.showConfirmDialog(null, "Huỷ thêm " + nameProduct + " ?");
-                    if (option == JOptionPane.OK_OPTION) {
-                        fromModel.removeRow(rowSelected);
-                        // reassign stt
-                        int numRowFrom = formTable.getRowCount();
-                        for (int i = rowSelected; i < numRowFrom; i++) {
-                            int stt = Integer.parseInt((String) fromModel.getValueAt(i, 0));
-                            fromModel.setValueAt(stt - 1, i, 0);
-                        }
-
-                        //
-                        int numRowTo = formDetail.getRowCount();
-                        if (form instanceof FormRequest || form instanceof FormRequestIn) {
-                            return;
-                        }
-                        for (int i = 1; i <= numRowTo; i++) {
-                            String currName = (String) formDetail.getValueAt(i, 2);
-                            if (currName.equals(nameProduct)) {
-                                var currNumP = Integer.parseInt((String) formDetail.getValueAt(i, 3));
-                                if (form instanceof FormOut) {
-                                    toModel.setValueAt((currNumP + slg) + "", i, 3);
-                                    ProductDAO pdao = new ProductDAO();
-                                    pdao.importProduct((String) formDetail.getValueAt(i, 1), slg);
-                                } else {
-                                    toModel.setValueAt((currNumP - slg) + "", i, 3);
-                                    ProductDAO pdao = new ProductDAO();
-                                    pdao.exportProduct((String) formDetail.getValueAt(i, 1), slg);
-                                }
-                                break;
-
-                            }
-                        }
-
-                    }
-                }
+    public String getValueInListProAt(String idProduct, int col) {
+        var proTableModel = (DefaultTableModel) this.jListProductJTable.getModel();
+        for ( var row : proTableModel.getDataVector() ) {
+            if ( row.get(1).equals(idProduct) ) {
+                return (String) row.get(col);
             }
-
-        });
-
+        }
+        return null;
     }
 
     /**

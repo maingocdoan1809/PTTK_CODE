@@ -44,7 +44,6 @@ public class FormRequestInDAO implements FormDAO {
             var resultDetail = stm.executeQuery(queryToGetDetail);
             ArrayList<ArrayList<String>> details = new ArrayList<>();
             while (resultDetail.next()) {
-
                 ArrayList<String> row = new ArrayList<>();
                 row.add(resultDetail.getString("MaSp"));
                 row.add(resultDetail.getString("Soluongtheoyeucau"));
