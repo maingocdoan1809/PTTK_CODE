@@ -4,32 +4,27 @@
  */
 package huce.View;
 
+import ObserverPattern.Observer;
+import ObserverPattern.Subject;
 import huce.Controller.HandleCreateForm;
-import huce.Controller.HandleCreateFormIn;
 import huce.Controller.HandleCreateFormOut;
 import huce.Controller.LoadListProductToFormOut;
 import huce.Model.ApplyPanel;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Font;
-import java.sql.Connection;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import huce.Model.FormRequest;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
 /**
  *
  * @author Admin
  */
-public class FormOut extends Form {
+public class FormOut extends Form implements Subject{
 
     private JTextField jTextStore;
     private JTextField jTextStoreID;
 
-    public FormOut(JPanel gobackPanel, String id) {
+    public FormOut(JPanel gobackPanel, FormRequest formRequest) {
         this.setTitle("Phiếu xuất hàng");
         jTextStoreID = this.addJTextField(jPanelTop, "Mã cửa hàng", 5);
         jTextStore = this.addJTextField(jPanelTop, "Địa chỉ nhận hàng", 15);
@@ -50,10 +45,10 @@ public class FormOut extends Form {
 
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         setListProductTable(new SimpleListProductsTable(this, new String[]{
-            "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu còn lại", "Đơn vị"
+            "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu", "Số lượng yêu cầu còn lại", "Đơn vị"
         }));
         this.jTableContainer.setViewportView(tableDetail);
-        new LoadListProductToFormOut().loadTo(id, jListProductJTable);
+        new LoadListProductToFormOut().loadTo(formRequest, jListProductJTable);
         this.jButtonCreate.addActionListener((e) -> {
             HandleCreateForm handleCreateForm = new HandleCreateFormOut();
             if (handleCreateForm.create()) {
@@ -67,7 +62,11 @@ public class FormOut extends Form {
             ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
         });
 
-        Form.addUnselectProductEvent(this, 3);
+    }
+
+    @Override
+    public void update(Observer observer) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
 }

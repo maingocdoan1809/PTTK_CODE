@@ -5,15 +5,13 @@
 package huce.View;
 
 import huce.Controller.HandleSearchingRequestOut;
-import huce.Controller.LoadListProductToFormOut;
-import huce.Controller.LoadListRequest;
 import huce.Controller.LoadListRequestOut;
+import huce.DAO.FormRequestDAO;
 import huce.Model.ApplyPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.event.TableModelEvent;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -51,7 +49,8 @@ public class ListRequestsPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Ok");
             int row = jListRequestsTable.getSelectedRow();
             String id = (String) tableModel.getValueAt(row, 0);
-            ApplyPanel.apply(goBackJPanel, new FormOut(goBackJPanel, id));
+            FormRequestDAO pAO = new FormRequestDAO();
+            ApplyPanel.apply(goBackJPanel, new FormOut(goBackJPanel, (huce.Model.FormRequest) pAO.get(id)));
             jAcceptBtn.setEnabled(false);
             jRefuseBtn.setEnabled(false);
         });

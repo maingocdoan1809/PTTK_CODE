@@ -6,7 +6,6 @@ package huce.View;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JFrame;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -44,6 +43,12 @@ public class SimpleListProductsTable extends JTable {
                     int rowSelected = getSelectedRow();
                     String id = (String) tbDefaultTableModel.getValueAt(rowSelected, 1);
                     String name = (String) tbDefaultTableModel.getValueAt(rowSelected, 2);
+                    
+                    if ( form instanceof FormIn || form instanceof FormOut) {
+                        String requestNum = (String) tbDefaultTableModel.getValueAt(rowSelected,3 );
+                        newFrame.jTextRequestNum.setText(requestNum);
+                    }
+                    
                     newFrame.jTextID.setText(id);
                     newFrame.jTextName.setText(name);
                     newFrame.pack();

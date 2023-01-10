@@ -4,6 +4,7 @@
  */
 package huce.Controller;
 
+import huce.Model.Form;
 import huce.Model.Product;
 import javax.swing.JTable;
 
@@ -14,8 +15,8 @@ import javax.swing.JTable;
 public class LoadListProductToFormOut implements LoadListProductToForm{
 
     @Override
-    public void loadTo(String id, JTable toTable, Product ...products) {
-        System.out.println("Load " + id + " form to formOut");
+    public void loadTo(Form form, JTable toTable, Product ...products) {
+        System.out.println("Load " + " form to formOut");
     }
     
 }

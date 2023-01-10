@@ -6,11 +6,11 @@ package huce.View;
 
 import huce.Controller.HandleSearchingRequestIn;
 import huce.Controller.LoadListRequestIn;
+import huce.DAO.FormRequestInDAO;
 import huce.Model.ApplyPanel;
 import java.awt.BorderLayout;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -35,7 +35,8 @@ public class ListRequestsInPanel extends javax.swing.JPanel {
         this.jAcceptBtn.addActionListener((e) -> {
             int row = jListRequestsTable.getSelectedRow();
             String id = (String) tbModel.getValueAt(row,1);
-            ApplyPanel.apply(gobackJPanel, new FormIn(gobackJPanel, id));
+            FormRequestInDAO pDAO = new FormRequestInDAO();
+            ApplyPanel.apply(gobackJPanel, new FormIn(gobackJPanel, (huce.Model.FormRequestIn) pDAO.get(id)));
         });
         this.jListRequestsTable.addMouseListener( new MouseAdapter() {
             @Override

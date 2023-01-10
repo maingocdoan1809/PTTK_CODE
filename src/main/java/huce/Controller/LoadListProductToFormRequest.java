@@ -5,11 +5,11 @@
 package huce.Controller;
 
 import huce.DAO.ProductDAO;
+import huce.Model.Form;
 import huce.Model.Product;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashMap;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 public class LoadListProductToFormRequest implements LoadListProductToForm {
 
     @Override
-    public void loadTo(String id, JTable toTable, Product ...productsArr) {
+    public void loadTo(Form form, JTable toTable, Product ...productsArr) {
         // id always null
         ProductDAO productDAO = new ProductDAO();
         Collection<Product> products = null;
