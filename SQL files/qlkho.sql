@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 26, 2022 at 05:35 AM
+-- Generation Time: Dec 31, 2022 at 12:00 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -40,7 +40,9 @@ CREATE TABLE `chitietnhaphang` (
 
 INSERT INTO `chitietnhaphang` (`MaPhieu`, `MaSp`, `SoLuongNhap`, `ThanhTien`) VALUES
 ('1233', '1223', 4, 111111),
-('1233', '2426', 1, 3333);
+('1233', '2426', 1, 3333),
+('9998', 'SP1', 1, 1123),
+('9999', 'SP1', 2, 23256);
 
 -- --------------------------------------------------------
 
@@ -74,7 +76,8 @@ CREATE TABLE `chitietyeucaunhaphang` (
 INSERT INTO `chitietyeucaunhaphang` (`MaPhieuYCN`, `MaSp`, `SoLuongTheoYeuCau`) VALUES
 ('1000', '1223', 4),
 ('1000', '2426', 1),
-('1234', '2426', 1);
+('1234', '2426', 1),
+('1234', 'SP1', 4);
 
 -- --------------------------------------------------------
 
@@ -168,7 +171,9 @@ CREATE TABLE `phieunhap` (
 --
 
 INSERT INTO `phieunhap` (`MaPhieu`, `MaPhieuYCN`, `NgayLapPhieu`, `DiaDiemLapPhieu`, `TongSoTien`, `MaNguoiLap`) VALUES
-('1233', '1000', '2022-12-26', 'Tại Kho', 23834, 'admin');
+('1233', '1000', '2022-12-26', 'Tại Kho', 23834, 'admin'),
+('9998', '1234', '2022-12-29', 'Tại Kho', 13223, 'admin'),
+('9999', '1234', '2022-12-29', 'Tại Kho', 243434, 'admin');
 
 -- --------------------------------------------------------
 

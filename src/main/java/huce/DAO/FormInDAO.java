@@ -10,17 +10,9 @@ import huce.Model.FormIn;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
- *  private String idFormRequestIn;
-    private int value;
-    protected String id;
-    protected String formIndex;
-    protected String createDate;
-    protected String createLocation;
-    protected Account createStaff;
-    private ArrayList<String> productIds;
+
  * @author MAI NGOC DOAN
  */
 public class FormInDAO implements FormDAO{

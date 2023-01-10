@@ -10,11 +10,11 @@ import huce.Controller.HandleCreateForm;
 import huce.Controller.HandleCreateFormOut;
 import huce.Controller.LoadListProductToFormOut;
 import huce.Model.ApplyPanel;
+import huce.Model.FormRequest;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-
 /**
  *
  * @author Admin
@@ -24,7 +24,7 @@ public class FormOut extends Form implements Subject{
     private JTextField jTextStore;
     private JTextField jTextStoreID;
 
-    public FormOut(JPanel gobackPanel, String id) {
+    public FormOut(JPanel gobackPanel, FormRequest formRequest) {
         this.setTitle("Phiếu xuất hàng");
         jTextStoreID = this.addJTextField(jPanelTop, "Mã cửa hàng", 5);
         jTextStore = this.addJTextField(jPanelTop, "Địa chỉ nhận hàng", 15);
@@ -48,7 +48,7 @@ public class FormOut extends Form implements Subject{
             "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu", "Số lượng yêu cầu còn lại", "Đơn vị"
         }));
         this.jTableContainer.setViewportView(tableDetail);
-        new LoadListProductToFormOut().loadTo(id, jListProductJTable);
+        new LoadListProductToFormOut().loadTo(formRequest, jListProductJTable);
         this.jButtonCreate.addActionListener((e) -> {
             HandleCreateForm handleCreateForm = new HandleCreateFormOut();
             if (handleCreateForm.create()) {

@@ -7,6 +7,7 @@ package huce.DAO;
 import huce.Model.Database;
 import huce.Model.Form;
 import huce.Model.FormRequestIn;
+import huce.Model.Product;
 import huce.View.ListRequestsInPanel;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -37,16 +38,39 @@ public class FormRequestInDAO implements FormDAO {
             form.setState(result.getString("Trangthai"));
             form.setCreateStaff(result.getString("Manguoilap"));
 
-            String queryToGetDetail = """
-                                      Select * from `chitietyeucaunhaphang`
-                                      where `maphieuYCN` = '%s'
-                                      """.formatted(form.getId());
+            String queryToGetDetail
+                    = """
+                    Select phieuyeucaunhap.MaPhieuYCN, chitietyeucaunhaphang.MaSp, chitietyeucaunhaphang.SoLuongTheoYeuCau  , SUM(chitietnhaphang.SoLuongNhap) as DaNhap, chitietyeucaunhaphang.SoLuongTheoYeuCau -SUM(chitietnhaphang.SoLuongNhap) as ConThieu from (
+                    (phieuyeucaunhap left JOIN chitietyeucaunhaphang
+                    ON phieuyeucaunhap.MaPhieuYCN = chitietyeucaunhaphang.MaPhieuYCN)
+                    left JOIN (
+                    phieunhap INNER JOIN chitietnhaphang
+                    ON phieunhap.MaPhieu = chitietnhaphang.MaPhieu
+                    )
+                        ON phieuyeucaunhap.MaPhieuYCN = phieunhap.MaPhieuYCN and chitietyeucaunhaphang.MaSp = chitietnhaphang.MaSp
+                        )
+                      where phieuyeucaunhap.MaPhieuYCN = '%s'
+                        GROUP BY phieuyeucaunhap.MaPhieuYCN, chitietyeucaunhaphang.MaSp
+                        
+                    """.formatted(form.getId());
             var resultDetail = stm.executeQuery(queryToGetDetail);
             ArrayList<ArrayList<String>> details = new ArrayList<>();
+            ProductDAO pdao = new ProductDAO();
             while (resultDetail.next()) {
                 ArrayList<String> row = new ArrayList<>();
-                row.add(resultDetail.getString("MaSp"));
+
+                Product product = pdao.get(resultDetail.getString("MaSp"));
+                row.add(product.getId());
+                row.add(product.getName());
+                row.add(product.getUnit());
                 row.add(resultDetail.getString("Soluongtheoyeucau"));
+                String conThieu = resultDetail.getString("ConThieu");
+                if ( conThieu == null ) {
+                    row.add("0");
+                } else {
+                    row.add(conThieu);
+                }
+                
                 details.add(row);
             }
             form.setProductIds(details);
@@ -74,45 +98,6 @@ public class FormRequestInDAO implements FormDAO {
                 forms.put(id, get(id));
             }
             return forms;
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    public HashMap<String, HashMap<String, String>> getRemainProduct(String id) {
-        String sqlGetAllProduct = """
-                                  Select * from `chitietyeucaunhaphang`
-                                  INNER JOIN `sanpham`
-                                  ON sanpham.MaSp = chitietyeucaunhaphang.MaSp
-                                  WHERE `MaPhieuYCN`= '%s'
-                                  """.formatted(id);
-        String sql = """
-                     SELECT *, SUM(`SoLuongNhap`) as DaNhap from `chitietnhaphang`
-                     WHERE `MaPhieu` in (
-                         SELECT `MaPhieu` from `phieunhap`
-                         WHERE `MaPhieuYCN` = '%s'
-                     )
-                     GROUP by `MaSp`
-                     
-                     """.formatted(id);
-        try {
-            Connection c = Database.getConnection();
-            var stm = c.createStatement();
-            HashMap< String,HashMap<String, String>> data = new HashMap<>();
-            
-            var result = stm.executeQuery(sqlGetAllProduct);
-            while (result.next()) {
-//                int requestNum = Integer.parseInt( result.getString("Soluongyeucau") );
-//                int realNum = Integer.parseInt(result.getString("Danhap"));
-//                int remain = requestNum - realNum;
-                HashMap<String, String> row = new HashMap<>();
-                row.put("soluongtheoyeucau", result.getString("Soluongtheoyeucau"));
-                row.put("tensp", result.getString("Tensp"));
-                row.put("donvi", result.getString("donvi"));
-                data.put( result.getString("MaSp"), row);
-            }
-            return  data;
         } catch (SQLException e) {
             e.printStackTrace();
         }

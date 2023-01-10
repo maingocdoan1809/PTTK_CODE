@@ -10,12 +10,12 @@ import huce.Controller.HandleCreateForm;
 import huce.Controller.HandleCreateFormIn;
 import huce.Controller.LoadListProductToFormIn;
 import huce.Model.ApplyPanel;
+import huce.Model.FormRequestIn;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Admin
@@ -25,7 +25,7 @@ public class FormIn extends Form implements Subject {
     private JTextField jTextProvider;
     private JTextField jTextProviderId;
 
-    public FormIn(JPanel gobackPanel, String id) {
+    public FormIn(JPanel gobackPanel, FormRequestIn requestIn) {
         super();
         setTitle("Phiếu nhập hàng");
 
@@ -64,7 +64,7 @@ public class FormIn extends Form implements Subject {
         setListProductTable(new SimpleListProductsTable(this, new String[]{
             "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu", "Số lượng yêu cầu còn lại", "Đơn vị"
         }));
-        (new LoadListProductToFormIn()).loadTo(id, jListProductJTable);
+        (new LoadListProductToFormIn()).loadTo(requestIn, jListProductJTable);
     }
 
     @Override
