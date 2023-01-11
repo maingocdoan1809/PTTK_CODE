@@ -38,7 +38,6 @@ public class LoadListProductToFormRequest implements LoadListProductToForm {
                 stt + "",
                 product.getId(),
                 product.getName(),
-                product.getSpot().getRealQuantity() + "",
                 product.getUnit(),
             });
             stt ++;

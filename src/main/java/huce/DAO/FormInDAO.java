@@ -67,7 +67,7 @@ public class FormInDAO implements FormDAO{
             var queryInsertFormIn = """
                                     
                                     Insert into `phieunhap` values(
-                                    '%s', '%s', '%s', '%s', '%f', '%s'
+                                    '%s', '%s', '%s', '%s', %f, '%s'
                                     )
                                     
                                     """.formatted(
@@ -93,9 +93,9 @@ public class FormInDAO implements FormDAO{
                                         );
                 stm.execute(queryInsertDetail);
             }
+            return true;
         } catch (SQLException e) {
             e.printStackTrace();
-            return false;
         }
         return false;
     }

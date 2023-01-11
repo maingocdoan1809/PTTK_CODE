@@ -4,6 +4,8 @@
  */
 package huce.Controller;
 
+import huce.Model.Form;
+
 /**
  *
  * @author Admin
@@ -11,7 +13,7 @@ package huce.Controller;
 public class HandleCreateFormOut implements HandleCreateForm{
 
     @Override
-    public boolean create() {
+    public boolean create(Form form) {
         System.out.println("Create form out");
         return true;
     }

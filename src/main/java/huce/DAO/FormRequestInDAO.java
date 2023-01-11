@@ -62,15 +62,14 @@ public class FormRequestInDAO implements FormDAO {
                 Product product = pdao.get(resultDetail.getString("MaSp"));
                 row.add(product.getId());
                 row.add(product.getName());
-                row.add(product.getUnit());
                 row.add(resultDetail.getString("Soluongtheoyeucau"));
                 String conThieu = resultDetail.getString("ConThieu");
                 if ( conThieu == null ) {
-                    row.add("0");
+                    row.add(resultDetail.getString("Soluongtheoyeucau"));
                 } else {
                     row.add(conThieu);
                 }
-                
+                row.add(product.getUnit());
                 details.add(row);
             }
             form.setProductIds(details);
@@ -83,6 +82,40 @@ public class FormRequestInDAO implements FormDAO {
 
     @Override
     public boolean insert(Form data) {
+        
+        FormRequestIn formRequestIn = (FormRequestIn) data;
+        
+        try {
+            
+            Connection c = Database.getConnection();
+            var stm = c.createStatement();
+            
+            String sql = """
+                         Insert into `phieuyeucaunhap` values
+                         ('%s', '%s', '%s', N'Đang chờ', '%s')
+                         """.formatted(formRequestIn.getId(),
+                                 formRequestIn.getProvider(), formRequestIn.getCreateDate(),
+                                 formRequestIn.getCreateStaff());
+            
+            stm.execute(sql);
+            
+            // insert chitiet:
+            
+            var productRequests = formRequestIn.getProductIds();
+            for ( var p : productRequests ) {
+                String inStm = """
+                               insert into `chitietyeucaunhaphang`
+                               values('%s', '%s', %d)
+                               """.formatted( formRequestIn.getId(), p.get(0), Integer.parseInt(p.get(2))  );
+                stm.execute(inStm);
+            }
+            
+            return true;
+        } catch (SQLException e) {
+            
+            e.printStackTrace();
+        }
+                
         return false;
     }
 

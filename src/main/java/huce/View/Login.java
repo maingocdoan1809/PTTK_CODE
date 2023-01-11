@@ -5,13 +5,10 @@
 package huce.View;
 
 import huce.Controller.LoginController;
-import huce.DAO.AccountDAO;
 import huce.Model.Account;
 import huce.Model.AdminAccount;
 import huce.Model.ApplyPanel;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
 import javax.swing.JPanel;
 
 /**
@@ -19,7 +16,7 @@ import javax.swing.JPanel;
  * @author Admin
  */
 public class Login extends javax.swing.JPanel {
-
+    static Account loginAccount = null;
     public String getUsername() {
         return this.jTextUserName.getText();
     }
@@ -59,6 +56,7 @@ public class Login extends javax.swing.JPanel {
                 } else {
                     ApplyPanel.apply(gobackPanel, new FormRequest());
                 }
+                loginAccount = account;
             }
             
 

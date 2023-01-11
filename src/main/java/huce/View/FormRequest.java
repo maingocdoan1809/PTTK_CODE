@@ -9,6 +9,7 @@ import ObserverPattern.Subject;
 import huce.Controller.HandleSearchingForm;
 import huce.Controller.LoadListProductToFormRequest;
 import java.awt.BorderLayout;
+import java.util.ArrayList;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
@@ -49,6 +50,16 @@ public class FormRequest extends Form implements Subject{
 
     @Override
     public void update(Observer observer) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    huce.Model.Form createFormModel() {
+        return null;
+    }
+
+    @Override
+    ArrayList<ArrayList<String>> getDetailsArray() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

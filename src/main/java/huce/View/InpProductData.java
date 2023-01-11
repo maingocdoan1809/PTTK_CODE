@@ -11,12 +11,13 @@ import ObserverPattern.Subject;
  *
  * @author Admin
  */
-public class InpProductData extends javax.swing.JFrame implements Observer{
+public class InpProductData extends javax.swing.JFrame implements Observer {
 
     /**
      * Creates new form InpProductData
      */
     Subject form;
+
     public InpProductData(Subject form) {
         this.form = form;
         initComponents();
@@ -42,6 +43,20 @@ public class InpProductData extends javax.swing.JFrame implements Observer{
         });
     }
 
+    public int getRealInput() throws Exception {
+        int realInput = Integer.parseInt(this.jTextRealInput.getText());
+        return realInput;
+    }
+    public int getRequestInput() throws Exception {
+        int requestInput = Integer.parseInt(this.jTextRequestNum.getText());
+        return requestInput;
+    }
+    public String getProductName() {
+        return this.jTextName.getText();
+    }
+    public String getProductId() {
+        return this.jTextID.getText();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.

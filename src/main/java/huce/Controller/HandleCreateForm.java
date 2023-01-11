@@ -4,10 +4,12 @@
  */
 package huce.Controller;
 
+import huce.Model.Form;
+
 /**
  *
  * @author Admin
  */
 public interface HandleCreateForm {
-    public boolean create();
+    public boolean create(Form form);
 }

@@ -6,38 +6,28 @@ package huce.View;
 
 import ObserverPattern.Subject;
 import java.awt.BorderLayout;
-import java.util.Locale;
+import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
-
 /**
  *
  * @author Admin
  */
-public abstract class Form extends javax.swing.JPanel implements Subject{
+public abstract class Form extends javax.swing.JPanel implements Subject {
 
     /**
      * Creates new form ProductImport
      */
     public Form() {
         initComponents();
-        jDateCreated.setLocale(Locale.CHINA);
+        this.jTextAccount.setText(Login.loginAccount.getData()[0]);
+        this.jDateCreated.setDateToToday();
     }
 
-    public void setFormData(String... data) {
-        var tbModel = (DefaultTableModel) this.jListProductJTable.getModel();
-        tbModel.addRow(data);
-    }
-
-    protected void resetForm() {
-        this.jTextAmount.setText("");
-        this.jTextIDForm.setText("");
-        this.jTextWhere.setText("");
-    }
 
     public void setLookUpPanel(LookUpPanel panel) {
         this.jLookUpPanel.add(panel, BorderLayout.SOUTH);
@@ -68,16 +58,18 @@ public abstract class Form extends javax.swing.JPanel implements Subject{
     public JTable getListProductJTable() {
         return this.jListProductJTable;
     }
+
     public String getValueInListProAt(String idProduct, int col) {
         var proTableModel = (DefaultTableModel) this.jListProductJTable.getModel();
-        for ( var row : proTableModel.getDataVector() ) {
-            if ( row.get(1).equals(idProduct) ) {
+        for (var row : proTableModel.getDataVector()) {
+            if (row.get(1).equals(idProduct)) {
                 return (String) row.get(col);
             }
         }
         return null;
     }
-
+    abstract huce.Model.Form createFormModel();
+    abstract ArrayList<ArrayList<String>> getDetailsArray();
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

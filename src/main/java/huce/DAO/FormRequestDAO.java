@@ -14,7 +14,7 @@ public class FormRequestDAO implements FormDAO{
 
     @Override
     public boolean insert(Form data) {
-        return FormDAO.super.insert(data); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/OverriddenMethodBody
+        return false;
     }
 
     @Override

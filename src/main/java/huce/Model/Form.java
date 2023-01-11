@@ -13,7 +13,6 @@ import java.util.ArrayList;
 public abstract class Form {
 
     protected String id;
-    protected String formIndex;
     protected String createDate;
     protected String createLocation;
     protected String createStaff;
@@ -23,9 +22,7 @@ public abstract class Form {
         this.id = id;
     }
 
-    public void setFormIndex(String formIndex) {
-        this.formIndex = formIndex;
-    }
+
 
     public void setCreateDate(String createDate) {
         this.createDate = createDate;
@@ -43,9 +40,7 @@ public abstract class Form {
         return id;
     }
 
-    public String getFormIndex() {
-        return formIndex;
-    }
+
 
     public String getCreateDate() {
         return createDate;

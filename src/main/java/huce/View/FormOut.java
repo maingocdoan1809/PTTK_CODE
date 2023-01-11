@@ -11,6 +11,7 @@ import huce.Controller.HandleCreateFormOut;
 import huce.Controller.LoadListProductToFormOut;
 import huce.Model.ApplyPanel;
 import huce.Model.FormRequest;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
@@ -51,7 +52,7 @@ public class FormOut extends Form implements Subject{
         new LoadListProductToFormOut().loadTo(formRequest, jListProductJTable);
         this.jButtonCreate.addActionListener((e) -> {
             HandleCreateForm handleCreateForm = new HandleCreateFormOut();
-            if (handleCreateForm.create()) {
+            if (handleCreateForm.create(createFormModel())) {
                 ApplyPanel.apply(gobackPanel, new ListRequestsPanel(gobackPanel));
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid input, try again");
@@ -66,6 +67,16 @@ public class FormOut extends Form implements Subject{
 
     @Override
     public void update(Observer observer) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    huce.Model.Form createFormModel() {
+        return null;
+    }
+
+    @Override
+    ArrayList<ArrayList<String>> getDetailsArray() {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 

@@ -4,6 +4,9 @@
  */
 package huce.Controller;
 
+import huce.DAO.FormRequestInDAO;
+import huce.Model.Form;
+
 /**
  *
  * @author Admin
@@ -11,8 +14,13 @@ package huce.Controller;
 public class HandleCreateFormRequestIn implements HandleCreateForm{
 
     @Override
-    public boolean create() {
-        System.out.println("Create form Request in");
+    public boolean create(Form form) {
+        System.out.println(form);
+        if ( form == null ) {
+            return false;
+        }
+        FormRequestInDAO requestInDAO = new FormRequestInDAO();
+        requestInDAO.insert(form);
         return true;
     }
     
