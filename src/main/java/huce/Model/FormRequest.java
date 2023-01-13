@@ -10,7 +10,7 @@ package huce.Model;
  */
 public class FormRequest extends Form {
 
-    private Store createStore;
+    private String createStore;
     private String reason;
     private String state;
 
@@ -22,7 +22,7 @@ public class FormRequest extends Form {
         this.state = state;
     }
     
-    public Store getCreateStore() {
+    public String getCreateStore() {
         return createStore;
     }
 
@@ -30,7 +30,7 @@ public class FormRequest extends Form {
         return reason;
     }
 
-    public void setCreateStore(Store createStore) {
+    public void setCreateStore(String createStore) {
         this.createStore = createStore;
     }
 

@@ -21,7 +21,6 @@ public class LoadListProductToFormRequest implements LoadListProductToForm {
 
     @Override
     public void loadTo(Form form, JTable toTable, Product ...productsArr) {
-        // id always null
         ProductDAO productDAO = new ProductDAO();
         Collection<Product> products = null;
         if ( productsArr.length ==0 ) {
@@ -39,6 +38,8 @@ public class LoadListProductToFormRequest implements LoadListProductToForm {
                 product.getId(),
                 product.getName(),
                 product.getUnit(),
+                product.getSpot().getMaxQuantity() + "",
+                product.getSpot().getRealQuantity() + ""
             });
             stt ++;
         }

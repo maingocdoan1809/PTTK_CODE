@@ -5,7 +5,6 @@
 package huce.DAO;
 
 import huce.Model.Database;
-import huce.Model.Location;
 import huce.Model.Product;
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -94,6 +93,18 @@ public class ProductDAO implements DataAccess<Product> {
     }
     synchronized public Product getByName(String name) {
         return getBy("TenSp", name);
+    }
+    synchronized public void importProduct(Product product, int num) {
+         Connection connection = Database.getConnection();
+        try {
+            var stm = connection.createStatement();
+            stm.execute(" Update `vitri` set `soluongthucte` = `soluongthucte` + %d where  `mavitri` = '%s' ".formatted(num, product.getSpot().getId()));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    synchronized public void exportProduct(Product product, int num) {
+        importProduct(product, -num);
     }
     synchronized public void importProduct(String id, int num) {
         Connection connection = Database.getConnection();

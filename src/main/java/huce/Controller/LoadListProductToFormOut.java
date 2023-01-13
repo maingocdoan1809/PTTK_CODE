@@ -6,7 +6,9 @@ package huce.Controller;
 
 import huce.Model.Form;
 import huce.Model.Product;
+import java.util.ArrayList;
 import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,8 +17,31 @@ import javax.swing.JTable;
 public class LoadListProductToFormOut implements LoadListProductToForm{
 
     @Override
-    public void loadTo(Form form, JTable toTable, Product ...products) {
-        System.out.println("Load " + " form to formOut");
+    public void loadTo(Form formOut, JTable toTable, Product ...products) {
+        var tableModel = (DefaultTableModel) toTable.getModel();
+         int stt = 1;
+        tableModel.setRowCount(0);
+
+        var productList = formOut.getProductIds();
+        productList.sort((ArrayList<String> a, ArrayList<String> b) -> {
+            Integer remaina = Integer.valueOf(a.get(3));
+            Integer remainb = Integer.valueOf(b.get(3));
+            if (remaina < remainb) {
+                return 1;
+            }
+            if (remaina > remainb) {
+                return -1;
+            }
+            return 0;
+        });
+
+        for (var idP : formOut.getProductIds()) {
+            ArrayList<String> row = new ArrayList<>();
+            row.add(stt + "");
+            row.addAll(idP);
+            tableModel.addRow(row.toArray());
+            stt++;
+        }
     }
     
 }

@@ -4,6 +4,7 @@
  */
 package huce.Controller;
 
+import huce.DAO.FormOutDAO;
 import huce.Model.Form;
 
 /**
@@ -14,7 +15,12 @@ public class HandleCreateFormOut implements HandleCreateForm{
 
     @Override
     public boolean create(Form form) {
-        System.out.println("Create form out");
+        System.out.println(form);
+        if ( form == null ) {
+            return false;
+        }
+        FormOutDAO fDAO = new FormOutDAO();
+        fDAO.insert(form);
         return true;
     }
     

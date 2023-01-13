@@ -10,7 +10,6 @@ import huce.DAO.FormRequestDAO;
 import huce.Model.ApplyPanel;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -34,7 +33,7 @@ public class ListRequestsPanel extends javax.swing.JPanel {
 
                 int row = jListRequestsTable.getSelectedRow();
                 String state = (String) tableModel.getValueAt(row, 4);
-                if (state.equals("Chờ xử lý")) {
+                if (state.equals(ListRequestsInPanel.PENDINGMODE)) {
                     jAcceptBtn.setEnabled(true);
                     jRefuseBtn.setEnabled(true);
                 } else {
@@ -46,7 +45,6 @@ public class ListRequestsPanel extends javax.swing.JPanel {
         });
         
         this.jAcceptBtn.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(null, "Ok");
             int row = jListRequestsTable.getSelectedRow();
             String id = (String) tableModel.getValueAt(row, 0);
             FormRequestDAO pAO = new FormRequestDAO();
@@ -54,13 +52,12 @@ public class ListRequestsPanel extends javax.swing.JPanel {
             jAcceptBtn.setEnabled(false);
             jRefuseBtn.setEnabled(false);
         });
-        this.jRefuseBtn.addActionListener((e) -> {
-            JOptionPane.showMessageDialog(null, "Ok");
-            int row = jListRequestsTable.getSelectedRow();
-            tableModel.setValueAt("Từ chối", row, 4);
-            jAcceptBtn.setEnabled(false);
-            jRefuseBtn.setEnabled(false);
-        });
+//        this.jRefuseBtn.addActionListener((e) -> {
+//            int row = jListRequestsTable.getSelectedRow();
+//            tableModel.setValueAt(ListRequestsInPanel.CANCELMODE, row, 4);
+//            jAcceptBtn.setEnabled(false);
+//            jRefuseBtn.setEnabled(false);
+//        });
         this.jViewNewestRequestsBtn.addActionListener((e) -> {
             new LoadListRequestOut().loadTo(jListRequestsTable);
         });
@@ -91,17 +88,17 @@ public class ListRequestsPanel extends javax.swing.JPanel {
 
         jListRequestsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, "Chờ xử lý"}
+
             },
             new String [] {
-                "ID phiếu", "ID cửa hàng", "Tên cửa hàng", "Địa chỉ", "Trạng thái"
+                "STT", "ID phiếu", "ID cửa hàng", "Tên cửa hàng", "Địa chỉ", "Trạng thái"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {

@@ -21,7 +21,6 @@ public class HandleCreateFormIn implements HandleCreateForm{
         }
         FormInDAO fDAO = new FormInDAO();
         fDAO.insert(form);
-        
         return true;
     }
     

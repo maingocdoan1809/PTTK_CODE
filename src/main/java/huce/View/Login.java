@@ -16,7 +16,9 @@ import javax.swing.JPanel;
  * @author Admin
  */
 public class Login extends javax.swing.JPanel {
+
     static Account loginAccount = null;
+
     public String getUsername() {
         return this.jTextUserName.getText();
     }
@@ -38,29 +40,28 @@ public class Login extends javax.swing.JPanel {
      */
     public Login(JPanel gobackPanel) {
         initComponents();
-        this.addLoginListener( (e) -> {
+        this.addLoginListener((e) -> {
             LoginController loginController = new LoginController();
-            Account account = loginController.login( jTextUserName.getText(), new String(
-                    jTextPassword.getPassword() ));
-            if ( account == null) {
+            Account account = loginController.login(jTextUserName.getText(), new String(
+                    jTextPassword.getPassword()));
+            if (account == null) {
                 this.jinformLabelLogin.setText("Tài khoản mật khẩu không chính xác");
             } else {
-                if ( account instanceof AdminAccount) {
+                loginAccount = account;
+                if (account instanceof AdminAccount) {
                     var warehouse = new WarehousePanel();
                     warehouse.addLogoutListener((evt -> {
                         ApplyPanel.apply(gobackPanel, new Login(gobackPanel));
                     }));
-               
+
                     ApplyPanel.apply(gobackPanel, warehouse);
-                    
+
                 } else {
                     ApplyPanel.apply(gobackPanel, new FormRequest());
                 }
-                loginAccount = account;
             }
-            
 
-        } );
+        });
     }
 
     /**
@@ -233,13 +234,13 @@ public class Login extends javax.swing.JPanel {
 
     }
     private void jTextUserNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextUserNameKeyTyped
-            this.jinformLabelLogin.setText("");
+        this.jinformLabelLogin.setText("");
 
     }//GEN-LAST:event_jTextUserNameKeyTyped
 
     private void jTextPasswordKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPasswordKeyTyped
         // TODO add your handling code here:
-            this.jinformLabelLogin.setText("");
+        this.jinformLabelLogin.setText("");
     }//GEN-LAST:event_jTextPasswordKeyTyped
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

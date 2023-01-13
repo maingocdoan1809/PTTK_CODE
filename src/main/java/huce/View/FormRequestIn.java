@@ -81,7 +81,9 @@ public class FormRequestIn extends Form implements Subject {
 
         });
         super.jTableContainer.setViewportView(this.tableDetail);
-        setListProductTable(new SimpleListProductsTable(this));
+        setListProductTable(new SimpleListProductsTable(this, new String[]{
+             "STT", "ID", "Tên sản phẩm", "Đơn vị", "Số lượng tối đa", "Số lượng tồn trong kho"
+        }));
         new LoadListProductToFormRequest().loadTo(null, this.jListProductJTable);
         this.jLookUpPanel.add(new LookUpPanel(new HandleSearchingForm(), this.jListProductJTable),
                 BorderLayout.SOUTH);

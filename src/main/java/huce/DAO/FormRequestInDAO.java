@@ -13,6 +13,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -64,7 +65,7 @@ public class FormRequestInDAO implements FormDAO {
                 row.add(product.getName());
                 row.add(resultDetail.getString("Soluongtheoyeucau"));
                 String conThieu = resultDetail.getString("ConThieu");
-                if ( conThieu == null ) {
+                if (conThieu == null) {
                     row.add(resultDetail.getString("Soluongtheoyeucau"));
                 } else {
                     row.add(conThieu);
@@ -82,40 +83,39 @@ public class FormRequestInDAO implements FormDAO {
 
     @Override
     public boolean insert(Form data) {
-        
+
         FormRequestIn formRequestIn = (FormRequestIn) data;
-        
+
         try {
-            
+
             Connection c = Database.getConnection();
             var stm = c.createStatement();
-            
+
             String sql = """
                          Insert into `phieuyeucaunhap` values
                          ('%s', '%s', '%s', N'Đang chờ', '%s')
                          """.formatted(formRequestIn.getId(),
-                                 formRequestIn.getProvider(), formRequestIn.getCreateDate(),
-                                 formRequestIn.getCreateStaff());
-            
+                    formRequestIn.getProvider(), formRequestIn.getCreateDate(),
+                    formRequestIn.getCreateStaff());
+
             stm.execute(sql);
-            
+
             // insert chitiet:
-            
             var productRequests = formRequestIn.getProductIds();
-            for ( var p : productRequests ) {
+            for (var p : productRequests) {
                 String inStm = """
                                insert into `chitietyeucaunhaphang`
                                values('%s', '%s', %d)
-                               """.formatted( formRequestIn.getId(), p.get(0), Integer.parseInt(p.get(2))  );
+                               """.formatted(formRequestIn.getId(), p.get(0), Integer.parseInt(p.get(2)));
                 stm.execute(inStm);
             }
-            
+
             return true;
         } catch (SQLException e) {
-            
+
             e.printStackTrace();
         }
-                
+
         return false;
     }
 
@@ -137,24 +137,48 @@ public class FormRequestInDAO implements FormDAO {
         return null;
     }
 
-    private boolean changeMode(String id, String currmode, String toMode) {
+    private boolean changeMode(String id, String toMode) {
         try {
-            HashMap<String, Form> forms = new HashMap<>();
             Connection c = Database.getConnection();
             var stm = c.createStatement();
-            var result = stm.executeQuery(
-                    "Select `trangthai` from `phieuyeucaunhap` where `trangthai` = '%s' and `maphieuYCN` = '%s'".
-                            formatted(id, currmode));
-            result.next();
-            String isOk = result.getString("Trangthai");
-            stm.execute("Update `phieuyeucaunhap` set `trangthai` = '%s' where `maphieuYCN` = '%s'".formatted(toMode));
+            stm.execute("Update `phieuyeucaunhap` set `trangthai` = '%s' where `maphieuYCN` = '%s'".formatted(toMode, id));
         } catch (SQLException e) {
-            System.out.println("Khong co phieu nao");
+            e.printStackTrace();
         }
         return false;
     }
 
     public boolean cancelForm(String id) {
-        return changeMode(id, ListRequestsInPanel.PENDINGMODE, ListRequestsInPanel.CANCELMODE);
+        return changeMode(id, ListRequestsInPanel.CANCELMODE);
+    }
+
+    public boolean finishForm(String id) {
+        return changeMode(id, ListRequestsInPanel.FINISHMODE);
+    }
+
+    public boolean processForm(String id) {
+        return changeMode(id, ListRequestsInPanel.PROCESSINGMODE);
+    }
+
+    public int check(String id) {
+        FormRequestIn formRequestIn = (FormRequestIn) get(id);
+        var data = formRequestIn.getProductIds();
+        int curr = 0;
+        int init = 0;
+        for (var product : data) {
+            int request = Integer.parseInt(product.get(2));
+            int remain = product.get(3) == null ? request : Integer.parseInt(product.get(3));
+            init += request;
+            curr += remain;
+        }
+        if (curr == 0) {
+            JOptionPane.showMessageDialog(null, "Đã hoàn thành!");
+            finishForm(id);
+            return 1;
+        } else if (curr < init) {
+            processForm(id);
+            return -1;
+        }
+        return 0;
     }
 }

@@ -5,7 +5,7 @@
 package huce.View;
 
 import ObserverPattern.Observer;
-import ObserverPattern.Subject;
+import ObserverPattern.Subject; 
 import huce.Controller.HandleCreateForm;
 import huce.Controller.HandleCreateFormIn;
 import huce.Controller.LoadListProductToFormIn;

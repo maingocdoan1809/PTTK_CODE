@@ -4,8 +4,6 @@
  */
 package huce.Model;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author MAI NGOC DOAN
@@ -13,13 +11,13 @@ import java.util.ArrayList;
 public class FormOut extends Form {
 
     private String idRequest;
-    private int value;
+    private float value;
 
     public void setIdRequest(String id) {
         this.idRequest = id;
     }
 
-    public void setValue(int value) {
+    public void setValue(float value) {
         this.value = value;
     }
 
@@ -27,7 +25,7 @@ public class FormOut extends Form {
         return idRequest;
     }
 
-    public int getValue() {
+    public float getValue() {
         return value;
     }
 

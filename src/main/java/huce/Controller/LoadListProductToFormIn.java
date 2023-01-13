@@ -19,8 +19,7 @@ public class LoadListProductToFormIn implements LoadListProductToForm {
     @Override
     public void loadTo(Form formIn, JTable toTable, Product... products) {
         var tableModel = (DefaultTableModel) toTable.getModel();
-        tableModel.setRowCount(0);
-        int stt = 1;
+         int stt = 1;
         tableModel.setRowCount(0);
 
         var productList = formIn.getProductIds();

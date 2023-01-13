@@ -10,6 +10,7 @@ import huce.Model.FormIn;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  * @author MAI NGOC DOAN
@@ -80,19 +81,27 @@ public class FormInDAO implements FormDAO{
                                     );
             stm.execute(queryInsertFormIn);
             var details = formIn.getProductIds();
+            ProductDAO pdao = new ProductDAO();
             for ( var p : details ) {
+                int importNum = Integer.parseInt(p.get(1));
+                String idProduct = p.get(0);
                 var queryInsertDetail = """
                                         Insert into `chitietnhaphang` values(
                                          '%s', '%s', '%d', '%f'
                                         )
                                         """.formatted(
                                                 formIn.getId(),
-                                                p.get(0),
-                                                Integer.parseInt(p.get(1)),
+                                                idProduct,
+                                                importNum,
                                                 Float.parseFloat(p.get(2))
                                         );
                 stm.execute(queryInsertDetail);
+                pdao.importProduct(idProduct, importNum);
             }
+            
+            FormRequestInDAO formRequestInDAO = new FormRequestInDAO();
+            formRequestInDAO.check(formIn.getIdFormRequestIn());
+            JOptionPane.showMessageDialog(null, "Kho đã được cập nhật!");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
