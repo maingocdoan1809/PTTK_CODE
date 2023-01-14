@@ -32,10 +32,12 @@ public class FormRequestDAO implements FormDAO{
 
             String sql = """
                          Insert into `phieuyeucauxuat` values
-                         ('%s', '%s', '%s', N'Đang chờ', '%s', '%s')
-                         """.formatted(formRequest.getId(),
-                    formRequest.getCreateStore(), formRequest.getCreateDate(),
-                    formRequest.getState(),
+                         ('%s', '%s', '%s', N'%s', '%s', '%s')
+                         """.formatted(
+                    formRequest.getId(),
+                    formRequest.getCreateStore(), 
+                    formRequest.getCreateDate(),
+                    ListRequestsInPanel.PENDINGMODE,
                     formRequest.getReason(), 
                     formRequest.getCreateStaff());
 
@@ -82,14 +84,15 @@ public class FormRequestDAO implements FormDAO{
             
             String queryToGetDetail
                     = """
-                    Select phieuyeucauxuat.MaPhieuYCX, chitietyeucauxuathang.MaSp, chitietyeucauxuathang.SoLuongYeuCau  , SUM(chitietxuathang.SoLuong) as DaNhap, chitietyeucauxuathang.SoLuongTheoYeuCau -SUM(chitietxuathang.SoLuong) as ConThieu from (
+                    Select phieuyeucauxuat.MaPhieuYCX, chitietyeucauxuathang.MaSp, chitietyeucauxuathang.SoLuongYeuCau , 
+                      SUM(chitietxuathang.SoLuong) as DaNhap, chitietyeucauxuathang.SoLuongYeuCau -SUM(chitietxuathang.SoLuong) as ConThieu from (
                     (phieuyeucauxuat left JOIN chitietyeucauxuathang
-                    ON phieuyeucauxuat.MaPhieuYCN = chitietyeucauxuathang.MaPhieuYCX)
+                    ON phieuyeucauxuat.MaPhieuYCX = chitietyeucauxuathang.MaPhieuYCX)
                     left JOIN (
                     phieuxuat INNER JOIN chitietxuathang
                     ON phieuxuat.MaPhieu = chitietxuathang.MaPhieu
                     )
-                        ON phieuyeucauxuat.MaPhieuYCX = phieuxuat.MaPhieuYCN and chitietyeucauxuathang.MaSp = chitietxuathang.MaSp
+                        ON phieuyeucauxuat.MaPhieuYCX = phieuxuat.MaPhieuYCX and chitietyeucauxuathang.MaSp = chitietxuathang.MaSp
                         )
                       where phieuyeucauxuat.MaPhieuYCX = '%s'
                         GROUP BY phieuyeucauxuat.MaPhieuYCX, chitietyeucauxuathang.MaSp
@@ -107,7 +110,7 @@ public class FormRequestDAO implements FormDAO{
                 row.add(resultDetail.getString("Soluongyeucau"));
                 String conThieu = resultDetail.getString("ConThieu");
                 if (conThieu == null) {
-                    row.add(resultDetail.getString("Soluong"));
+                    row.add(resultDetail.getString("Soluongyeucau"));
                 } else {
                     row.add(conThieu);
                 }

@@ -4,7 +4,6 @@
  */
 package huce.View;
 
-import java.awt.Panel;
 import javax.swing.JPanel;
 
 /**
@@ -18,6 +17,7 @@ public class Main extends javax.swing.JFrame {
      */
     public Main() {
         initComponents();
+        mainPanel = this.jMainPanel;
     }
      public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -80,7 +80,7 @@ public class Main extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     
-
+    public static JPanel mainPanel;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public javax.swing.JPanel jMainPanel;
     // End of variables declaration//GEN-END:variables

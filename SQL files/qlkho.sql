@@ -3,11 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
-<<<<<<< HEAD
--- Generation Time: Dec 26, 2022 at 10:15 AM
-=======
--- Generation Time: Dec 31, 2022 at 12:00 AM
->>>>>>> addnewPattern
+-- Generation Time: Jan 14, 2023 at 03:09 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -43,10 +39,11 @@ CREATE TABLE `chitietnhaphang` (
 --
 
 INSERT INTO `chitietnhaphang` (`MaPhieu`, `MaSp`, `SoLuongNhap`, `ThanhTien`) VALUES
-('1233', '1223', 4, 111111),
-('1233', '2426', 1, 3333),
-('9998', 'SP1', 1, 1123),
-('9999', 'SP1', 2, 23256);
+('1122', '1223', 4, 0),
+('1122', '2426', 1, 0),
+('1234', '2426', 1, 0),
+('1234', 'SP1', 3, 0),
+('1235', 'SP1', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -60,6 +57,15 @@ CREATE TABLE `chitietxuathang` (
   `SoLuong` int(11) DEFAULT NULL,
   `ThanhTien` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chitietxuathang`
+--
+
+INSERT INTO `chitietxuathang` (`MaPhieu`, `MaSp`, `SoLuong`, `ThanhTien`) VALUES
+('989890', '1223', 1, 0),
+('989890', '2426', 1, 0),
+('99876', '2426', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -81,7 +87,8 @@ INSERT INTO `chitietyeucaunhaphang` (`MaPhieuYCN`, `MaSp`, `SoLuongTheoYeuCau`) 
 ('1000', '1223', 4),
 ('1000', '2426', 1),
 ('1234', '2426', 1),
-('1234', 'SP1', 4);
+('1234', 'SP1', 4),
+('18999', '1223', 3);
 
 -- --------------------------------------------------------
 
@@ -92,8 +99,16 @@ INSERT INTO `chitietyeucaunhaphang` (`MaPhieuYCN`, `MaSp`, `SoLuongTheoYeuCau`) 
 CREATE TABLE `chitietyeucauxuathang` (
   `MaPhieuYCX` varchar(10) NOT NULL,
   `MaSp` varchar(10) NOT NULL,
-  `SoLuong` int(11) DEFAULT NULL
+  `SoLuongYeuCau` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chitietyeucauxuathang`
+--
+
+INSERT INTO `chitietyeucauxuathang` (`MaPhieuYCX`, `MaSp`, `SoLuongYeuCau`) VALUES
+('00998', '1223', 1),
+('00998', '2426', 2);
 
 -- --------------------------------------------------------
 
@@ -175,9 +190,9 @@ CREATE TABLE `phieunhap` (
 --
 
 INSERT INTO `phieunhap` (`MaPhieu`, `MaPhieuYCN`, `NgayLapPhieu`, `DiaDiemLapPhieu`, `TongSoTien`, `MaNguoiLap`) VALUES
-('1233', '1000', '2022-12-26', 'Tại Kho', 23834, 'admin'),
-('9998', '1234', '2022-12-29', 'Tại Kho', 13223, 'admin'),
-('9999', '1234', '2022-12-29', 'Tại Kho', 243434, 'admin');
+('1122', '1000', '2023-01-13', 'Tai kho', 0, 'admin'),
+('1234', '1234', '2023-01-13', 'Tai kho', 0, 'admin'),
+('1235', '1234', '2023-01-13', 'Tai kho', 0, 'admin');
 
 -- --------------------------------------------------------
 
@@ -188,12 +203,19 @@ INSERT INTO `phieunhap` (`MaPhieu`, `MaPhieuYCN`, `NgayLapPhieu`, `DiaDiemLapPhi
 CREATE TABLE `phieuxuat` (
   `MaPhieu` varchar(10) NOT NULL,
   `MaPhieuYCX` varchar(10) NOT NULL,
-  `MaCH` varchar(10) DEFAULT NULL,
   `NgayLapPhieu` date DEFAULT NULL,
   `DiaDiemLapPhieu` varchar(60) DEFAULT NULL,
   `TongSoTien` float DEFAULT NULL,
   `MaNguoiLap` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `phieuxuat`
+--
+
+INSERT INTO `phieuxuat` (`MaPhieu`, `MaPhieuYCX`, `NgayLapPhieu`, `DiaDiemLapPhieu`, `TongSoTien`, `MaNguoiLap`) VALUES
+('989890', '00998', '2023-01-14', 'Tại kho', 0, 'admin'),
+('99876', '00998', '2023-01-14', 'Tại kho', 0, 'admin');
 
 -- --------------------------------------------------------
 
@@ -215,7 +237,8 @@ CREATE TABLE `phieuyeucaunhap` (
 
 INSERT INTO `phieuyeucaunhap` (`MaPhieuYCN`, `MaNCC`, `NgayLap`, `TrangThai`, `MaNguoiLap`) VALUES
 ('1000', '3124', '2022-12-26 07:04:12', 'Hoàn thành', 'admin'),
-('1234', '3124', '2022-10-27 07:05:19', 'Đang chờ', 'admin');
+('1234', '3124', '2022-10-27 07:05:19', 'Hoàn thành', 'admin'),
+('18999', '1565', '2023-01-11 00:00:00', 'Đang chờ', 'admin');
 
 -- --------------------------------------------------------
 
@@ -226,11 +249,18 @@ INSERT INTO `phieuyeucaunhap` (`MaPhieuYCN`, `MaNCC`, `NgayLap`, `TrangThai`, `M
 CREATE TABLE `phieuyeucauxuat` (
   `MaPhieuYCX` varchar(10) NOT NULL,
   `MaCH` varchar(10) DEFAULT NULL,
-  `NgayLapPhieu` date DEFAULT NULL,
+  `NgayLap` date DEFAULT NULL,
   `TrangThai` varchar(30) DEFAULT NULL,
   `LyDo` varchar(255) DEFAULT NULL,
   `MaNguoiLap` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `phieuyeucauxuat`
+--
+
+INSERT INTO `phieuyeucauxuat` (`MaPhieuYCX`, `MaCH`, `NgayLap`, `TrangThai`, `LyDo`, `MaNguoiLap`) VALUES
+('00998', '7423', '2023-01-14', 'Hoàn thành', 'Hehe', 'staff');
 
 -- --------------------------------------------------------
 
@@ -298,8 +328,8 @@ CREATE TABLE `vitri` (
 --
 
 INSERT INTO `vitri` (`MaViTri`, `MaPhanKhu`, `SoLuongToiDa`, `SoLuongThucTe`) VALUES
-('BK1AA', 'PK2-BK', 50, 20),
-('SP2', 'PK1', 20, 19),
+('BK1AA', 'PK2-BK', 50, 19),
+('SP2', 'PK1', 20, 22),
 ('VT1', 'PK1', 12, 5);
 
 --
@@ -369,7 +399,6 @@ ALTER TABLE `phieunhap`
 --
 ALTER TABLE `phieuxuat`
   ADD PRIMARY KEY (`MaPhieu`),
-  ADD KEY `MaCH` (`MaCH`),
   ADD KEY `MaNguoiLap` (`MaNguoiLap`),
   ADD KEY `MPYCX` (`MaPhieuYCX`);
 
@@ -453,7 +482,6 @@ ALTER TABLE `phieunhap`
 --
 ALTER TABLE `phieuxuat`
   ADD CONSTRAINT `MPYCX` FOREIGN KEY (`MaPhieuYCX`) REFERENCES `phieuyeucauxuat` (`MaPhieuYCX`),
-  ADD CONSTRAINT `phieuxuat_ibfk_1` FOREIGN KEY (`MaCH`) REFERENCES `cuahang` (`MaCH`) ON DELETE CASCADE,
   ADD CONSTRAINT `phieuxuat_ibfk_2` FOREIGN KEY (`MaNguoiLap`) REFERENCES `taikhoan` (`TenTaiKhoan`) ON DELETE CASCADE;
 
 --

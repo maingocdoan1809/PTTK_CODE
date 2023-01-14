@@ -5,7 +5,6 @@
 package huce.Controller;
 
 import huce.DAO.FormRequestDAO;
-import huce.DAO.ProviderDAO;
 import huce.DAO.StoreDAO;
 import huce.Model.FormRequest;
 import javax.swing.JTable;
@@ -24,7 +23,6 @@ public class LoadListRequestOut implements LoadListRequest{
         var tableModel = (DefaultTableModel) table.getModel();
         tableModel.setRowCount(0);
         int stt = 1;
-        ProviderDAO pdao = new ProviderDAO();
         for ( var form : allForms.values() ) {
             var formRequest = (FormRequest) form;
             StoreDAO storeDAO = new StoreDAO();

@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
@@ -8,6 +8,8 @@ import huce.Controller.HandleSearchingRequestOut;
 import huce.Controller.LoadListRequestOut;
 import huce.DAO.FormRequestDAO;
 import huce.Model.ApplyPanel;
+import static huce.View.ListRequestsInPanel.PENDINGMODE;
+import static huce.View.ListRequestsInPanel.PROCESSINGMODE;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JPanel;
@@ -32,21 +34,16 @@ public class ListRequestsPanel extends javax.swing.JPanel {
             public void mouseClicked(MouseEvent e) {
 
                 int row = jListRequestsTable.getSelectedRow();
-                String state = (String) tableModel.getValueAt(row, 4);
-                if (state.equals(ListRequestsInPanel.PENDINGMODE)) {
-                    jAcceptBtn.setEnabled(true);
-                    jRefuseBtn.setEnabled(true);
-                } else {
-                    jAcceptBtn.setEnabled(false);
-                    jRefuseBtn.setEnabled(false);
-                }
+                String state = (String) tableModel.getValueAt(row, 5);
+                 jAcceptBtn.setEnabled(state.equals(PENDINGMODE) || state.equals(PROCESSINGMODE));
+                jRefuseBtn.setEnabled(state.equals(PENDINGMODE));
             }
 
         });
         
         this.jAcceptBtn.addActionListener((e) -> {
             int row = jListRequestsTable.getSelectedRow();
-            String id = (String) tableModel.getValueAt(row, 0);
+            String id = (String) tableModel.getValueAt(row, 1);
             FormRequestDAO pAO = new FormRequestDAO();
             ApplyPanel.apply(goBackJPanel, new FormOut(goBackJPanel, (huce.Model.FormRequest) pAO.get(id)));
             jAcceptBtn.setEnabled(false);

@@ -21,7 +21,7 @@ public class StoreDAO implements DataAccess<Store> {
         Connection database = Database.getConnection();
         try {
             var stm = database.createStatement();
-            var result = stm.executeQuery("Select * from `CuaHang` `id`= '%s'".formatted(id));
+            var result = stm.executeQuery("Select * from `CuaHang` where MaCh= '%s'".formatted(id));
             result.next();
             return new Store(id,
                     result.getString("tench"),

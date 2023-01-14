@@ -93,9 +93,12 @@ public class FormRequestInDAO implements FormDAO {
 
             String sql = """
                          Insert into `phieuyeucaunhap` values
-                         ('%s', '%s', '%s', N'Đang chờ', '%s')
-                         """.formatted(formRequestIn.getId(),
-                    formRequestIn.getProvider(), formRequestIn.getCreateDate(),
+                         ('%s', '%s', '%s', N'%s', '%s')
+                         """.formatted(
+                    formRequestIn.getId(),
+                    formRequestIn.getProvider(),
+                    formRequestIn.getCreateDate(),
+                    ListRequestsInPanel.PENDINGMODE,
                     formRequestIn.getCreateStaff());
 
             stm.execute(sql);

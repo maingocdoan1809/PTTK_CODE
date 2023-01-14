@@ -45,13 +45,12 @@ public class FormOutDAO implements FormDAO {
             var queryInsertFormIn = """
                                     
                                     Insert into `phieuxuat` values(
-                                    '%s', '%s', '%s', '%s', '%s', %f, '%s'
+                                    '%s', '%s', '%s', '%s', %f, '%s'
                                     )
                                     
                                     """.formatted(
                                             formOut.getId(),
                                             formOut.getIdRequest(),
-                                            formOut.getCreateLocation(),
                                             formOut.getCreateDate(),
                                             formOut.getCreateLocation(),
                                             formOut.getValue(),
@@ -64,7 +63,7 @@ public class FormOutDAO implements FormDAO {
                 int importNum = Integer.parseInt(p.get(1));
                 String idProduct = p.get(0);
                 var queryInsertDetail = """
-                                        Insert into `chitietnhaphang` values(
+                                        Insert into `chitietxuathang` values(
                                          '%s', '%s', '%d', '%f'
                                         )
                                         """.formatted(
