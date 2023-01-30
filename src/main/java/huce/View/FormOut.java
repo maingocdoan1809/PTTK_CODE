@@ -50,7 +50,7 @@ public class FormOut extends Form implements Subject{
 
         tableDetail.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         setListProductTable(new SimpleListProductsTable(this, new String[]{
-            "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu", "Số lượng yêu cầu còn lại", "Đơn vị"
+            "STT", "ID", "Tên sản phẩm", "Số lượng yêu cầu", "Số lượng yêu cầu còn lại", "Số lượng trong kho", "Đơn vị"
         }));
         this.jTableContainer.setViewportView(tableDetail);
         new LoadListProductToFormOut().loadTo(formRequest, jListProductJTable);
@@ -84,9 +84,10 @@ public class FormOut extends Form implements Subject{
         try {
             int remainInput = Integer.parseInt((String) listProductModel.
                     getValueAt(this.jListProductJTable.getSelectedRow(), 4));
-            
+                        int remainNum = Integer.parseInt((String) listProductModel.
+                    getValueAt(this.jListProductJTable.getSelectedRow(), 5));
             int realInput = inputData.getRealInput();
-            if (realInput > remainInput || remainInput == 0) {
+            if ( (realInput > remainInput || remainInput == 0) ||  realInput > remainNum ) {
                 throw new Exception();
             }
             int currRowCount = tableDetailModel.getRowCount() + 1;

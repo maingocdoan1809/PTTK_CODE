@@ -93,7 +93,7 @@ public class FormRequestDAO implements FormDAO{
                     ON phieuxuat.MaPhieu = chitietxuathang.MaPhieu
                     )
                         ON phieuyeucauxuat.MaPhieuYCX = phieuxuat.MaPhieuYCX and chitietyeucauxuathang.MaSp = chitietxuathang.MaSp
-                        )
+                    )
                       where phieuyeucauxuat.MaPhieuYCX = '%s'
                         GROUP BY phieuyeucauxuat.MaPhieuYCX, chitietyeucauxuathang.MaSp
                         
@@ -114,6 +114,9 @@ public class FormRequestDAO implements FormDAO{
                 } else {
                     row.add(conThieu);
                 }
+                
+                row.add(product.getSpot().getRealQuantity() + "");
+                
                 row.add(product.getUnit());
                 details.add(row);
             }
