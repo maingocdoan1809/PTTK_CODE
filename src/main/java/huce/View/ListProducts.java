@@ -7,7 +7,6 @@ package huce.View;
 import huce.Controller.HandelExpiredProduct;
 import huce.Controller.HandleSearchingProducts;
 import huce.Controller.LoadAllProducts;
-import java.awt.BorderLayout;
 
 /**
  *

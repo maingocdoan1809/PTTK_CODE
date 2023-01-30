@@ -42,14 +42,20 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jViewProductsBtn" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jImportBtn" alignment="0" max="32767" attributes="0"/>
-                      <Component id="jRequestBtn" max="32767" attributes="0"/>
-                      <Component id="jLogoutBtn" alignment="1" max="32767" attributes="0"/>
-                      <Component id="jViewLocationBtn" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="jViewProductsBtn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jImportBtn" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jRequestBtn" max="32767" attributes="0"/>
+                              <Component id="jLogoutBtn" alignment="1" max="32767" attributes="0"/>
+                              <Component id="jViewLocationBtn" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="jViewReport" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -64,7 +70,9 @@
                   <Component id="jViewProductsBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jViewLocationBtn" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="379" max="32767" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Component id="jViewReport" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="358" max="32767" attributes="0"/>
                   <Component id="jLogoutBtn" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
@@ -95,6 +103,11 @@
         <Component class="javax.swing.JButton" name="jViewLocationBtn">
           <Properties>
             <Property name="text" type="java.lang.String" value="Xem ph&#xe2;n khu"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jViewReport">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng k&#xea;"/>
           </Properties>
         </Component>
       </SubComponents>

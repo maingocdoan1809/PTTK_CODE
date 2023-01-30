@@ -6,7 +6,6 @@ package huce.View;
 
 import huce.Model.ApplyPanel;
 import java.awt.event.ActionListener;
-import javax.swing.JTable;
 
 /**
  *
@@ -32,6 +31,9 @@ public class WarehousePanel extends javax.swing.JPanel {
         this.addViewProductsBtnListener((e) -> {
             ApplyPanel.apply(this.jMainPanel, new ListProducts());
         });
+        this.jViewReport.addActionListener((e) -> {
+            ApplyPanel.apply(this.jMainPanel, new Report());
+        });
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -48,6 +50,7 @@ public class WarehousePanel extends javax.swing.JPanel {
         jRequestBtn = new javax.swing.JButton();
         jLogoutBtn = new javax.swing.JButton();
         jViewLocationBtn = new javax.swing.JButton();
+        jViewReport = new javax.swing.JButton();
         jMainPanel = new javax.swing.JPanel();
         javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
@@ -68,19 +71,25 @@ public class WarehousePanel extends javax.swing.JPanel {
 
         jViewLocationBtn.setText("Xem phân khu");
 
+        jViewReport.setText("Thống kê");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jViewProductsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jImportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jRequestBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jLogoutBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jViewLocationBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jViewProductsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jImportBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jRequestBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLogoutBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jViewLocationBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jViewReport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -93,7 +102,9 @@ public class WarehousePanel extends javax.swing.JPanel {
                 .addComponent(jViewProductsBtn)
                 .addGap(18, 18, 18)
                 .addComponent(jViewLocationBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 379, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jViewReport)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 358, Short.MAX_VALUE)
                 .addComponent(jLogoutBtn)
                 .addContainerGap())
         );
@@ -145,5 +156,6 @@ public class WarehousePanel extends javax.swing.JPanel {
     private javax.swing.JButton jRequestBtn;
     private javax.swing.JButton jViewLocationBtn;
     private javax.swing.JButton jViewProductsBtn;
+    private javax.swing.JButton jViewReport;
     // End of variables declaration//GEN-END:variables
 }

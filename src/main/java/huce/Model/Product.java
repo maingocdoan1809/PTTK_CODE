@@ -78,7 +78,12 @@ public class Product {
     public void setExp(String exp) {
         this.exp = exp;
     }
-
+    public String getrMgf() {
+        return this.mgf;
+    }
+    public String getExp() {
+        return this.exp;
+    }
     public void setUnit(String unit) {
         this.unit = unit;
     }

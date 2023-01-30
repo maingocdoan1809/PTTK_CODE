@@ -57,11 +57,11 @@ public class ExpiredProducts extends javax.swing.JFrame {
 
             },
             new String [] {
-                "ID", "Tên sản phẩm", "Nhóm hàng", "Giá tiền", "NSX", "HSD", "Số lượng tồn", "Trạng thái"
+                "STT", "ID", "Tên sản phẩm", "Vị trí", "NSX", "HSD", "Số lượng tồn"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

@@ -186,4 +186,25 @@ public class FormRequestDAO implements FormDAO{
         }
         return 0;
     }
+    public String getCurrentRequestNum() {
+        String num = "";
+        try {
+            Connection conn = Database.getConnection();
+            var stm = conn.createStatement();
+            String query = """
+                           
+                           Select count(MaPhieuYCX) as num from phieuyeucauxuat 
+                           where Trangthai = '%s'
+                           group by MaPhieuYCX
+                           
+                           """.formatted(ListRequestsInPanel.PENDINGMODE);
+            var result = stm.executeQuery(query);
+            if ( result.next() ) {
+                return result.getString("num");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return num;
+    }
 }

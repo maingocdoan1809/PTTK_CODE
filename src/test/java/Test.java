@@ -1,5 +1,8 @@
 
-import huce.DAO.FormRequestInDAO;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -12,7 +15,6 @@ import huce.DAO.FormRequestInDAO;
 public class Test {
 
     public static void main(String[] args) {
-        FormRequestInDAO a = new FormRequestInDAO();
-        System.out.println(a.check("1234"));
+        System.out.println(DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDate.now()));
     }
 }

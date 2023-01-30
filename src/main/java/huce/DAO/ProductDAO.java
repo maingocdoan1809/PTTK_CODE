@@ -8,6 +8,7 @@ import huce.Model.Database;
 import huce.Model.Product;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,17 +23,18 @@ public class ProductDAO implements DataAccess<Product> {
     synchronized public Product get(String id) {
         return getBy("MaSp", id);
     }
-    
+
     @Override
     synchronized public HashMap<String, Product> getAll() {
-        return getAllBy(null,null);
+        return getAllBy(null, null);
     }
+
     synchronized private HashMap<String, Product> getAllBy(String columnName, String value) {
-                Connection database = Database.getConnection();
+        Connection database = Database.getConnection();
 
         try {
             String query = "Select `maSp` from `sanpham`";
-            if ( columnName != null && value != null ) {
+            if (columnName != null && value != null) {
                 query += " where `%s` = '%s' ".formatted(columnName, value);
             }
             var stm = database.createStatement();
@@ -40,9 +42,9 @@ public class ProductDAO implements DataAccess<Product> {
                     query
             );
             HashMap<String, Product> products = new HashMap<>();
-            while(result.next()) {
+            while (result.next()) {
                 String pId = result.getString("maSp");
-                products.put( pId , get(pId));
+                products.put(pId, get(pId));
             }
             return products;
 
@@ -52,6 +54,7 @@ public class ProductDAO implements DataAccess<Product> {
 
         return null;
     }
+
     synchronized private Product getBy(String columnName, String value) {
         Product p = null;
 
@@ -82,7 +85,7 @@ public class ProductDAO implements DataAccess<Product> {
                         result.getFloat("Giaban")
                 );
                 SpotDAO spotDAO = new SpotDAO();
-                p.setSpot(spotDAO.get( result.getString("mavitri") ));
+                p.setSpot(spotDAO.get(result.getString("mavitri")));
             }
 
         } catch (SQLException ex) {
@@ -91,11 +94,13 @@ public class ProductDAO implements DataAccess<Product> {
 
         return p;
     }
+
     synchronized public Product getByName(String name) {
         return getBy("TenSp", name);
     }
+
     synchronized public void importProduct(Product product, int num) {
-         Connection connection = Database.getConnection();
+        Connection connection = Database.getConnection();
         try {
             var stm = connection.createStatement();
             stm.execute(" Update `vitri` set `soluongthucte` = `soluongthucte` + %d where  `mavitri` = '%s' ".formatted(num, product.getSpot().getId()));
@@ -103,9 +108,11 @@ public class ProductDAO implements DataAccess<Product> {
             e.printStackTrace();
         }
     }
+
     synchronized public void exportProduct(Product product, int num) {
         importProduct(product, -num);
     }
+
     synchronized public void importProduct(String id, int num) {
         Connection connection = Database.getConnection();
         try {
@@ -117,7 +124,48 @@ public class ProductDAO implements DataAccess<Product> {
             e.printStackTrace();
         }
     }
+
     synchronized public void exportProduct(String id, int num) {
         importProduct(id, -num);
     }
+
+    public ArrayList<Product> getExpiredProduct() {
+        ArrayList<Product> expiredProducts = new ArrayList<>();
+
+        try {
+            Connection c = Database.getConnection();
+
+            var stm = c.createStatement();
+
+            String query = """
+                          SELECT `masp` FROM `sanpham` WHERE `HSD` < CURRENT_DATE()
+                          """;
+            var result = stm.executeQuery(query);
+            while (result.next()) {
+                var product = get(result.getString("MaSP"));
+                if (product.getSpot().getRealQuantity() != 0) {
+                    expiredProducts.add(product);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return expiredProducts;
+    }
+
+    @Override
+    public boolean delete(String id) {
+        try {
+            Connection c = Database.getConnection();
+            var stm = c.createStatement();
+            String spotID = get(id).getSpot().getId();
+            stm.execute("Update `vitri` set `soluongthucte` = 0 where `MaViTri` = '%s'".formatted(spotID));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
 }
