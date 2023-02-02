@@ -73,23 +73,23 @@ public class SpotDAO implements DataAccess<Spot> {
         }
     }
 
-//    @Override
-//    public HashMap<String, Spot> getAll() {
-//        
-//        try {
-//            Connection c = Database.getConnection();
-//            
-//            var stm = c.createStatement();
-//            var result = stm.executeQuery("""
-//                                          Select * from 
-//                                          """);
-//            
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        
-//        return null;
-//        
-//    }
+    @Override
+    public HashMap<String, Spot> getAll() {
+        
+        LocationDAO locationDAO = new LocationDAO();
+        
+        var locations = locationDAO.getAll();
+        
+        var spots = new HashMap<String, Spot>();
+        
+        locations.forEach( (idLocation, location) -> {
+            for (var spot : location.getSpots()) {
+                spots.put(spot.getId(), spot);
+            }
+        });
+        
+        return spots;
+        
+    }
     
 }

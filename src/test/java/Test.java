@@ -26,7 +26,12 @@ public class Test {
         var spots = new ArrayList<Spot>();
         
         locations.forEach( (idLocation, location) -> {
-            
+            for (var spot : location.getSpots()) {
+                spots.add(spot);
+            }
+        });
+        spots.forEach((spot) -> {
+            System.out.println(spot.getId());
         });
     }
 }

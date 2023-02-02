@@ -5,6 +5,7 @@
 package huce.View;
 
 import huce.Controller.HandleAddProduct;
+import huce.DAO.SpotDAO;
 import huce.Model.ApplyPanel;
 import huce.Model.Product;
 import javax.swing.JOptionPane;
@@ -21,6 +22,16 @@ public class FormAddProduct extends javax.swing.JPanel {
      */
     public FormAddProduct(JPanel gobackPanel) {
         initComponents();
+
+        SpotDAO spotDAO = new SpotDAO();
+
+        var spotNames = spotDAO.getAll().keySet();
+
+        spotNames.forEach((id) -> {
+            this.jTxtSpot.addItem(id);
+
+        });
+
         this.jAddBtn.addActionListener((e) -> {
             HandleAddProduct handleAddProduct = new HandleAddProduct();
             if (handleAddProduct.add(product())) {
@@ -31,7 +42,7 @@ public class FormAddProduct extends javax.swing.JPanel {
 
         });
     }
-    
+
     private Product product() {
         Product product = new Product();
         product.setId(this.jTxtId.getText());
@@ -103,7 +114,6 @@ public class FormAddProduct extends javax.swing.JPanel {
         jRequestNumlabel.setText("Mã vị trí ");
         jPanel4.add(jRequestNumlabel);
 
-        jTxtSpot.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SP2" }));
         jPanel4.add(jTxtSpot);
 
         jlable1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -212,5 +222,4 @@ public class FormAddProduct extends javax.swing.JPanel {
     private javax.swing.JLabel jlable1;
     // End of variables declaration//GEN-END:variables
 
-    
 }

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 02, 2023 lúc 06:19 AM
+-- Thời gian đã tạo: Th2 02, 2023 lúc 12:42 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
 -- Phiên bản PHP: 8.2.0
 
@@ -34,14 +34,6 @@ CREATE TABLE `chitietnhaphang` (
   `ThanhTien` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `chitietnhaphang`
---
-
-INSERT INTO `chitietnhaphang` (`MaPhieu`, `MaSp`, `SoLuongNhap`, `ThanhTien`) VALUES
-('1122', '2426', 1, 0),
-('1234', '2426', 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -55,14 +47,6 @@ CREATE TABLE `chitietxuathang` (
   `ThanhTien` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `chitietxuathang`
---
-
-INSERT INTO `chitietxuathang` (`MaPhieu`, `MaSp`, `SoLuong`, `ThanhTien`) VALUES
-('989890', '2426', 1, 0),
-('99876', '2426', 1, 0);
-
 -- --------------------------------------------------------
 
 --
@@ -75,14 +59,6 @@ CREATE TABLE `chitietyeucaunhaphang` (
   `SoLuongTheoYeuCau` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Đang đổ dữ liệu cho bảng `chitietyeucaunhaphang`
---
-
-INSERT INTO `chitietyeucaunhaphang` (`MaPhieuYCN`, `MaSp`, `SoLuongTheoYeuCau`) VALUES
-('1000', '2426', 1),
-('1234', '2426', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -94,13 +70,6 @@ CREATE TABLE `chitietyeucauxuathang` (
   `MaSp` varchar(10) NOT NULL,
   `SoLuongYeuCau` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `chitietyeucauxuathang`
---
-
-INSERT INTO `chitietyeucauxuathang` (`MaPhieuYCX`, `MaSp`, `SoLuongYeuCau`) VALUES
-('00998', '2426', 2);
 
 -- --------------------------------------------------------
 
@@ -300,30 +269,29 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`MaSp`, `TenSp`, `MaViTri`, `XuatXu`, `NhaSx`, `NSX`, `HSD`, `GiaNhap`, `GiaBan`, `DonVi`) VALUES
-('1234', 'Tủ lạnh', 'A', 'Nhật Bản', 'Toshiba', '0000-00-00', '0000-00-00', 12000000, 15000000, 'Chiếc'),
-('1238', 'Nồi cơm Điện', 'D', 'Việt Nam', 'Benny', NULL, NULL, 1000000, 12000000, 'Chiếc'),
-('1248', 'Bếp từ', 'E', 'Nhật Bản', 'Toshiba', NULL, NULL, 2000000, 3500000, 'Chiếc'),
-('1267', 'Ấm siêu tốc', 'B', 'Việt Nam', 'Benny', NULL, NULL, 200000, 270000, 'Chiếc'),
-('1362', 'Chảo chống dính', 'C', 'Việt Nam', 'Sunhouse', NULL, NULL, 120000, 199000, 'Chiếc'),
-('1369', 'Máy giặt', 'F', 'Nhật Bản', 'Panasonic', NULL, NULL, 7000000, 8500000, 'Chiếc'),
+('1234', 'Tủ lạnh', 'A-PK1', 'Nhật Bản', 'Toshiba', '0000-00-00', '0000-00-00', 12000000, 15000000, 'Chiếc'),
+('1238', 'Nồi cơm Điện', 'B-PK1', 'Việt Nam', 'Benny', NULL, NULL, 1000000, 12000000, 'Chiếc'),
+('1248', 'Bếp từ', 'C-PK1', 'Nhật Bản', 'Toshiba', NULL, NULL, 2000000, 3500000, 'Chiếc'),
+('1267', 'Ấm siêu tốc', 'D-PK1', 'Việt Nam', 'Benny', NULL, NULL, 200000, 270000, 'Chiếc'),
+('1362', 'Chảo chống dính', 'E-PK1', 'Việt Nam', 'Sunhouse', NULL, NULL, 120000, 199000, 'Chiếc'),
 ('2426', 'Bánh gạo An An', 'BK1AA', 'Việt Nam', 'Công ty CP Bánh kẹo AN AN', '2021-12-23', '2023-01-01', 17.5, 20, 'Gói'),
-('3126', 'Thịt bò khô', 'A', 'Việt Nam', 'Viet Nam Food', '2023-01-01', '2023-01-01', 80000, 120000, 'Gói'),
-('3224', 'Hạt điều rang bơ', 'B', 'Việt Nam', 'Viet Nam Food', '2023-02-02', '2023-01-18', 30000, 75000, 'Hộp'),
-('3422', 'Dừa sấy khô', 'C', 'Việt Nam', 'Viet Nam Food', '2023-01-15', '2024-01-15', 30000, 60000, 'Gói'),
-('3492', 'Gạo', 'D', 'Việt Nam', 'Gạo Quý', '2023-01-20', '2023-02-20', 35000, 50000, 'Gói'),
-('3876', 'Miến', 'F', 'Việt Nam', 'Thực phẩm Zin Food', '2022-05-01', '2023-05-01', 20000, 40000, 'Gói'),
-('3921', 'Hạt chia tím', 'E', 'Việt Nam', 'San Hà Food', '2022-04-12', '2023-04-12', 25000, 40000, 'Gói'),
-('4123', 'Cá trứng đông lạnh', 'A', 'Việt Nam', 'San Hà Food', '2023-01-02', '2023-10-02', 30000, 50000, 'Khay'),
-('4265', 'Cá bống đục đông lạnh', 'B', 'Việt Nam', 'Thực phẩm Zin Food', '2022-10-20', '2023-10-20', 26000, 38000, 'Khay'),
-('4329', 'Tôm sú', 'C', 'Việt Nam', 'Thực phẩm Zin Food', '2023-01-06', '2023-10-06', 50000, 70000, 'Khay'),
-('4711', 'Thịt bò nướng đông lạnh San Hà', 'D', 'Việt Nam', 'San Hà Food', '2022-11-22', '2023-11-22', 89000, 110000, 'Khay'),
-('4902', 'Mực nang trứng', 'F', 'Việt Nam', 'Viet Nam Food', '2022-05-05', '2023-05-05', 60000, 85000, 'Khay'),
-('4972', 'Gầu bò Mỹ', 'E', 'Mỹ', 'ABC Food', '2023-01-01', '2024-01-01', 50000, 70000, 'Khay'),
-('5102', 'Whey Gold Standard 5lbs', 'A', 'Mỹ', 'TPL', '2022-09-15', '2023-09-15', 1690000, 2000000, 'Gói'),
-('5133', 'Ostrovit Testo Booster 90', 'B', 'Mỹ', 'APL', '2023-02-17', '2024-02-17', 32000, 50000, 'Lọ'),
-('5777', 'Ostrovit Omega 3 ', 'D', 'Mỹ', 'APL', '2023-01-11', '2025-01-11', 650000, 850000, 'Lọ'),
-('5920', 'Mass True Gainer', 'C', 'Mỹ', 'TPL', '2023-02-01', '2025-02-01', 850000, 1000000, 'Gói'),
-('5985', 'Now Vitamin D3', 'F', 'Anh', 'NoW', '2023-02-02', '2023-02-21', 350000, 450000, 'Lọ');
+('3126', 'Thịt bò khô', 'A-PK3', 'Việt Nam', 'Viet Nam Food', '2023-01-01', '2023-01-01', 80000, 120000, 'Gói'),
+('3224', 'Hạt điều rang bơ', 'B-PK3', 'Việt Nam', 'Viet Nam Food', '2023-02-02', '2023-01-18', 30000, 75000, 'Hộp'),
+('3422', 'Dừa sấy khô', 'C-PK3', 'Việt Nam', 'Viet Nam Food', '2023-01-15', '2024-01-15', 30000, 60000, 'Gói'),
+('3492', 'Gạo', 'D-PK3', 'Việt Nam', 'Gạo Quý', '2023-01-20', '2023-02-20', 35000, 50000, 'Gói'),
+('3876', 'Miến', 'E-PK3', 'Việt Nam', 'Thực phẩm Zin Food', '2022-05-01', '2023-05-01', 20000, 40000, 'Gói'),
+('3921', 'Hạt chia tím', 'F-PK3', 'Việt Nam', 'San Hà Food', '2022-04-12', '2023-04-12', 25000, 40000, 'Gói'),
+('4123', 'Cá trứng đông lạnh', 'A-PK4', 'Việt Nam', 'San Hà Food', '2023-01-02', '2023-10-02', 30000, 50000, 'Khay'),
+('4265', 'Cá bống đục đông lạnh', 'B-PK4', 'Việt Nam', 'Thực phẩm Zin Food', '2022-10-20', '2023-10-20', 26000, 38000, 'Khay'),
+('4329', 'Tôm sú', 'C-PK4', 'Việt Nam', 'Thực phẩm Zin Food', '2023-01-06', '2023-10-06', 50000, 70000, 'Khay'),
+('4711', 'Thịt bò nướng đông lạnh San Hà', 'D-PK4', 'Việt Nam', 'San Hà Food', '2022-11-22', '2023-11-22', 89000, 110000, 'Khay'),
+('4902', 'Mực nang trứng', 'F-PK4', 'Việt Nam', 'Viet Nam Food', '2022-05-05', '2023-05-05', 60000, 85000, 'Khay'),
+('4972', 'Gầu bò Mỹ', 'E-PK4', 'Mỹ', 'ABC Food', '2023-01-01', '2024-01-01', 50000, 70000, 'Khay'),
+('5102', 'Whey Gold Standard 5lbs', 'A-PK5', 'Mỹ', 'TPL', '2022-09-15', '2023-09-15', 1690000, 2000000, 'Gói'),
+('5133', 'Ostrovit Testo Booster 90', 'B-PK5', 'Mỹ', 'APL', '2023-02-17', '2024-02-17', 32000, 50000, 'Lọ'),
+('5777', 'Ostrovit Omega 3 ', 'D-PK5', 'Mỹ', 'APL', '2023-01-11', '2025-01-11', 650000, 850000, 'Lọ'),
+('5920', 'Mass True Gainer', 'C-PK5', 'Mỹ', 'TPL', '2023-02-01', '2025-02-01', 850000, 1000000, 'Gói'),
+('5985', 'Now Vitamin D3', 'F-PK5', 'Anh', 'NoW', '2023-02-02', '2023-02-21', 350000, 450000, 'Lọ');
 
 -- --------------------------------------------------------
 
@@ -363,31 +331,47 @@ CREATE TABLE `vitri` (
 --
 
 INSERT INTO `vitri` (`MaViTri`, `MaPhanKhu`, `SoLuongToiDa`, `SoLuongThucTe`) VALUES
-('A', 'PK1', 200, 150),
-('A', 'PK3', 200, 102),
-('A', 'PK4', 200, 119),
-('A', 'PK5', 200, 180),
-('B', 'PK1', 200, 122),
-('B', 'PK3', 200, 90),
-('B', 'PK4', 200, 59),
-('B', 'PK5', 200, 180),
+('A-PK1', 'PK1', 200, 123),
+('A-PK3', 'PK3', 200, 156),
+('A-PK4', 'PK4', 200, 0),
+('A-PK5', 'PK5', 200, 0),
+('B-PK1', 'PK1', 200, 0),
+('B-PK3', 'PK3', 200, 0),
+('B-PK4', 'PK4', 200, 0),
+('B-PK5', 'PK5', 200, 0),
 ('BK1AA', 'PK2-BK', 200, 19),
-('C', 'PK1', 200, 200),
-('C', 'PK3', 200, 191),
-('C', 'PK4', 200, 60),
-('C', 'PK5', 200, 190),
-('D', 'PK1', 200, 200),
-('D', 'PK3', 200, 82),
-('D', 'PK4', 200, 159),
-('D', 'PK5', 200, 162),
-('E', 'PK1', 200, 200),
-('E', 'PK3', 200, 19),
-('E', 'PK4', 200, 182),
-('E', 'PK5', 200, 187),
-('F', 'PK1', 200, 200),
-('F', 'PK3', 200, 42),
-('F', 'PK4', 200, 172),
-('F', 'PK5', 200, 143);
+('C-PK1', 'PK1', 200, 0),
+('C-PK3', 'PK3', 200, 0),
+('C-PK4', 'PK4', 200, 0),
+('C-PK5', 'PK5', 200, 0),
+('D-PK1', 'PK1', 200, 0),
+('D-PK3', 'PK3', 200, 0),
+('D-PK4', 'PK4', 200, 0),
+('D-PK5', 'PK5', 200, 0),
+('E-PK1', 'PK1', 200, 0),
+('E-PK3', 'PK3', 200, 0),
+('E-PK4', 'PK4', 200, 0),
+('E-PK5', 'PK5', 200, 0),
+('F-PK1', 'PK1', 200, 0),
+('F-PK3', 'PK3', 200, 0),
+('F-PK4', 'PK4', 200, 0),
+('F-PK5', 'PK5', 200, 0),
+('G-PK1', 'PK1', 200, 0),
+('G-PK3', 'PK3', 200, 0),
+('G-PK4', 'PK4', 200, 0),
+('G-PK5', 'PK5', 200, 0),
+('H-PK1', 'PK1', 200, 0),
+('H-PK3', 'PK3', 200, 0),
+('H-PK4', 'PK4', 200, 0),
+('H-PK5', 'PK5', 200, 0),
+('I-PK1', 'PK1', 200, 0),
+('I-PK3', 'PK3', 200, 0),
+('I-PK4', 'PK4', 200, 0),
+('I-PK5', 'PK5', 200, 0),
+('J-PK1', 'PK1', 200, 0),
+('J-PK3', 'PK3', 200, 0),
+('J-PK4', 'PK4', 200, 0),
+('J-PK5', 'PK5', 200, 0);
 
 --
 -- Chỉ mục cho các bảng đã đổ

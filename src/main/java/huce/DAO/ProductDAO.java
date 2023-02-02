@@ -139,7 +139,7 @@ public class ProductDAO implements DataAccess<Product> {
             var stm = c.createStatement();
 
             String query = """
-                          SELECT `masp` FROM `sanpham` WHERE `HSD` < CURRENT_DATE()
+                          SELECT `masp` FROM `sanpham` WHERE `HSD` < CURRENT_DATE() and HSD != '0000-00-00'
                           """;
             var result = stm.executeQuery(query);
             while (result.next()) {
