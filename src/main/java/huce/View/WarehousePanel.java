@@ -29,7 +29,7 @@ public class WarehousePanel extends javax.swing.JPanel {
             ApplyPanel.apply(this.jMainPanel, new LocationPanel());
         });
         this.addViewProductsBtnListener((e) -> {
-            ApplyPanel.apply(this.jMainPanel, new ListProducts());
+            ApplyPanel.apply(this.jMainPanel, new ListProducts(this.jMainPanel));
         });
         this.jViewReport.addActionListener((e) -> {
             ApplyPanel.apply(this.jMainPanel, new Report());

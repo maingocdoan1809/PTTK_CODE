@@ -46,7 +46,7 @@ public class HandelExpiredProduct {
                 product.getId(),
                 product.getName(),
                 product.getSpot().getId(),
-                product.getrMgf(),
+                product.getMgf(),
                 product.getExp(),
                 product.getSpot().getRealQuantity()
             });
