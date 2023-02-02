@@ -19,8 +19,24 @@ public class Product {
     private String mgf; // ngay san xuat: manufacturing date
     private String exp; // han su dung
     private String unit; // don vi
+    private String spotId;
     private Spot spot;
+    
+    public Product(){}
 
+    public Product(String id, String name, String spotId, String from, String issue, String mgf, String exp, Float priceIn, Float priceOut, String unit) {
+        this.id = id;
+        this.name = name;
+        this.spotId = spotId;
+        this.from = from;
+        this.issue = issue;
+        this.mgf = mgf;
+        this.exp = exp;
+        this.priceIn = priceIn;
+        this.priceOut = priceOut;
+        this.unit = unit;
+    }
+    
     public Product(String id, String name,
             String unit) {
         this.id = id;
@@ -78,7 +94,7 @@ public class Product {
     public void setExp(String exp) {
         this.exp = exp;
     }
-    public String getrMgf() {
+    public String getMgf() {
         return this.mgf;
     }
     public String getExp() {
@@ -100,9 +116,36 @@ public class Product {
         return unit;
     }
 
+    public Float getPriceIn() {
+        return priceIn;
+    }
+
+    public Float getPriceOut() {
+        return priceOut;
+    }
+
+    public String getIssue() {
+        return issue;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+    
+
     public Spot getSpot() {
         return spot;
     }
+
+    public String getSpotId() {
+        return spotId;
+    }
+
+    public void setSpotId(String spotId) {
+        this.spotId = spotId;
+    }
+    
+    
     
     public String[] toStringArr(int... stt) {
         var currLocation = spot.getCurrLocation();
