@@ -78,10 +78,7 @@ public class Report extends javax.swing.JPanel {
 
         reportIn.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Mã sản phẩm", "Tên sản phẩm", "Số lượng nhập"
@@ -91,10 +88,7 @@ public class Report extends javax.swing.JPanel {
 
         reportOut.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Mã sản phẩm", "Tên sản phẩm", "Số lượng xuất "

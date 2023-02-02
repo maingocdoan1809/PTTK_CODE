@@ -26,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Admin
  */
-public class FormRequest extends Form implements Subject {
+public class FormRequest extends Form {
 
     private JComboBox<String> jTextStore;
     private JTextField jTextReason;
@@ -82,6 +82,10 @@ public class FormRequest extends Form implements Subject {
             }
 
         });
+        
+        
+        
+        
     }
 
     @Override

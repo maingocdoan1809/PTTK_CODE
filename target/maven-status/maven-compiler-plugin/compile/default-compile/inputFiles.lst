@@ -1,67 +1,70 @@
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\LoadListRequest.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\AccountDAO.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\FormRequest.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandleSearchingRequestOut.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\ListProducts.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\ProductDAO.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\FormInDAO.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\FormRequestIn.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\FormIn.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\LoadListProductToForm.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\Login.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\LoadListProductToFormOut.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\ListRequestsPanel.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\SimpleListProductsTable.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\Database.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandleCreateForm.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\ExpiredProducts.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\FormRequestIn.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\Account.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\LookUpPanel.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\LoadListRequestIn.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\AdminAccount.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandleSearchingRequestIn.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\Provider.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandleCreateFormRequestIn.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\Store.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\StoreDAO.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandelExpiredProduct.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandleSearchingProducts.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\Spot.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\WarehousePanel.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\LoadListProductToFormRequest.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandleCreateFormOut.java
-D:\From GITHUB\PTTK_CODE\src\main\java\ObserverPattern\Subject.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandleSearching.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\FormOutDAO.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\ApplyPanel.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\ListRequestsInPanel.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\Form.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\FormIn.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandleCreateFormRequest.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\LocationDAO.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\LoginController.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\SpotDAO.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\LocationPanel.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\OptionImportPanel.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\Location.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\FormOut.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\FormOut.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\LoadListRequestOut.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\FormRequest.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\LoadProductLocation.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\FormRequestInDAO.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\StaffAccount.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\LoadAllProducts.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\ProviderDAO.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\Product.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\LoadListProductToFormIn.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\DataAccess.java
-D:\From GITHUB\PTTK_CODE\src\main\java\ObserverPattern\Observer.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\DAO\FormDAO.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\InpProductData.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\Form.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandleCreateFormIn.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Controller\HandleSearchingForm.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\Model\WareHouse.java
-D:\From GITHUB\PTTK_CODE\src\main\java\huce\View\Main.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandleSearchingRequestOut.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandleCreateFormRequestIn.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\FormDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\ReportModel.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\ObserverPattern\Subject.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\FormRequest.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\Spot.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\FormIn.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\WarehousePanel.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandleCreateForm.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\Store.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\ExpiredProducts.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\Database.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\LoadListRequest.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\Login.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\LoadProductLocation.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandleSearchingForm.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\FormIn.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\ListRequestsInPanel.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandleCreateFormOut.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\FormRequestIn.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandleSearching.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandleCreateFormRequest.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\LoginController.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\ProductDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\ObserverPattern\Observer.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\FormOut.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\InpProductData.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\DataAccess.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\LookUpPanel.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\OptionImportPanel.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\Report.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandleSearchingRequestIn.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\FormOut.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\LocationPanel.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\AccountDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\SpotDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\Product.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\FormOutDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\Main.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\Form.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\ReportDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\LocationDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\Location.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\AdminAccount.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandelExpiredProduct.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\StoreDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\StaffAccount.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\FormRequestInDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\ApplyPanel.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\FormRequest.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\FormRequestDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\LoadAllProducts.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\SimpleListProductsTable.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\LoadListProductToForm.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\FormInDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\ListRequestsPanel.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\LoadListProductToFormIn.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\Form.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\View\ListProducts.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\LoadListRequestIn.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\LoadListProductToFormOut.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\DAO\ProviderDAO.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandleCreateFormIn.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\Provider.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\LoadListProductToFormRequest.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\FormRequestIn.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\LoadListRequestOut.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Controller\HandleSearchingProducts.java
+D:\MAINGOCDOAN\PTTK_FRONTEND\MainApp04\src\main\java\huce\Model\Account.java

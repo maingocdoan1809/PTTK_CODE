@@ -25,7 +25,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Admin
  */
-public class FormIn extends Form implements Subject {
+public class FormIn extends Form {
 
     private JTextField jTextProvider;
     private JTextField jTextProviderId;

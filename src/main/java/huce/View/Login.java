@@ -8,7 +8,10 @@ import huce.Controller.LoginController;
 import huce.Model.Account;
 import huce.Model.AdminAccount;
 import huce.Model.ApplyPanel;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 /**
@@ -57,7 +60,24 @@ public class Login extends javax.swing.JPanel {
                     ApplyPanel.apply(gobackPanel, warehouse);
 
                 } else {
-                    ApplyPanel.apply(gobackPanel, new FormRequest());
+                    
+                    JPanel requestPanel = new JPanel();
+                    JButton logoutBtn = new JButton("Log out");
+                    JPanel logoutPanel = new JPanel();
+                     ((FlowLayout) logoutPanel.getLayout()).setAlignment(FlowLayout.LEFT);
+                    logoutPanel.add(logoutBtn);
+                    requestPanel.setLayout(new BorderLayout());
+                    requestPanel.add(new FormRequest(), BorderLayout.CENTER);
+                    requestPanel.add(logoutPanel, BorderLayout.SOUTH);
+                    
+                    logoutBtn.addActionListener((evt) -> {
+                        
+                        ApplyPanel.apply(gobackPanel, new Login(gobackPanel));
+                    
+                    });
+                    
+                    
+                    ApplyPanel.apply(gobackPanel, requestPanel);
                 }
             }
 

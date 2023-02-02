@@ -14,7 +14,6 @@ huce\View\ListProducts.class
 huce\View\LocationPanel$2.class
 huce\View\LocationPanel.class
 huce\View\ListRequestsPanel$2.class
-huce\Model\WareHouse.class
 huce\Model\Location.class
 huce\Controller\HandleSearchingForm.class
 huce\Controller\HandleSearchingProducts.class

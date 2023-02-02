@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Admin
  */
-public class FormOut extends Form implements Subject{
+public class FormOut extends Form{
 
     private JTextField jTextStore;
     private JTextField jTextStoreID;
