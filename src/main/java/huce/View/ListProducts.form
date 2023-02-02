@@ -159,6 +159,16 @@
                 <Property name="alignment" type="int" value="2"/>
               </Layout>
               <SubComponents>
+                <Component class="javax.swing.JButton" name="jAddBtn">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Th&#xea;m s&#x1ea3;n ph&#x1ea9;m"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JButton" name="jDelBtn">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="X&#xf3;a s&#x1ea3;n ph&#x1ea9;m"/>
+                  </Properties>
+                </Component>
                 <Component class="javax.swing.JButton" name="jOutofDateBtn">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Xem s&#x1ea3;n ph&#x1ea9;m h&#x1ebf;t h&#x1ea1;n"/>

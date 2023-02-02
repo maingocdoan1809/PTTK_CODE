@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -152,6 +153,39 @@ public class ProductDAO implements DataAccess<Product> {
         }
 
         return expiredProducts;
+    }
+    
+    @Override
+    public boolean insert(Product pr) {
+        Connection connection = Database.getConnection();
+        try {
+            Product product = pr;
+            var stm = connection.createStatement();
+            var queryInsertFormIn = """
+                                    
+                                    Insert into `sanpham` values(
+                                    '%s', '%s', '%s', '%s', '%s', '%s', '%s', %f, %f, '%s'
+                                    )
+                                    
+                                    """.formatted(
+                                            product.getId(),
+                                            product.getName(),
+                                            product.getSpotId(),
+                                            product.getFrom(),
+                                            product.getIssue(),
+                                            product.getMgf(),
+                                            product.getExp(),
+                                            product.getPriceIn(),
+                                            product.getPriceOut(),
+                                            product.getUnit()
+                                    );
+            stm.execute(queryInsertFormIn);
+            JOptionPane.showMessageDialog(null, "Thêm thành công!");
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override

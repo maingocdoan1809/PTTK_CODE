@@ -7,6 +7,8 @@ package huce.View;
 import huce.Controller.HandelExpiredProduct;
 import huce.Controller.HandleSearchingProducts;
 import huce.Controller.LoadAllProducts;
+import huce.Model.ApplyPanel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,8 +19,11 @@ public class ListProducts extends javax.swing.JPanel {
     /**
      * Creates new form ListProducts
      */
-    public ListProducts() {
+    public ListProducts(JPanel gobackJPanel) {
         initComponents();
+        this.jAddBtn.addActionListener( (e) -> {
+            ApplyPanel.apply(gobackJPanel, new FormAddProduct(gobackJPanel));
+        } );
         this.jOutofDateBtn.addActionListener((e) -> {
             new HandelExpiredProduct().handel();
         });
@@ -43,6 +48,8 @@ public class ListProducts extends javax.swing.JPanel {
         jLookUpPanel = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
+        jAddBtn = new javax.swing.JButton();
+        jDelBtn = new javax.swing.JButton();
         jOutofDateBtn = new javax.swing.JButton();
         jSearchPanel = new javax.swing.JPanel();
 
@@ -85,6 +92,12 @@ public class ListProducts extends javax.swing.JPanel {
 
         jPanel5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT));
 
+        jAddBtn.setText("Thêm sản phẩm");
+        jPanel5.add(jAddBtn);
+
+        jDelBtn.setText("Xóa sản phẩm");
+        jPanel5.add(jDelBtn);
+
         jOutofDateBtn.setText("Xem sản phẩm hết hạn");
         jPanel5.add(jOutofDateBtn);
 
@@ -98,6 +111,8 @@ public class ListProducts extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jAddBtn;
+    private javax.swing.JButton jDelBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTable jListProductsTable;
     public javax.swing.JPanel jLookUpPanel;
