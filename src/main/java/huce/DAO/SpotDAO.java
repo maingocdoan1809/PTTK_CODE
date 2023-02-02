@@ -72,4 +72,24 @@ public class SpotDAO implements DataAccess<Spot> {
             e.printStackTrace();
         }
     }
+
+//    @Override
+//    public HashMap<String, Spot> getAll() {
+//        
+//        try {
+//            Connection c = Database.getConnection();
+//            
+//            var stm = c.createStatement();
+//            var result = stm.executeQuery("""
+//                                          Select * from 
+//                                          """);
+//            
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        
+//        return null;
+//        
+//    }
+    
 }

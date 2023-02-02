@@ -1,6 +1,10 @@
 
+import com.github.lgooddatepicker.components.DatePicker;
+import huce.DAO.LocationDAO;
+import huce.Model.Spot;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 
 
@@ -15,6 +19,14 @@ import java.time.format.DateTimeFormatter;
 public class Test {
 
     public static void main(String[] args) {
-        System.out.println(DateTimeFormatter.ofPattern("dd-MM-yyyy").format(LocalDate.now()));
+        LocationDAO locationDAO = new LocationDAO();
+        
+        var locations = locationDAO.getAll();
+        
+        var spots = new ArrayList<Spot>();
+        
+        locations.forEach( (idLocation, location) -> {
+            
+        });
     }
 }
