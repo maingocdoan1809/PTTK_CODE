@@ -62,7 +62,7 @@ public class Login extends javax.swing.JPanel {
                 } else {
                     
                     JPanel requestPanel = new JPanel();
-                    JButton logoutBtn = new JButton("Log out");
+                    JButton logoutBtn = new JButton("Đăng xuất");
                     JPanel logoutPanel = new JPanel();
                      ((FlowLayout) logoutPanel.getLayout()).setAlignment(FlowLayout.LEFT);
                     logoutPanel.add(logoutBtn);

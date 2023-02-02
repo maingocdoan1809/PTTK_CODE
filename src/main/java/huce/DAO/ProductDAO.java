@@ -34,9 +34,11 @@ public class ProductDAO implements DataAccess<Product> {
         Connection database = Database.getConnection();
 
         try {
-            String query = "Select `maSp` from `sanpham`";
+            String query = "Select `maSp` from `sanpham` ";
             if (columnName != null && value != null) {
-                query += " where `%s` = '%s' ".formatted(columnName, value);
+                query += " where `%s` = '%s' and `MaVitri` != 'DELETED' ".formatted(columnName, value);
+            } else {
+                query += " where `MaVitri` != 'DELETED'";
             }
             var stm = database.createStatement();
             var result = stm.executeQuery(
@@ -64,7 +66,7 @@ public class ProductDAO implements DataAccess<Product> {
         try {
             var stm = database.createStatement();
             var result = stm.executeQuery(
-                    "Select * from `sanpham` where `%s` = '%s'".formatted(columnName, value)
+                    "Select * from `sanpham` where `%s` = '%s' and `MaVitri` != 'DELETED'".formatted(columnName, value)
             );
 
             if (result.next()) {
@@ -85,6 +87,7 @@ public class ProductDAO implements DataAccess<Product> {
                         result.getFloat("Gianhap"),
                         result.getFloat("Giaban")
                 );
+ 
                 SpotDAO spotDAO = new SpotDAO();
                 p.setSpot(spotDAO.get(result.getString("mavitri")));
             }
@@ -199,6 +202,23 @@ public class ProductDAO implements DataAccess<Product> {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return true;
+    }
+    
+    public boolean deletedForever(String id) {
+        
+        try {
+            Connection c = Database.getConnection();
+            var stm = c.createStatement();
+            String spotID = get(id).getSpot().getId();
+            stm.execute("Update `vitri` set `soluongthucte` = 0 where `MaViTri` = '%s'  ".formatted(spotID));
+            stm.execute("Update `Sanpham` set `MaViTri` = 'DELETED' where `MASp` = '%s'  ".formatted(id));
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        
         return true;
     }
 

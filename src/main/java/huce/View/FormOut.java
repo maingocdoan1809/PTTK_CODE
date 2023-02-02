@@ -35,7 +35,6 @@ public class FormOut extends Form{
         jTextStoreID = this.addJTextField(jPanelTop, "Mã cửa hàng", 5);
         jTextStore = this.addJTextField(jPanelTop, "Địa chỉ nhận hàng", 15);
         jTextStore.setEnabled(false);
-        tableDetail = new JTable();
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{

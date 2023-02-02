@@ -23,6 +23,7 @@ public class WarehousePanel extends javax.swing.JPanel {
             ApplyPanel.apply(this.jMainPanel, helloPanel);
         } );
         this.addRequestBtnListener((e) -> {
+            System.out.println("Hello");
             ApplyPanel.apply(this.jMainPanel, new ListRequestsPanel(this.jMainPanel));
         });
         this.addViewLocationBtnListener((e) -> {
@@ -67,7 +68,7 @@ public class WarehousePanel extends javax.swing.JPanel {
 
         jRequestBtn.setText("Xem yêu cầu xuất hàng");
 
-        jLogoutBtn.setText("Log out");
+        jLogoutBtn.setText("Đăng xuất");
 
         jViewLocationBtn.setText("Xem phân khu");
 

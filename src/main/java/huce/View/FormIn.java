@@ -40,7 +40,6 @@ public class FormIn extends Form {
         jTextProvider = super.addJTextField(jPanelTop, "Tên bên giao.", 15);
         jTextProvider.setEnabled(false);
 
-        tableDetail = new JTable();
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{

@@ -158,11 +158,11 @@ public class Product {
         }
         if (stt.length > 0) {
             return new String[]{stt[0] + "",
-                id, name, idLocation, kind, priceOut + "", mgf, exp, spot.getRealQuantity() + ""
+                id, name, idLocation, kind, "%.2f".formatted(priceOut), mgf, exp, spot.getRealQuantity() + ""
             };
         }
         return new String[]{
-            id, name, idLocation, kind, priceOut + "", mgf, exp, spot.getRealQuantity() + ""
+            id, name, idLocation, kind, "%.2f".formatted(priceOut), mgf, exp, spot.getRealQuantity() + ""
         };
     }
 

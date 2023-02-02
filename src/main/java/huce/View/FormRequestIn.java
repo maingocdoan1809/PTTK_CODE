@@ -47,7 +47,7 @@ public class FormRequestIn extends Form {
             if (handleCreateForm.create(this.createFormModel())) {
                 ApplyPanel.apply(gobackPanel, new ListRequestsInPanel(gobackPanel));
             } else {
-                JOptionPane.showMessageDialog(null, "Invalid input, try again");
+                JOptionPane.showMessageDialog(null, "Lỗi dữ liệu, xin nhập lại");
             }
 
         });
@@ -67,7 +67,6 @@ public class FormRequestIn extends Form {
         this.jButtonDel.addActionListener((e) -> {
             ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
         });
-        this.tableDetail = new JTable();
         this.tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{

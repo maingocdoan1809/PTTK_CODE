@@ -7,7 +7,9 @@ package huce.View;
 import huce.Controller.HandelExpiredProduct;
 import huce.Controller.HandleSearchingProducts;
 import huce.Controller.LoadAllProducts;
+import huce.DAO.ProductDAO;
 import huce.Model.ApplyPanel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -21,9 +23,9 @@ public class ListProducts extends javax.swing.JPanel {
      */
     public ListProducts(JPanel gobackJPanel) {
         initComponents();
-        this.jAddBtn.addActionListener( (e) -> {
+        this.jAddBtn.addActionListener((e) -> {
             ApplyPanel.apply(gobackJPanel, new FormAddProduct(gobackJPanel));
-        } );
+        });
         this.jOutofDateBtn.addActionListener((e) -> {
             new HandelExpiredProduct().handel();
         });
@@ -31,6 +33,7 @@ public class ListProducts extends javax.swing.JPanel {
         this.jLookUpPanel.add(lkp);
         new LoadAllProducts().loadTo(jListProductsTable);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -96,6 +99,11 @@ public class ListProducts extends javax.swing.JPanel {
         jPanel5.add(jAddBtn);
 
         jDelBtn.setText("Xóa sản phẩm");
+        jDelBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jDelBtnActionPerformed(evt);
+            }
+        });
         jPanel5.add(jDelBtn);
 
         jOutofDateBtn.setText("Xem sản phẩm hết hạn");
@@ -108,6 +116,25 @@ public class ListProducts extends javax.swing.JPanel {
 
         add(jLookUpPanel, java.awt.BorderLayout.PAGE_END);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jDelBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jDelBtnActionPerformed
+        int selectedRow = jListProductsTable.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn một sản phẩm trong kho");
+            return;
+        }
+        String idProduct = (String) jListProductsTable.getModel().getValueAt(selectedRow, 1);
+        ProductDAO pdao = new ProductDAO();
+
+        if (pdao.deletedForever(idProduct)) {
+            JOptionPane.showMessageDialog(null, "Đã xóa thành công");
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Có lỗi xảy ra");
+        }
+
+
+    }//GEN-LAST:event_jDelBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

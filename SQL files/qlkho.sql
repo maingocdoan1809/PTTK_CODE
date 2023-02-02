@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th2 02, 2023 lúc 12:42 PM
+-- Thời gian đã tạo: Th2 02, 2023 lúc 03:54 PM
 -- Phiên bản máy phục vụ: 10.4.27-MariaDB
--- Phiên bản PHP: 8.2.0
+-- Phiên bản PHP: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,6 +58,14 @@ CREATE TABLE `chitietyeucaunhaphang` (
   `MaSp` varchar(10) NOT NULL,
   `SoLuongTheoYeuCau` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitietyeucaunhaphang`
+--
+
+INSERT INTO `chitietyeucaunhaphang` (`MaPhieuYCN`, `MaSp`, `SoLuongTheoYeuCau`) VALUES
+('12344', '1362', 3),
+('12344', '3422', 4);
 
 -- --------------------------------------------------------
 
@@ -128,8 +136,7 @@ INSERT INTO `nhacungcap` (`MaNCC`, `TenNCC`, `DiaChi`, `SoDienThoai`) VALUES
 ('3096', 'Công Ty TNHH Megahome', 'KĐT Mới Cầu Bươu, Thanh Trì, Hà Nội', '0904257258'),
 ('3124', 'An An', 'Định công, Hoàng Mai, Hà Nội', '023984343'),
 ('7921', 'San Hà Food', ' Số 951 Tạ Quang Bửu, P. 6, Q. 8,Tp. Hồ Chí Minh', '02839814733'),
-('7932', 'Công Ty TNHH Happy Cook', '102/51 Lương Khánh Thiện, Q. Hoàng Mai,Hà Nội', '0942000666'),
-('[value-1]', '[value-2]', '[value-3]', '[value-4]');
+('7932', 'Công Ty TNHH Happy Cook', '102/51 Lương Khánh Thiện, Q. Hoàng Mai,Hà Nội', '0942000666');
 
 -- --------------------------------------------------------
 
@@ -147,6 +154,7 @@ CREATE TABLE `phankhu` (
 --
 
 INSERT INTO `phankhu` (`MaPhanKhu`, `TenPhanKhu`) VALUES
+('DELETED', 'Đã xóa'),
 ('PK1', 'Đồ gia dụng'),
 ('PK2-BK', 'Bánh kẹo'),
 ('PK3', 'Thực phẩm khô'),
@@ -219,9 +227,7 @@ CREATE TABLE `phieuyeucaunhap` (
 --
 
 INSERT INTO `phieuyeucaunhap` (`MaPhieuYCN`, `MaNCC`, `NgayLap`, `TrangThai`, `MaNguoiLap`) VALUES
-('1000', '3124', '2022-12-26 07:04:12', 'Hoàn thành', 'admin'),
-('1234', '3124', '2022-10-27 07:05:19', 'Hoàn thành', 'admin'),
-('18999', '1565', '2023-01-11 00:00:00', 'Đang chờ', 'admin');
+('12344', '1235', '2023-02-02 00:00:00', 'Đang chờ', 'admin');
 
 -- --------------------------------------------------------
 
@@ -237,13 +243,6 @@ CREATE TABLE `phieuyeucauxuat` (
   `LyDo` varchar(255) DEFAULT NULL,
   `MaNguoiLap` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Đang đổ dữ liệu cho bảng `phieuyeucauxuat`
---
-
-INSERT INTO `phieuyeucauxuat` (`MaPhieuYCX`, `MaCH`, `NgayLap`, `TrangThai`, `LyDo`, `MaNguoiLap`) VALUES
-('00998', '7423', '2023-01-14', 'Hoàn thành', 'Hehe', 'staff');
 
 -- --------------------------------------------------------
 
@@ -282,7 +281,7 @@ INSERT INTO `sanpham` (`MaSp`, `TenSp`, `MaViTri`, `XuatXu`, `NhaSx`, `NSX`, `HS
 ('3876', 'Miến', 'E-PK3', 'Việt Nam', 'Thực phẩm Zin Food', '2022-05-01', '2023-05-01', 20000, 40000, 'Gói'),
 ('3921', 'Hạt chia tím', 'F-PK3', 'Việt Nam', 'San Hà Food', '2022-04-12', '2023-04-12', 25000, 40000, 'Gói'),
 ('4123', 'Cá trứng đông lạnh', 'A-PK4', 'Việt Nam', 'San Hà Food', '2023-01-02', '2023-10-02', 30000, 50000, 'Khay'),
-('4265', 'Cá bống đục đông lạnh', 'B-PK4', 'Việt Nam', 'Thực phẩm Zin Food', '2022-10-20', '2023-10-20', 26000, 38000, 'Khay'),
+('4265', 'Cá bống đục đông lạnh', 'DELETED', 'Việt Nam', 'Thực phẩm Zin Food', '2022-10-20', '2023-10-20', 26000, 38000, 'Khay'),
 ('4329', 'Tôm sú', 'C-PK4', 'Việt Nam', 'Thực phẩm Zin Food', '2023-01-06', '2023-10-06', 50000, 70000, 'Khay'),
 ('4711', 'Thịt bò nướng đông lạnh San Hà', 'D-PK4', 'Việt Nam', 'San Hà Food', '2022-11-22', '2023-11-22', 89000, 110000, 'Khay'),
 ('4902', 'Mực nang trứng', 'F-PK4', 'Việt Nam', 'Viet Nam Food', '2022-05-05', '2023-05-05', 60000, 85000, 'Khay'),
@@ -348,6 +347,7 @@ INSERT INTO `vitri` (`MaViTri`, `MaPhanKhu`, `SoLuongToiDa`, `SoLuongThucTe`) VA
 ('D-PK3', 'PK3', 200, 0),
 ('D-PK4', 'PK4', 200, 0),
 ('D-PK5', 'PK5', 200, 0),
+('DELETED', 'DELETED', 1000, 0),
 ('E-PK1', 'PK1', 200, 0),
 ('E-PK3', 'PK3', 200, 0),
 ('E-PK4', 'PK4', 200, 0),
@@ -510,46 +510,6 @@ ALTER TABLE `chitietyeucaunhaphang`
 ALTER TABLE `chitietyeucauxuathang`
   ADD CONSTRAINT `chitietyeucauxuathang_ibfk_1` FOREIGN KEY (`MaPhieuYCX`) REFERENCES `phieuyeucauxuat` (`MaPhieuYCX`) ON DELETE CASCADE,
   ADD CONSTRAINT `chitietyeucauxuathang_ibfk_2` FOREIGN KEY (`MaSp`) REFERENCES `sanpham` (`MaSp`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `phieunhap`
---
-ALTER TABLE `phieunhap`
-  ADD CONSTRAINT `phieunhap_ibfk_1` FOREIGN KEY (`MaPhieuYCN`) REFERENCES `phieuyeucaunhap` (`MaPhieuYCN`) ON DELETE CASCADE,
-  ADD CONSTRAINT `phieunhap_ibfk_2` FOREIGN KEY (`MaNguoiLap`) REFERENCES `taikhoan` (`TenTaiKhoan`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `phieuxuat`
---
-ALTER TABLE `phieuxuat`
-  ADD CONSTRAINT `MPYCX` FOREIGN KEY (`MaPhieuYCX`) REFERENCES `phieuyeucauxuat` (`MaPhieuYCX`),
-  ADD CONSTRAINT `phieuxuat_ibfk_2` FOREIGN KEY (`MaNguoiLap`) REFERENCES `taikhoan` (`TenTaiKhoan`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `phieuyeucaunhap`
---
-ALTER TABLE `phieuyeucaunhap`
-  ADD CONSTRAINT `phieuyeucaunhap_ibfk_1` FOREIGN KEY (`MaNCC`) REFERENCES `nhacungcap` (`MaNCC`) ON DELETE CASCADE,
-  ADD CONSTRAINT `phieuyeucaunhap_ibfk_2` FOREIGN KEY (`MaNguoiLap`) REFERENCES `taikhoan` (`TenTaiKhoan`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `phieuyeucauxuat`
---
-ALTER TABLE `phieuyeucauxuat`
-  ADD CONSTRAINT `phieuyeucauxuat_ibfk_1` FOREIGN KEY (`MaCH`) REFERENCES `cuahang` (`MaCH`) ON DELETE CASCADE,
-  ADD CONSTRAINT `phieuyeucauxuat_ibfk_2` FOREIGN KEY (`MaNguoiLap`) REFERENCES `taikhoan` (`TenTaiKhoan`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `sanpham`
---
-ALTER TABLE `sanpham`
-  ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`MaViTri`) REFERENCES `vitri` (`MaViTri`) ON DELETE CASCADE;
-
---
--- Các ràng buộc cho bảng `vitri`
---
-ALTER TABLE `vitri`
-  ADD CONSTRAINT `vitri_ibfk_1` FOREIGN KEY (`MaPhanKhu`) REFERENCES `phankhu` (`MaPhanKhu`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

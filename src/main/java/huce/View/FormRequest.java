@@ -51,7 +51,6 @@ public class FormRequest extends Form {
         }
 
         jTextReason = this.addJTextField(jPanelBottom, "Lý do", 20);
-        tableDetail = new JTable();
         tableDetail.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[][]{},
                 new String[]{

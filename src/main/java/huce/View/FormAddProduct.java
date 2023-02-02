@@ -41,6 +41,10 @@ public class FormAddProduct extends javax.swing.JPanel {
             }
 
         });
+        
+        
+        
+        
     }
 
     private Product product() {

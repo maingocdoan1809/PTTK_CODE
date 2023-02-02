@@ -26,6 +26,8 @@ public abstract class Form extends javax.swing.JPanel implements Subject {
         initComponents();
         this.jTextAccount.setText(Login.loginAccount.getData()[0]);
         this.jDateCreated.setDateToToday();
+        tableDetail = new JTable();
+
     }
 
 
