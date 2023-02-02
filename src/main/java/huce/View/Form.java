@@ -84,7 +84,7 @@ public abstract class Form extends javax.swing.JPanel implements Subject {
         javax.swing.JPanel jPanel2 = new javax.swing.JPanel();
         jButtonDel = new javax.swing.JButton();
         jButtonCreate = new javax.swing.JButton();
-        jButtonPrint = new javax.swing.JButton();
+        jButtonBack = new javax.swing.JButton();
         javax.swing.JPanel jPanel3 = new javax.swing.JPanel();
         javax.swing.JSplitPane jSplitPane2 = new javax.swing.JSplitPane();
         jLookUpPanel = new javax.swing.JPanel();
@@ -121,8 +121,8 @@ public abstract class Form extends javax.swing.JPanel implements Subject {
         jButtonCreate.setText("Tạo phiếu");
         jPanel2.add(jButtonCreate);
 
-        jButtonPrint.setText("In phiếu");
-        jPanel2.add(jButtonPrint);
+        jButtonBack.setText("Quay lại");
+        jPanel2.add(jButtonBack);
 
         add(jPanel2, java.awt.BorderLayout.PAGE_END);
 
@@ -210,9 +210,9 @@ public abstract class Form extends javax.swing.JPanel implements Subject {
 
     protected JTable jListProductJTable;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    protected javax.swing.JButton jButtonBack;
     protected javax.swing.JButton jButtonCreate;
     protected javax.swing.JButton jButtonDel;
-    protected javax.swing.JButton jButtonPrint;
     protected com.github.lgooddatepicker.components.DatePicker jDateCreated;
     private javax.swing.JLabel jLabel1;
     protected javax.swing.JLabel jLabelRight;

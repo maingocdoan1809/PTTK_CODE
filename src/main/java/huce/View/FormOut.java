@@ -9,6 +9,7 @@ import ObserverPattern.Subject;
 import huce.Controller.HandleCreateForm;
 import huce.Controller.HandleCreateFormOut;
 import huce.Controller.LoadListProductToFormOut;
+import huce.DAO.FormRequestDAO;
 import huce.DAO.ProductDAO;
 import huce.DAO.StoreDAO;
 import huce.Model.ApplyPanel;
@@ -67,6 +68,9 @@ public class FormOut extends Form implements Subject{
             ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
         });
         
+        this.jButtonBack.addActionListener((e) -> {
+            ApplyPanel.apply(gobackPanel, new ListRequestsPanel(gobackPanel));
+        });
         StoreDAO storeDAO = new StoreDAO();
         
         var store = storeDAO.get(formRequest.getCreateStore());

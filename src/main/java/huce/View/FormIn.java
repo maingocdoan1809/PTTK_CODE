@@ -65,6 +65,9 @@ public class FormIn extends Form implements Subject {
             }
 
         });
+        this.jButtonBack.addActionListener((e) -> {
+            ApplyPanel.apply(gobackPanel, new ListRequestsInPanel(gobackPanel));
+        });
         this.jButtonDel.addActionListener((e) -> {
             ApplyPanel.apply(gobackPanel, WarehousePanel.helloPanel);
         });

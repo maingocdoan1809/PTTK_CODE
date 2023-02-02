@@ -49,6 +49,17 @@ public class ListRequestsPanel extends javax.swing.JPanel {
             jAcceptBtn.setEnabled(false);
             jRefuseBtn.setEnabled(false);
         });
+        this.jRefuseBtn.addActionListener((e) -> {
+            
+            int row = jListRequestsTable.getSelectedRow();
+            String id = (String) tableModel.getValueAt(row, 1);
+            String status = (String) tableModel.getValueAt(row, 5);
+            if(status.equals(PENDINGMODE)) {
+            FormRequestDAO rqd = new FormRequestDAO();
+            rqd.cancelForm(id);
+            ApplyPanel.apply(goBackJPanel, new ListRequestsPanel(goBackJPanel));
+            }
+        });
 //        this.jRefuseBtn.addActionListener((e) -> {
 //            int row = jListRequestsTable.getSelectedRow();
 //            tableModel.setValueAt(ListRequestsInPanel.CANCELMODE, row, 4);
