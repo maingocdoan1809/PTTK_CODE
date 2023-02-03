@@ -108,7 +108,7 @@ public class ProductDAO implements DataAccess<Product> {
         try {
             Connection c = Database.getConnection();
             var stm = c.createStatement();
-            var result = stm.executeQuery("Select `MaSP` from `Sanpham` where `TenSp` like '%" + regex + "%'");
+            var result = stm.executeQuery("Select `MaSP` from `Sanpham` where `TenSp` like '%" + regex + "%' OR MaSp like '%" + regex + "%'");
             
             while(result.next()) {
                 products.add( get(result.getString("MaSp")) );

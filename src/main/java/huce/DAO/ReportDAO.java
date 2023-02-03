@@ -26,7 +26,8 @@ public class ReportDAO {
                            SELECT ct.MaSp, sp.TenSp,Sum(ct.SoLuong) as SoLuongXuat 
                            FROM chitietxuathang ct, sanpham sp, phieuxuat px 
                            WHERE ct.MaSp = sp.MaSp and px.MaPhieu = ct.MaPhieu and px.NgayLapPhieu BETWEEN '%s' AND '%s'
-                           GROUP BY ct.MaPhieu ASC;
+                           GROUP BY ct.MaSp 
+                           ORDER BY SoLuongXuat DESC;
                            """.formatted(date, toDate);
             var result = stm.executeQuery(query);
             while (result.next()) {
@@ -38,21 +39,22 @@ public class ReportDAO {
         }
         return reportList;
     }
-    
+
     public List<ReportModel> getIn(String date, String toDate) {
         Connection connection = Database.getConnection();
         List<ReportModel> reportList = new ArrayList<>();
         try {
             var stm = connection.createStatement();
             String query = """
-                            SELECT ct.MaSp, sp.TenSp,Sum(ct.SoLuongNhap) as SoLuongXuat 
-                                                      FROM chitietnhaphang ct, sanpham sp, phieunhap pn 
-                                                      WHERE ct.MaSp = sp.MaSp and pn.MaPhieu = ct.MaPhieu and pn.NgayLapPhieu BETWEEN '%s' AND '%s'
-                                                      GROUP BY ct.MaPhieu ASC;;
+                            SELECT ct.MaSp, sp.TenSp,Sum(ct.SoLuongNhap) as SoLuongNhap 
+                                                                                  FROM chitietnhaphang ct, sanpham sp, phieunhap pn 
+                                                                                  WHERE ct.MaSp = sp.MaSp and pn.MaPhieu = ct.MaPhieu and pn.NgayLapPhieu BETWEEN '%s' AND '%s'
+                                                                                  GROUP BY ct.MaSp
+                                                                                  ORDER BY SoLuongNhap DESC;
                            """.formatted(date, toDate);
             var result = stm.executeQuery(query);
             while (result.next()) {
-                ReportModel report = new ReportModel(result.getString("MaSp"), result.getString("TenSp"), result.getInt("SoLuongXuat"));
+                ReportModel report = new ReportModel(result.getString("MaSp"), result.getString("TenSp"), result.getInt("SoLuongNhap"));
                 reportList.add(report);
             }
         } catch (SQLException e) {
