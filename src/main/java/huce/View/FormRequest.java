@@ -98,7 +98,9 @@ public class FormRequest extends Form {
             }
 
         });
-        
+        this.jButtonDel.addActionListener((e)-> {
+            ApplyPanel.apply(Main.mainPanel, new FormRequest());
+        });
         
         
         
