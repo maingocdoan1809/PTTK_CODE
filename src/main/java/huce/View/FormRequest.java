@@ -5,7 +5,6 @@
 package huce.View;
 
 import ObserverPattern.Observer;
-import ObserverPattern.Subject;
 import huce.Controller.HandleCreateForm;
 import huce.Controller.HandleCreateFormRequest;
 import huce.Controller.HandleSearchingForm;
@@ -14,11 +13,13 @@ import huce.DAO.StoreDAO;
 import huce.Model.ApplyPanel;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
@@ -75,7 +76,23 @@ public class FormRequest extends Form {
             HandleCreateForm handleCreateForm = new HandleCreateFormRequest();
             if (handleCreateForm.create(this.createFormModel())) {
                 JOptionPane.showMessageDialog(null, "Thành công!");
-                ApplyPanel.apply( Main.mainPanel , new FormRequest());
+                JPanel requestPanel = new JPanel();
+                    JButton logoutBtn = new JButton("Đăng xuất");
+                    JPanel logoutPanel = new JPanel();
+                     ((FlowLayout) logoutPanel.getLayout()).setAlignment(FlowLayout.LEFT);
+                    logoutPanel.add(logoutBtn);
+                    requestPanel.setLayout(new BorderLayout());
+                    requestPanel.add(new FormRequest(), BorderLayout.CENTER);
+                    requestPanel.add(logoutPanel, BorderLayout.SOUTH);
+                    
+                    logoutBtn.addActionListener((evt) -> {
+                        
+                        ApplyPanel.apply(Main.mainPanel, new Login(Main.mainPanel));
+                    
+                    });
+                    
+                    
+                    ApplyPanel.apply(Main.mainPanel, requestPanel);
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid input, try again");
             }

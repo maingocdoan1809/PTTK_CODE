@@ -126,11 +126,12 @@ public class ListProducts extends javax.swing.JPanel {
         String idProduct = (String) jListProductsTable.getModel().getValueAt(selectedRow, 1);
         ProductDAO pdao = new ProductDAO();
 
-        if (pdao.deletedForever(idProduct)) {
-            JOptionPane.showMessageDialog(null, "Đã xóa thành công");
-
-        } else {
-            JOptionPane.showMessageDialog(null, "Có lỗi xảy ra");
+        if (JOptionPane.showConfirmDialog(null, "Bạn chắc chắn muốn xóa sản phẩm này?") == 0) {
+            if (pdao.deletedForever(idProduct)) {
+                JOptionPane.showMessageDialog(null, "Đã xóa thành công");
+            } else {
+                JOptionPane.showMessageDialog(null, "Có lỗi xảy ra");
+            }
         }
 
 

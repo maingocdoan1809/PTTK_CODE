@@ -102,7 +102,26 @@ public class ProductDAO implements DataAccess<Product> {
     synchronized public Product getByName(String name) {
         return getBy("TenSp", name);
     }
-
+    synchronized public ArrayList<Product> getAllByName(String regex) {
+        ArrayList<Product> products = new ArrayList<>();
+        
+        try {
+            Connection c = Database.getConnection();
+            var stm = c.createStatement();
+            var result = stm.executeQuery("Select `MaSP` from `Sanpham` where `TenSp` like '%" + regex + "%'");
+            
+            while(result.next()) {
+                products.add( get(result.getString("MaSp")) );
+                System.out.println(products);
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return products;
+        
+    }
     synchronized public void importProduct(Product product, int num) {
         Connection connection = Database.getConnection();
         try {

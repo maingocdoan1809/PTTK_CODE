@@ -23,7 +23,7 @@ public class ReportDAO {
         try {
             var stm = connection.createStatement();
             String query = """
-                           SELECT ct.MaSp, sp.TenSp,COUNT(ct.SoLuong) as SoLuongXuat 
+                           SELECT ct.MaSp, sp.TenSp,Sum(ct.SoLuong) as SoLuongXuat 
                            FROM chitietxuathang ct, sanpham sp, phieuxuat px 
                            WHERE ct.MaSp = sp.MaSp and px.MaPhieu = ct.MaPhieu and px.NgayLapPhieu BETWEEN '%s' AND '%s'
                            GROUP BY ct.MaPhieu ASC;
@@ -45,7 +45,7 @@ public class ReportDAO {
         try {
             var stm = connection.createStatement();
             String query = """
-                            SELECT ct.MaSp, sp.TenSp,COUNT(ct.SoLuongNhap) as SoLuongXuat 
+                            SELECT ct.MaSp, sp.TenSp,Sum(ct.SoLuongNhap) as SoLuongXuat 
                                                       FROM chitietnhaphang ct, sanpham sp, phieunhap pn 
                                                       WHERE ct.MaSp = sp.MaSp and pn.MaPhieu = ct.MaPhieu and pn.NgayLapPhieu BETWEEN '%s' AND '%s'
                                                       GROUP BY ct.MaPhieu ASC;;

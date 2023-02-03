@@ -5,11 +5,9 @@
 package huce.Controller;
 
 import huce.DAO.ProductDAO;
-import huce.View.LookUpPanel;
+import huce.Model.Product;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
-import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,8 +25,8 @@ public class HandleSearchingProducts implements HandleSearching{
             // search by ID:
             var productByID = pdao.get(whatToSearch);
             // search by Name:
-            var productByName = pdao.getByName(whatToSearch);
-            if ( productByID == null && productByName == null) {
+            var productByName = pdao.getAllByName(whatToSearch);
+            if ( productByID == null && productByName.isEmpty()) {
                 throw new Exception("Không tìm thấy kết quả");
             }
             
@@ -36,7 +34,9 @@ public class HandleSearchingProducts implements HandleSearching{
                 new LoadAllProducts().loadTo(table, productByID);
             }
             if ( productByName != null ) {
-                new LoadAllProducts().loadTo(table, productByName);
+                Product[] products = new Product[productByName.size()];
+                productByName.toArray(products);
+                new LoadAllProducts().loadTo(table,products );
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
