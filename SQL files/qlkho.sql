@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2023 at 08:29 AM
+-- Generation Time: Feb 03, 2023 at 04:15 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -58,6 +58,13 @@ CREATE TABLE `chitietxuathang` (
   `SoLuong` int(11) DEFAULT NULL,
   `ThanhTien` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chitietxuathang`
+--
+
+INSERT INTO `chitietxuathang` (`MaPhieu`, `MaSp`, `SoLuong`, `ThanhTien`) VALUES
+('1223', '3921', 5, 0);
 
 -- --------------------------------------------------------
 
@@ -225,6 +232,13 @@ CREATE TABLE `phieuxuat` (
   `MaNguoiLap` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `phieuxuat`
+--
+
+INSERT INTO `phieuxuat` (`MaPhieu`, `MaPhieuYCX`, `NgayLapPhieu`, `DiaDiemLapPhieu`, `TongSoTien`, `MaNguoiLap`) VALUES
+('1223', '9099', '2023-02-03', 'Tại kho', 0, 'admin');
+
 -- --------------------------------------------------------
 
 --
@@ -268,7 +282,7 @@ CREATE TABLE `phieuyeucauxuat` (
 --
 
 INSERT INTO `phieuyeucauxuat` (`MaPhieuYCX`, `MaCH`, `NgayLap`, `TrangThai`, `LyDo`, `MaNguoiLap`) VALUES
-('9099', '2486', '2023-02-03', 'Đang chờ', 'hết hàng', 'staff');
+('9099', '2486', '2023-02-03', 'Đang xử lý', 'hết hàng', 'staff');
 
 -- --------------------------------------------------------
 
@@ -379,7 +393,7 @@ INSERT INTO `vitri` (`MaViTri`, `MaPhanKhu`, `SoLuongToiDa`, `SoLuongThucTe`) VA
 ('E-PK4', 'PK4', 200, 0),
 ('E-PK5', 'PK5', 200, 0),
 ('F-PK1', 'PK1', 200, 0),
-('F-PK3', 'PK3', 200, 18),
+('F-PK3', 'PK3', 200, 13),
 ('F-PK4', 'PK4', 200, 0),
 ('F-PK5', 'PK5', 200, 0),
 ('G-PK1', 'PK1', 200, 0),
