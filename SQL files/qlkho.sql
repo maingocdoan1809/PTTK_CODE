@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 03, 2023 at 05:10 AM
+-- Generation Time: Feb 03, 2023 at 08:29 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.1.12
 
@@ -39,6 +39,9 @@ CREATE TABLE `chitietnhaphang` (
 --
 
 INSERT INTO `chitietnhaphang` (`MaPhieu`, `MaSp`, `SoLuongNhap`, `ThanhTien`) VALUES
+('12345', '2426', 4, 0),
+('12345', '3224', 3, 0),
+('12345', '3876', 3, 0),
 ('124', '3224', 4, 0),
 ('124', '3921', 15, 0),
 ('178', '3921', 3, 0);
@@ -76,7 +79,10 @@ INSERT INTO `chitietyeucaunhaphang` (`MaPhieuYCN`, `MaSp`, `SoLuongTheoYeuCau`) 
 ('12344', '1362', 3),
 ('12344', '3422', 4),
 ('1345', '3224', 4),
-('1345', '3921', 18);
+('1345', '3921', 18),
+('9988', '2426', 4),
+('9988', '3224', 3),
+('9988', '3876', 3);
 
 -- --------------------------------------------------------
 
@@ -89,6 +95,14 @@ CREATE TABLE `chitietyeucauxuathang` (
   `MaSp` varchar(10) NOT NULL,
   `SoLuongYeuCau` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `chitietyeucauxuathang`
+--
+
+INSERT INTO `chitietyeucauxuathang` (`MaPhieuYCX`, `MaSp`, `SoLuongYeuCau`) VALUES
+('9099', '3921', 5),
+('9099', '5777', 3);
 
 -- --------------------------------------------------------
 
@@ -192,6 +206,7 @@ CREATE TABLE `phieunhap` (
 --
 
 INSERT INTO `phieunhap` (`MaPhieu`, `MaPhieuYCN`, `NgayLapPhieu`, `DiaDiemLapPhieu`, `TongSoTien`, `MaNguoiLap`) VALUES
+('12345', '9988', '2023-02-03', 'Tai kho', 0, 'admin'),
 ('124', '1345', '2023-02-03', 'Tai kho', 0, 'admin'),
 ('178', '1345', '2023-02-03', 'Tai kho', 0, 'admin');
 
@@ -230,7 +245,8 @@ CREATE TABLE `phieuyeucaunhap` (
 
 INSERT INTO `phieuyeucaunhap` (`MaPhieuYCN`, `MaNCC`, `NgayLap`, `TrangThai`, `MaNguoiLap`) VALUES
 ('12344', '1235', '2023-02-02 00:00:00', 'Đang chờ', 'admin'),
-('1345', '2921', '2023-02-03 00:00:00', 'Hoàn thành', 'admin');
+('1345', '2921', '2023-02-03 00:00:00', 'Hoàn thành', 'admin'),
+('9988', '1235', '2023-02-03 00:00:00', 'Hoàn thành', 'admin');
 
 -- --------------------------------------------------------
 
@@ -246,6 +262,13 @@ CREATE TABLE `phieuyeucauxuat` (
   `LyDo` varchar(255) DEFAULT NULL,
   `MaNguoiLap` varchar(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `phieuyeucauxuat`
+--
+
+INSERT INTO `phieuyeucauxuat` (`MaPhieuYCX`, `MaCH`, `NgayLap`, `TrangThai`, `LyDo`, `MaNguoiLap`) VALUES
+('9099', '2486', '2023-02-03', 'Đang chờ', 'hết hàng', 'staff');
 
 -- --------------------------------------------------------
 
@@ -338,10 +361,10 @@ INSERT INTO `vitri` (`MaViTri`, `MaPhanKhu`, `SoLuongToiDa`, `SoLuongThucTe`) VA
 ('A-PK4', 'PK4', 200, 0),
 ('A-PK5', 'PK5', 200, 0),
 ('B-PK1', 'PK1', 200, 0),
-('B-PK3', 'PK3', 200, 4),
+('B-PK3', 'PK3', 200, 7),
 ('B-PK4', 'PK4', 200, 0),
 ('B-PK5', 'PK5', 200, 0),
-('BK1AA', 'PK2-BK', 200, 19),
+('BK1AA', 'PK2-BK', 200, 23),
 ('C-PK1', 'PK1', 200, 0),
 ('C-PK3', 'PK3', 200, 0),
 ('C-PK4', 'PK4', 200, 0),
@@ -352,7 +375,7 @@ INSERT INTO `vitri` (`MaViTri`, `MaPhanKhu`, `SoLuongToiDa`, `SoLuongThucTe`) VA
 ('D-PK5', 'PK5', 200, 0),
 ('DELETED', 'DELETED', 1000, 0),
 ('E-PK1', 'PK1', 200, 0),
-('E-PK3', 'PK3', 200, 0),
+('E-PK3', 'PK3', 200, 3),
 ('E-PK4', 'PK4', 200, 0),
 ('E-PK5', 'PK5', 200, 0),
 ('F-PK1', 'PK1', 200, 0),
